@@ -9,25 +9,43 @@
     <!-- FontAwesome 6.4 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
-            --accent-color: #6366f1;
-            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --surface-card: #1e293b;
+            --accent-neon: #10b981;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-light);
-            color: #1e293b;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             min-height: 100vh;
         }
 
-        .header-bg {
-            background: var(--primary-gradient);
-            border-radius: 0 0 1.5rem 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+        .header-custom {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(16, 185, 129, 0.2);
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
+            border-radius: 1rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
         }
 
         .nav-tabs-wrapper {
@@ -36,99 +54,128 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
-        .nav-tabs-wrapper::-webkit-scrollbar {
-            display: none;
-        }
+        .nav-tabs-wrapper::-webkit-scrollbar { display: none; }
 
         .nav-pills-custom .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            border-radius: 50rem;
-            padding: 0.5rem 1.25rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            color: var(--text-muted);
+            border-radius: 1rem;
+            padding: 0.6rem 1.4rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-pills-custom .nav-link.active {
-            background-color: #ffffff;
-            color: #4f46e5;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
+            color: #0f172a;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
         .card-turma {
-            border: none;
-            border-radius: 1rem;
-            background: #ffffff;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            background: var(--surface-card);
+            transition: all 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-turma::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-neon), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .card-turma:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -3px rgba(99, 102, 241, 0.15);
+            transform: translateY(-5px);
+            border-color: var(--accent-neon);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
         }
 
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 0.75rem;
-            background-color: rgba(99, 102, 241, 0.1);
-            color: var(--accent-color);
+        .card-turma:hover::before { opacity: 1; }
+
+        .icon-box-turma {
+            width: 46px;
+            height: 46px;
+            border-radius: 0.85rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-neon);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        .badge-indigo {
-            background-color: rgba(99, 102, 241, 0.12);
-            color: var(--accent-color);
-            font-weight: 600;
+        .badge-neon {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-neon);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-weight: 700;
         }
 
         .btn-cycle {
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            background: #ffffff;
-            color: #64748b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.85rem;
+            background: var(--surface-card);
+            color: var(--text-muted);
             font-weight: 600;
-            padding: 0.6rem 1rem;
-            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
         }
 
         .btn-cycle.active {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-purple), #6366f1);
             color: #ffffff;
-            border-color: var(--accent-color);
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
         }
 
         .item-card {
-            border: 1px solid #f1f5f9;
-            border-radius: 0.85rem;
-            background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border-left: 4px solid var(--accent-color);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            background: var(--surface-card);
+            border-left: 4px solid var(--accent-neon);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
+
+        .badge-code {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            font-weight: 700;
+        }
+
+        .text-custom-muted { color: var(--text-muted) !important; }
     </style>
 </head>
 <body>
 
     <!-- Header Principal -->
-    <header class="header-bg text-white pt-4 pb-3 mb-4">
+    <header class="header-custom text-white pt-4 pb-3 mb-4">
         <div class="container">
             <div class="d-flex align-items-center mb-3">
-                <i class="fa-solid fa-compass fa-2x me-3"></i>
+                <div class="brand-icon me-3">
+                    <i class="fa-solid fa-calculator fa-xl"></i>
+                </div>
                 <div>
-                    <h1 class="h3 mb-0 fw-bold">Norteador Pedagógico</h1>
-                    <p class="small mb-0 opacity-75">Mapeamento de Habilidades CAEd x Livro Didático</p>
+                    <h1 class="h3 mb-0 fw-extrabold tracking-tight">Norteador Pedagógico</h1>
+                    <p class="small mb-0 text-custom-muted">Mapeamento de Habilidades CAEd x Livro Didático</p>
                 </div>
             </div>
 
-            <!-- Navegação por Matérias com Scroll Horizontal -->
+            <!-- Navegação por Matérias -->
             <div class="nav-tabs-wrapper pt-2">
-                <ul class="nav nav-pills nav-pills-custom flex-nowrap">
+                <ul class="nav nav-pills nav-pills-custom flex-nowrap gap-2">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">
                             <i class="fa-solid fa-flask me-2"></i>Ciências da Natureza
@@ -150,12 +197,12 @@
     </header>
 
     <main class="container pb-5">
-        <!-- TELA INITIAL: Seleção de Turmas -->
+        <!-- TELA INICIAL: Seleção de Turmas -->
         <section id="view-turmas">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <div>
                     <h2 class="h5 fw-bold mb-1">Selecione a Turma</h2>
-                    <p class="text-muted small mb-0">Componente: Matemática</p>
+                    <p class="text-custom-muted small mb-0">Componente: Matemática</p>
                 </div>
             </div>
 
@@ -163,44 +210,44 @@
                 <div class="col-6 col-md-3">
                     <div class="card card-turma h-100 p-3" onclick="selecionarTurma('6ano')">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box"><i class="fa-solid fa-chart-pie"></i></div>
-                            <span class="badge badge-indigo rounded-pill" id="badge-total-6ano">0 hab.</span>
+                            <div class="icon-box-turma"><i class="fa-solid fa-chart-pie"></i></div>
+                            <span class="badge badge-neon rounded-pill" id="badge-total-6ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">6º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-md-3">
                     <div class="card card-turma h-100 p-3" onclick="selecionarTurma('7ano')">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box"><i class="fa-solid fa-shapes"></i></div>
-                            <span class="badge badge-indigo rounded-pill" id="badge-total-7ano">0 hab.</span>
+                            <div class="icon-box-turma"><i class="fa-solid fa-shapes"></i></div>
+                            <span class="badge badge-neon rounded-pill" id="badge-total-7ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">7º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-md-3">
                     <div class="card card-turma h-100 p-3" onclick="selecionarTurma('8ano')">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box"><i class="fa-solid fa-square-root-variable"></i></div>
-                            <span class="badge badge-indigo rounded-pill" id="badge-total-8ano">0 hab.</span>
+                            <div class="icon-box-turma"><i class="fa-solid fa-square-root-variable"></i></div>
+                            <span class="badge badge-neon rounded-pill" id="badge-total-8ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">8º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-md-3">
                     <div class="card card-turma h-100 p-3" onclick="selecionarTurma('9ano')">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box"><i class="fa-solid fa-superscript"></i></div>
-                            <span class="badge badge-indigo rounded-pill" id="badge-total-9ano">0 hab.</span>
+                            <div class="icon-box-turma"><i class="fa-solid fa-superscript"></i></div>
+                            <span class="badge badge-neon rounded-pill" id="badge-total-9ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">9º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
             </div>
@@ -209,7 +256,7 @@
         <!-- DASHBOARD: Detalhes da Turma -->
         <section id="view-detalhes" class="d-none">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <button class="btn btn-light border btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
+                <button class="btn btn-outline-light border-secondary btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
                     <i class="fa-solid fa-arrow-left me-2"></i>Voltar
                 </button>
                 <h2 class="h5 fw-bold mb-0" id="titulo-turma-selecionada">6º Ano</h2>
@@ -219,21 +266,21 @@
             <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
                 <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
                     <span>Ciclo I</span>
-                    <span class="badge bg-light text-dark rounded-pill" id="badge-ciclo-1">0</span>
+                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-1">0</span>
                 </button>
                 <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
                     <span>Ciclo II</span>
-                    <span class="badge bg-light text-dark rounded-pill" id="badge-ciclo-2">0</span>
+                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-2">0</span>
                 </button>
                 <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
                     <span>Ciclo III</span>
-                    <span class="badge bg-light text-dark rounded-pill" id="badge-ciclo-3">0</span>
+                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-3">0</span>
                 </button>
             </div>
 
             <!-- Lista de Habilidades do Ciclo -->
             <div id="lista-habilidades" class="d-flex flex-column gap-3">
-                <!-- Conteúdo renderizado via JavaScript -->
+                <!-- Conteúdo renderizado via JS -->
             </div>
         </section>
     </main>
@@ -336,9 +383,9 @@
 
             if (itens.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center py-5 bg-white rounded-4 border">
-                        <i class="fa-regular fa-folder-open fa-3x text-muted mb-3"></i>
-                        <p class="text-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
+                    <div class="text-center py-5 rounded-4 border border-secondary border-opacity-25" style="background: var(--surface-card)">
+                        <i class="fa-regular fa-folder-open fa-3x text-custom-muted mb-3"></i>
+                        <p class="text-custom-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
                     </div>
                 `;
                 return;
@@ -349,13 +396,13 @@
                 card.className = "item-card p-3";
                 card.innerHTML = `
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="badge badge-indigo">${item.codigo}</span>
-                        <span class="badge bg-light text-dark border">Pág. ${item.pag}</span>
+                        <span class="badge badge-code">${item.codigo}</span>
+                        <span class="badge bg-dark border border-secondary text-white">Pág. ${item.pag}</span>
                     </div>
-                    <p class="fw-semibold mb-2 text-dark">${item.caed}</p>
-                    <div class="row g-2 pt-2 border-top text-muted small">
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1 text-indigo"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1 text-indigo"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
+                    <p class="fw-semibold mb-2 text-white">${item.caed}</p>
+                    <div class="row g-2 pt-2 border-top border-secondary border-opacity-25 text-custom-muted small">
+                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-neon)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
+                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
                     </div>
                 `;
                 container.appendChild(card);
