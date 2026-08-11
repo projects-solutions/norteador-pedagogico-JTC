@@ -30,9 +30,9 @@
 
         /* Header Neo-Glassmorphism */
         .header-custom {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
             backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(16, 185, 129, 0.2);
+            border-bottom: 2px solid rgba(16, 185, 129, 0.25);
             border-radius: 0 0 2rem 2rem;
             box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
         }
@@ -50,7 +50,7 @@
             flex-shrink: 0;
         }
 
-        /* Navegação Centralizada e Ajustável sem Rolar */
+        /* Navegação Centralizada e Responsiva */
         .nav-tabs-wrapper {
             width: 100%;
             display: flex;
@@ -77,8 +77,8 @@
             border-radius: 1rem;
             padding: 0.65rem 0.5rem;
             font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
@@ -91,8 +91,9 @@
 
         .nav-pills-custom .nav-link.active {
             background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-            color: #0f172a;
+            color: #0f172a !important;
             border-color: transparent;
+            font-weight: 700;
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
@@ -113,15 +114,25 @@
             }
         }
 
-        /* Cards Futuristas de Turmas */
+        /* Cards Futuristas de Turmas com Alto Contraste */
         .card-turma {
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1.25rem;
             background: var(--surface-card);
+            color: var(--text-main);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
+        }
+
+        .card-turma h3 {
+            color: #ffffff !important;
+            font-weight: 700;
+        }
+
+        .card-turma p {
+            color: var(--text-muted) !important;
         }
 
         .card-turma::before {
@@ -139,7 +150,7 @@
         .card-turma:hover {
             transform: translateY(-5px);
             border-color: var(--accent-neon);
-            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.25);
         }
 
         .card-turma:hover::before {
@@ -150,13 +161,13 @@
             width: 46px;
             height: 46px;
             border-radius: 0.85rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(16, 185, 129, 0.15);
             color: var(--accent-neon);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .badge-neon {
@@ -186,17 +197,17 @@
 
         /* Item Card Mapeado */
         .item-card {
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1rem;
             background: var(--surface-card);
             border-left: 4px solid var(--accent-neon);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .badge-code {
-            background: rgba(139, 92, 246, 0.2);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(139, 92, 246, 0.25);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.4);
             font-weight: 700;
         }
 
@@ -215,7 +226,7 @@
                     <i class="fa-solid fa-compass fa-xl"></i>
                 </div>
                 <div>
-                    <h1 class="h3 mb-0 fw-extrabold tracking-tight">NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA</h1>
+                    <h1 class="h3 mb-0 fw-bold tracking-tight text-white">NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA</h1>
                     <p class="small mb-0 text-custom-muted">Mapeamento de Habilidades CAEd x Livro Didático</p>
                 </div>
             </div>
@@ -248,7 +259,7 @@
         <section id="view-turmas">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <div>
-                    <h2 class="h5 fw-bold mb-1">Selecione a Turma</h2>
+                    <h2 class="h5 fw-bold mb-1 text-white">Selecione a Turma</h2>
                     <p class="text-custom-muted small mb-0">Componente: Ciências da Natureza</p>
                 </div>
             </div>
@@ -306,7 +317,7 @@
                 <button class="btn btn-outline-light border-secondary btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
                     <i class="fa-solid fa-arrow-left me-2"></i>Voltar
                 </button>
-                <h2 class="h5 fw-bold mb-0" id="titulo-turma-selecionada">6º Ano</h2>
+                <h2 class="h5 fw-bold mb-0 text-white" id="titulo-turma-selecionada">6º Ano</h2>
             </div>
 
             <!-- Navegador de Ciclos -->
@@ -461,925 +472,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-```
-
-```html:NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA - Língua Portuguesa:portugues.html
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA - Língua Portuguesa</title>
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome 6.4 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --surface-card: #1e293b;
-            --accent-neon: #10b981;
-            --accent-cyan: #06b6d4;
-            --accent-purple: #8b5cf6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-        }
-
-        .header-custom {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(16, 185, 129, 0.2);
-            border-radius: 0 0 2rem 2rem;
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        .brand-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-            border-radius: 1rem;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-            flex-shrink: 0;
-        }
-
-        /* Navegação Centralizada e Ajustável sem Rolar */
-        .nav-tabs-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-pills-custom {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: nowrap;
-            gap: 0.5rem;
-        }
-
-        .nav-pills-custom .nav-item {
-            flex: 1 1 0;
-            min-width: 0;
-            text-align: center;
-        }
-
-        .nav-pills-custom .nav-link {
-            color: var(--text-muted);
-            border-radius: 1rem;
-            padding: 0.65rem 0.5rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            white-space: nowrap;
-            font-size: 0.92rem;
-        }
-
-        .nav-pills-custom .nav-link.active {
-            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-            color: #0f172a;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .nav-pills-custom .nav-link {
-                font-size: 0.78rem;
-                padding: 0.55rem 0.25rem;
-            }
-            .nav-pills-custom .nav-link i {
-                margin-right: 0.25rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-pills-custom .nav-link {
-                font-size: 0.7rem;
-                padding: 0.5rem 0.15rem;
-            }
-        }
-
-        .card-turma {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.25rem;
-            background: var(--surface-card);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-turma::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-neon), var(--accent-cyan));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card-turma:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-neon);
-            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
-        }
-
-        .card-turma:hover::before { opacity: 1; }
-
-        .icon-box-turma {
-            width: 46px;
-            height: 46px;
-            border-radius: 0.85rem;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-neon);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .badge-neon {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-neon);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            font-weight: 700;
-        }
-
-        .btn-cycle {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.85rem;
-            background: var(--surface-card);
-            color: var(--text-muted);
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-cycle.active {
-            background: linear-gradient(135deg, var(--accent-purple), #6366f1);
-            color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-        }
-
-        .item-card {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            background: var(--surface-card);
-            border-left: 4px solid var(--accent-neon);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .badge-code {
-            background: rgba(139, 92, 246, 0.2);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            font-weight: 700;
-        }
-
-        .text-custom-muted { color: var(--text-muted) !important; }
-    </style>
-</head>
-<body>
-
-    <!-- Header Principal -->
-    <header class="header-custom text-white pt-4 pb-3 mb-4">
-        <div class="container">
-            <div class="d-flex align-items-center mb-3">
-                <div class="brand-icon me-3">
-                    <i class="fa-solid fa-pen-nib fa-xl"></i>
-                </div>
-                <div>
-                    <h1 class="h3 mb-0 fw-extrabold tracking-tight">NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA</h1>
-                    <p class="small mb-0 text-custom-muted">Mapeamento de Habilidades CAEd x Livro Didático</p>
-                </div>
-            </div>
-
-            <!-- Navegação por Matérias Centralizada -->
-            <div class="nav-tabs-wrapper pt-2">
-                <ul class="nav nav-pills nav-pills-custom">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fa-solid fa-flask me-2"></i>Ciências da Natureza
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="portugues.html">
-                            <i class="fa-solid fa-book-open me-2"></i>Língua Portuguesa
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="matematica.html">
-                            <i class="fa-solid fa-calculator me-2"></i>Matemática
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    <main class="container pb-5">
-        <!-- TELA INICIAL: Seleção de Turmas -->
-        <section id="view-turmas">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <div>
-                    <h2 class="h5 fw-bold mb-1">Selecione a Turma</h2>
-                    <p class="text-custom-muted small mb-0">Componente: Língua Portuguesa</p>
-                </div>
-            </div>
-
-            <div class="row g-3">
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('6ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-feather"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-6ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">6º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('7ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-book-bookmark"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-7ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">7º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('8ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-feather-pointed"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-8ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">8º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('9ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-quote-right"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-9ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">9º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DASHBOARD: Detalhes da Turma -->
-        <section id="view-detalhes" class="d-none">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <button class="btn btn-outline-light border-secondary btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Voltar
-                </button>
-                <h2 class="h5 fw-bold mb-0" id="titulo-turma-selecionada">6º Ano</h2>
-            </div>
-
-            <!-- Navegador de Ciclos -->
-            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
-                    <span>Ciclo I</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-1">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
-                    <span>Ciclo II</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-2">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
-                    <span>Ciclo III</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-3">0</span>
-                </button>
-            </div>
-
-            <!-- Lista de Habilidades do Ciclo -->
-            <div id="lista-habilidades" class="d-flex flex-column gap-3">
-                <!-- Conteúdo renderizado via JS -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Estrutura do Banco de Dados e Lógica em JS Puro -->
-    <script>
-        var bancoDados = window.bancoDados || {
-            "6ano": {
-                "titulo": "6º Ano - Ensino Fundamental",
-                "ciclos": {
-                    1: [
-                        // EXEMPLO DE COMO ADICIONAR:
-                        // { codigo: "6EF01_LP", caed: "Descrição do descritor CAEd...", ut: "Unidade / Capítulo", cap: "Seção / Tema", pag: "100" }
-                    ],
-                    2: [],
-                    3: []
-                }
-            },
-            "7ano": {
-                "titulo": "7º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            },
-            "8ano": {
-                "titulo": "8º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            },
-            "9ano": {
-                "titulo": "9º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            }
-        };
-
-        var turmaAtual = null;
-        var cicloAtual = 1;
-
-        document.addEventListener("DOMContentLoaded", () => {
-            atualizarContadoresGerais();
-        });
-
-        function calcularTotalTurma(chaveTurma) {
-            const ciclos = bancoDados[chaveTurma].ciclos;
-            return (ciclos[1]?.length || 0) + (ciclos[2]?.length || 0) + (ciclos[3]?.length || 0);
-        }
-
-        function atualizarContadoresGerais() {
-            ["6ano", "7ano", "8ano", "9ano"].forEach(turma => {
-                const total = calcularTotalTurma(turma);
-                const badge = document.getElementById(`badge-total-${turma}`);
-                if (badge) badge.textContent = `${total} hab.`;
-            });
-        }
-
-        function selecionarTurma(chaveTurma) {
-            turmaAtual = chaveTurma;
-            cicloAtual = 1;
-
-            document.getElementById("titulo-turma-selecionada").textContent = bancoDados[chaveTurma].titulo;
-            document.getElementById("view-turmas").classList.add("d-none");
-            document.getElementById("view-detalhes").classList.remove("d-none");
-
-            renderizarCiclo();
-        }
-
-        function voltarParaTurmas() {
-            turmaAtual = null;
-            document.getElementById("view-detalhes").classList.add("d-none");
-            document.getElementById("view-turmas").classList.remove("d-none");
-            atualizarContadoresGerais();
-        }
-
-        function selecionarCiclo(numeroCiclo) {
-            cicloAtual = numeroCiclo;
-            
-            [1, 2, 3].forEach(num => {
-                const btn = document.getElementById(`btn-ciclo-${num}`);
-                if (num === numeroCiclo) {
-                    btn.classList.add("active");
-                } else {
-                    btn.classList.remove("active");
-                }
-            });
-
-            renderizarCiclo();
-        }
-
-        function renderizarCiclo() {
-            if (!turmaAtual) return;
-
-            const dadosTurma = bancoDados[turmaAtual];
-            const ciclos = dadosTurma.ciclos;
-
-            [1, 2, 3].forEach(num => {
-                const badgeCiclo = document.getElementById(`badge-ciclo-${num}`);
-                if (badgeCiclo) badgeCiclo.textContent = ciclos[num]?.length || 0;
-            });
-
-            const itens = ciclos[cicloAtual] || [];
-            const container = document.getElementById("lista-habilidades");
-            container.innerHTML = "";
-
-            if (itens.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-5 rounded-4 border border-secondary border-opacity-25" style="background: var(--surface-card)">
-                        <i class="fa-regular fa-folder-open fa-3x text-custom-muted mb-3"></i>
-                        <p class="text-custom-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            itens.forEach(item => {
-                const card = document.createElement("div");
-                card.className = "item-card p-3";
-                card.innerHTML = `
-                    <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="badge badge-code">${item.codigo}</span>
-                        <span class="badge bg-dark border border-secondary text-white">Pág. ${item.pag}</span>
-                    </div>
-                    <p class="fw-semibold mb-2 text-white">${item.caed}</p>
-                    <div class="row g-2 pt-2 border-top border-secondary border-opacity-25 text-custom-muted small">
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-neon)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-    </script>
-
-    <!-- Bootstrap 5.3 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-```
-
-```html:NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA - Matemática:matematica.html
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA - Matemática</title>
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome 6.4 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --surface-card: #1e293b;
-            --accent-neon: #10b981;
-            --accent-cyan: #06b6d4;
-            --accent-purple: #8b5cf6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-        }
-
-        .header-custom {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(16, 185, 129, 0.2);
-            border-radius: 0 0 2rem 2rem;
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        .brand-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-            border-radius: 1rem;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-            flex-shrink: 0;
-        }
-
-        /* Navegação Centralizada e Ajustável sem Rolar */
-        .nav-tabs-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-pills-custom {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: nowrap;
-            gap: 0.5rem;
-        }
-
-        .nav-pills-custom .nav-item {
-            flex: 1 1 0;
-            min-width: 0;
-            text-align: center;
-        }
-
-        .nav-pills-custom .nav-link {
-            color: var(--text-muted);
-            border-radius: 1rem;
-            padding: 0.65rem 0.5rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            white-space: nowrap;
-            font-size: 0.92rem;
-        }
-
-        .nav-pills-custom .nav-link.active {
-            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-            color: #0f172a;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .nav-pills-custom .nav-link {
-                font-size: 0.78rem;
-                padding: 0.55rem 0.25rem;
-            }
-            .nav-pills-custom .nav-link i {
-                margin-right: 0.25rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-pills-custom .nav-link {
-                font-size: 0.7rem;
-                padding: 0.5rem 0.15rem;
-            }
-        }
-
-        .card-turma {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.25rem;
-            background: var(--surface-card);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-turma::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-neon), var(--accent-cyan));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card-turma:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-neon);
-            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
-        }
-
-        .card-turma:hover::before { opacity: 1; }
-
-        .icon-box-turma {
-            width: 46px;
-            height: 46px;
-            border-radius: 0.85rem;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-neon);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .badge-neon {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-neon);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            font-weight: 700;
-        }
-
-        .btn-cycle {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.85rem;
-            background: var(--surface-card);
-            color: var(--text-muted);
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-cycle.active {
-            background: linear-gradient(135deg, var(--accent-purple), #6366f1);
-            color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-        }
-
-        .item-card {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            background: var(--surface-card);
-            border-left: 4px solid var(--accent-neon);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .badge-code {
-            background: rgba(139, 92, 246, 0.2);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            font-weight: 700;
-        }
-
-        .text-custom-muted { color: var(--text-muted) !important; }
-    </style>
-</head>
-<body>
-
-    <!-- Header Principal -->
-    <header class="header-custom text-white pt-4 pb-3 mb-4">
-        <div class="container">
-            <div class="d-flex align-items-center mb-3">
-                <div class="brand-icon me-3">
-                    <i class="fa-solid fa-calculator fa-xl"></i>
-                </div>
-                <div>
-                    <h1 class="h3 mb-0 fw-extrabold tracking-tight">NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA</h1>
-                    <p class="small mb-0 text-custom-muted">Mapeamento de Habilidades CAEd x Livro Didático</p>
-                </div>
-            </div>
-
-            <!-- Navegação por Matérias Centralizada -->
-            <div class="nav-tabs-wrapper pt-2">
-                <ul class="nav nav-pills nav-pills-custom">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fa-solid fa-flask me-2"></i>Ciências da Natureza
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="portugues.html">
-                            <i class="fa-solid fa-book-open me-2"></i>Língua Portuguesa
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="matematica.html">
-                            <i class="fa-solid fa-calculator me-2"></i>Matemática
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    <main class="container pb-5">
-        <!-- TELA INICIAL: Seleção de Turmas -->
-        <section id="view-turmas">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <div>
-                    <h2 class="h5 fw-bold mb-1">Selecione a Turma</h2>
-                    <p class="text-custom-muted small mb-0">Componente: Matemática</p>
-                </div>
-            </div>
-
-            <div class="row g-3">
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('6ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-chart-pie"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-6ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">6º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('7ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-shapes"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-7ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">7º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('8ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-square-root-variable"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-8ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">8º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card card-turma h-100 p-3" onclick="selecionarTurma('9ano')">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <div class="icon-box-turma"><i class="fa-solid fa-superscript"></i></div>
-                            <span class="badge badge-neon rounded-pill" id="badge-total-9ano">0 hab.</span>
-                        </div>
-                        <h3 class="h6 fw-bold mb-1">9º Ano</h3>
-                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DASHBOARD: Detalhes da Turma -->
-        <section id="view-detalhes" class="d-none">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <button class="btn btn-outline-light border-secondary btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Voltar
-                </button>
-                <h2 class="h5 fw-bold mb-0" id="titulo-turma-selecionada">6º Ano</h2>
-            </div>
-
-            <!-- Navegador de Ciclos -->
-            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
-                    <span>Ciclo I</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-1">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
-                    <span>Ciclo II</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-2">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
-                    <span>Ciclo III</span>
-                    <span class="badge bg-dark text-white border border-secondary rounded-pill" id="badge-ciclo-3">0</span>
-                </button>
-            </div>
-
-            <!-- Lista de Habilidades do Ciclo -->
-            <div id="lista-habilidades" class="d-flex flex-column gap-3">
-                <!-- Conteúdo renderizado via JS -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Estrutura do Banco de Dados e Lógica em JS Puro -->
-    <script>
-        var bancoDados = window.bancoDados || {
-            "6ano": {
-                "titulo": "6º Ano - Ensino Fundamental",
-                "ciclos": {
-                    1: [
-                        // EXEMPLO DE COMO ADICIONAR:
-                        // { codigo: "6EF01_MA", caed: "Descrição do descritor CAEd...", ut: "Unidade / Capítulo", cap: "Seção / Tema", pag: "100" }
-                    ],
-                    2: [],
-                    3: []
-                }
-            },
-            "7ano": {
-                "titulo": "7º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            },
-            "8ano": {
-                "titulo": "8º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            },
-            "9ano": {
-                "titulo": "9º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
-            }
-        };
-
-        var turmaAtual = null;
-        var cicloAtual = 1;
-
-        document.addEventListener("DOMContentLoaded", () => {
-            atualizarContadoresGerais();
-        });
-
-        function calcularTotalTurma(chaveTurma) {
-            const ciclos = bancoDados[chaveTurma].ciclos;
-            return (ciclos[1]?.length || 0) + (ciclos[2]?.length || 0) + (ciclos[3]?.length || 0);
-        }
-
-        function atualizarContadoresGerais() {
-            ["6ano", "7ano", "8ano", "9ano"].forEach(turma => {
-                const total = calcularTotalTurma(turma);
-                const badge = document.getElementById(`badge-total-${turma}`);
-                if (badge) badge.textContent = `${total} hab.`;
-            });
-        }
-
-        function selecionarTurma(chaveTurma) {
-            turmaAtual = chaveTurma;
-            cicloAtual = 1;
-
-            document.getElementById("titulo-turma-selecionada").textContent = bancoDados[chaveTurma].titulo;
-            document.getElementById("view-turmas").classList.add("d-none");
-            document.getElementById("view-detalhes").classList.remove("d-none");
-
-            renderizarCiclo();
-        }
-
-        function voltarParaTurmas() {
-            turmaAtual = null;
-            document.getElementById("view-detalhes").classList.add("d-none");
-            document.getElementById("view-turmas").classList.remove("d-none");
-            atualizarContadoresGerais();
-        }
-
-        function selecionarCiclo(numeroCiclo) {
-            cicloAtual = numeroCiclo;
-            
-            [1, 2, 3].forEach(num => {
-                const btn = document.getElementById(`btn-ciclo-${num}`);
-                if (num === numeroCiclo) {
-                    btn.classList.add("active");
-                } else {
-                    btn.classList.remove("active");
-                }
-            });
-
-            renderizarCiclo();
-        }
-
-        function renderizarCiclo() {
-            if (!turmaAtual) return;
-
-            const dadosTurma = bancoDados[turmaAtual];
-            const ciclos = dadosTurma.ciclos;
-
-            [1, 2, 3].forEach(num => {
-                const badgeCiclo = document.getElementById(`badge-ciclo-${num}`);
-                if (badgeCiclo) badgeCiclo.textContent = ciclos[num]?.length || 0;
-            });
-
-            const itens = ciclos[cicloAtual] || [];
-            const container = document.getElementById("lista-habilidades");
-            container.innerHTML = "";
-
-            if (itens.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-5 rounded-4 border border-secondary border-opacity-25" style="background: var(--surface-card)">
-                        <i class="fa-regular fa-folder-open fa-3x text-custom-muted mb-3"></i>
-                        <p class="text-custom-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            itens.forEach(item => {
-                const card = document.createElement("div");
-                card.className = "item-card p-3";
-                card.innerHTML = `
-                    <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="badge badge-code">${item.codigo}</span>
-                        <span class="badge bg-dark border border-secondary text-white">Pág. ${item.pag}</span>
-                    </div>
-                    <p class="fw-semibold mb-2 text-white">${item.caed}</p>
-                    <div class="row g-2 pt-2 border-top border-secondary border-opacity-25 text-custom-muted small">
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-neon)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-    </script>
-
-    <!-- Bootstrap 5.3 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-```
-
-### Resumo dos Ajustes Aplicados:
-1. **Nome Oficial no Header**: Atualizado em todos os 3 arquivos para **`NORTEADOR PEDAGÓGICO JOÃO TAVARES DA COSTA`**, mantendo o nome do componente curricular isolado na seção de seleção de turmas.
-2. **Navegação Centralizada e Responsiva**: As abas superiores ajustam-se dinamicamente a telas mobile, tablet e desktop sem rolagem lateral forçada.
-3. **Preservação Total das Funcionalidades**: Todas as estruturas de dados (`bancoDados`), contadores, seleção de ciclos e turmas continuam 100% ativas e prontas para cadastro.
