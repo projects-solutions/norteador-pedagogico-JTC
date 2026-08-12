@@ -362,14 +362,7 @@
         var bancoDados = window.bancoDados || {
             "6ano": {
                 "titulo": "6º Ano - Ensino Fundamental",
-                "ciclos": {
-                    1: [
-                        // EXEMPLO DE COMO ADICIONAR:
-                        // { codigo: "6EF01_CN", caed: "Descrição do descritor CAEd...", ut: "Unidade / Capítulo", cap: "Seção / Tema", pag: "100" }
-                    ],
-                    2: [],
-                    3: []
-                }
+                "ciclos": { 1: [], 2: [], 3: [] }
             },
             "7ano": {
                 "titulo": "7º Ano - Ensino Fundamental",
@@ -377,7 +370,47 @@
             },
             "8ano": {
                 "titulo": "8º Ano - Ensino Fundamental",
-                "ciclos": { 1: [], 2: [], 3: [] }
+                "ciclos": { 
+                    1: [
+                        { codigo: "7EF01_CN", caed: "Inferir os conceitos de força e trabalho em situações que envolvam o funcionamento de máquinas simples.", ut: "Matéria e Energia (Revisão 7º Ano)", cap: "Máquinas Simples e Trabalho", pag: "Revisão" },
+                        { codigo: "7EF04_CN", caed: "Inferir, em situações cotidianas, as formas de propagação de calor envolvidas na utilização de determinados materiais e equipamentos.", ut: "Matéria e Energia (Revisão 7º Ano)", cap: "Propagação de Calor (Condução, Convecção e Irradiação)", pag: "Revisão" },
+                        { codigo: "7EF06_CN", caed: "Explicar o funcionamento de máquinas térmicas (conversão de calor em trabalho, fluxo de calor, equilíbrio térmico, fonte de energia, perdas de energia).", ut: "Matéria e Energia (Revisão 7º Ano)", cap: "Máquinas Térmicas e Fluxo de Calor", pag: "Revisão" },
+                        { codigo: "7EF07_CN", caed: "Interpretar o papel dos combustíveis em máquinas térmicas.", ut: "Matéria e Energia (Revisão 7º Ano)", cap: "Combustíveis e Fontes de Energia", pag: "Revisão" },
+                        { codigo: "7EF09_CN", caed: "Interpretar a forma com que os fatores abióticos regem a diversidade dos diferentes biomas brasileiros.", ut: "Vida e Evolução (Revisão 7º Ano)", cap: "Biomas Brasileiros e Fatores Abióticos", pag: "Revisão" },
+                        { codigo: "7EF10_CN", caed: "Inferir como as intervenções humanas no ambiente causam desequilíbrios ambientais.", ut: "Vida e Evolução (Revisão 7º Ano)", cap: "Impactos Ambientais e Ecossistemas", pag: "Revisão" },
+                        { codigo: "7EF11_CN", caed: "Interpretar indicadores de saúde de um grupo populacional.", ut: "Vida e Evolução (Revisão 7º Ano)", cap: "Indicadores de Saúde Pública", pag: "Revisão" },
+                        { codigo: "7EF12_CN", caed: "Reconhecer a relação estabelecida entre as ações de saneamento básico e a saúde humana.", ut: "Vida e Evolução (Revisão 7º Ano)", cap: "Saneamento Básico e Qualidade de Vida", pag: "Revisão" },
+                        { codigo: "7EF13_CN", caed: "Inferir o mecanismo de ação das vacinas nos organismos.", ut: "Vida e Evolução (Revisão 7º Ano)", cap: "Imunização e Vacinas", pag: "Revisão" },
+                        { codigo: "7EF16_CN", caed: "Reconhecer a composição do ar e o modo como a poluição afeta suas características.", ut: "Terra e Universo (Revisão 7º Ano)", cap: "Composição da Atmosfera e Poluição do Ar", pag: "Revisão" },
+                        { codigo: "7EF18_CN", caed: "Interpretar propostas de controle ou de reversão do aumento artificial do efeito estufa no planeta Terra.", ut: "Terra e Universo (Revisão 7º Ano)", cap: "Efeito Estufa e Aquecimento Global", pag: "Revisão" },
+                        { codigo: "7EF19_CN", caed: "Interpretar ações voltadas para a preservação da camada de ozônio.", ut: "Terra e Universo (Revisão 7º Ano)", cap: "Camada de Ozônio e Proteção Atmosférica", pag: "Revisão" }
+                    ], 
+                    2: [
+                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Fontes renováveis e não renováveis)", pag: "120-126" },
+                        { codigo: "8EF02_CN", caed: "Reconhecer diferentes fontes de energia.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Fontes de energia)", pag: "122-126" },
+                        { codigo: "8EF03_CN", caed: "Reconhecer diferentes tipos de energia.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Formas de energia)", pag: "120-121" },
+                        { codigo: "8EF05_CN", caed: "Classificar os processos de transformação da energia nos aparelhos residenciais.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica (Potência e energia elétrica)", pag: "160-163" },
+                        { codigo: "8EF07_CN", caed: "Reconhecer as atitudes que contribuem para redução do consumo de energia.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 2: Consumo sustentável de energia elétrica (Escolher equipamentos e mudar hábitos)", pag: "186-191" },
+                        { codigo: "8EF10_CN", caed: "Reconhecer os tipos de usinas de geração de energia elétrica.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica (Hidrelétrica, Termelétrica, Eólica, Solar, etc.)", pag: "172-183" },
+                        { codigo: "8EF11_CN", caed: "Reconhecer os diferentes processos reprodutivos dos seres vivos.", ut: "Unidade 1: Reprodução e Desenvolvimento dos Seres Vivos", cap: "Temas 1 a 4: Reprodução animal, vegetal, bactérias e fungos (Assexuada e Sexuada)", pag: "14-48" },
+                        { codigo: "8EF12_CN", caed: "Reconhecer as estruturas que compõem o sistema endócrino.", ut: "Unidade 2: Hormônios, Sistema Genital e Puberdade", cap: "Tema 1: As glândulas e os hormônios (Glândulas endócrinas no corpo humano)", pag: "52-58" },
+                        { codigo: "8EF16_CN", caed: "Reconhecer as posições relativas entre Sol, Terra e Lua associadas às fases da Lua e à ocorrência de eclipses.", ut: "Unidade 7: Movimentos da Terra e da Lua", cap: "Tema 2: Movimentos e fases da Lua (Movimentos, fases e eclipses)", pag: "207-211" }
+                    ], 
+                    3: [
+                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia", pag: "120-126" },
+                        { codigo: "8EF04_CN", caed: "Reconhecer os componentes de um circuito.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 2: Circuito elétrico (Gerador, condutores, interruptor, resistência)", pag: "149-155" },
+                        { codigo: "8EF05_CN", caed: "Classificar os processos de transformação da energia nos aparelhos residenciais.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica", pag: "160-163" },
+                        { codigo: "8EF06_CN", caed: "Verificar o consumo de energia elétrica de aparelhos eletroeletrônicos, assim como as grandezas e as ações que influenciam nesse consumo.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica (Cálculo de consumo residencial e potência)", pag: "160-163" },
+                        { codigo: "8EF08_CN", caed: "Inferir o mecanismo de geração de energia elétrica nas diferentes usinas.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica (Geração e distribuição)", pag: "172-183" },
+                        { codigo: "8EF09_CN", caed: "Reconhecer os impactos ambientais resultantes da construção e do uso de diferentes usinas de geração de energia elétrica.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica (Impactos de hidrelétricas, termelétricas e nucleares)", pag: "174-183" },
+                        { codigo: "8EF10_CN", caed: "Reconhecer os tipos de usinas de geração de energia elétrica.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica", pag: "172-183" },
+                        { codigo: "8EF11_CN", caed: "Reconhecer os diferentes processos reprodutivos dos seres vivos.", ut: "Unidade 1: Reprodução e Desenvolvimento dos Seres Vivos", cap: "Temas 1 a 4: Reprodução de animais, plantas e micro-organismos", pag: "14-48" },
+                        { codigo: "8EF13_CN", caed: "Explicar a ação do sistema endócrino sobre as características sexuais secundárias.", ut: "Unidade 2: Hormônios, Sistema Genital e Puberdade", cap: "Tema 2: Sistema genital e puberdade (Adolescência, puberdade e mudanças corporais)", pag: "64, 73-74" },
+                        { codigo: "8EF14_CN", caed: "Reconhecer o princípio de ação dos métodos contraceptivos.", ut: "Unidade 3: Reprodução Humana e Sexualidade", cap: "Tema 2: Contracepção e prevenção (Métodos contraceptivos de barreira, hormonais e cirúrgicos)", pag: "94-98" },
+                        { codigo: "8EF15_CN", caed: "Reconhecer as características das infecções sexualmente transmissíveis (IST).", ut: "Unidade 3: Reprodução Humana e Sexualidade", cap: "Tema 2: Contracepção e prevenção (Infecções sexualmente transmissíveis - ISTs)", pag: "99-101" },
+                        { codigo: "8EF17_CN", caed: "Explicar os movimentos do planeta Terra relacionando-os à ocorrência do dia e da noite e às estações do ano.", ut: "Unidade 7: Movimentos da Terra e da Lua", cap: "Tema 1: Movimentos da Terra e as estações do ano (Rotação, translação e inclinação do eixo)", pag: "200-205" }
+                    ]
+                }
             },
             "9ano": {
                 "titulo": "9º Ano - Ensino Fundamental",
