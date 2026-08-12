@@ -225,6 +225,20 @@
             font-weight: 700;
         }
 
+        .box-erro {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 0.75rem;
+            color: #991b1b;
+        }
+
+        .box-dica {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 0.75rem;
+            color: #166534;
+        }
+
         .text-custom-muted {
             color: var(--text-muted) !important;
         }
@@ -361,26 +375,60 @@
     <script>
         var bancoDados = window.bancoDados || {
             "6ano": {
-                "titulo": "6º Ano - Ensino Fundamental",
-                "ciclos": {
+                "titulo": "6º Ano - Língua Portuguesa",
+                "ciclos": { 
                     1: [
-                        // EXEMPLO DE COMO ADICIONAR:
-                        // { codigo: "6EF01_LP", caed: "Descrição do descritor CAEd...", ut: "Unidade / Capítulo", cap: "Seção / Tema", pag: "100" }
-                    ],
-                    2: [],
-                    3: []
+                        { codigo: "5EF06_P", caed: "Inferir, em textos de nível 2, o sentido de palavras ou expressões não coloquiais, com apoio de pistas co-textuais (sinonímia, antonímia, palavras do mesmo campo semântico e outras sinalizações).", ut: "Todos os campos de atuação (Revisão / Diagnóstico)", cap: "Módulo 2, Cap. 1: Léxico, sinônimo e antônimo", pag: "71-74", erro: "O estudante seleciona o significado dicionarizado mais comum ou literal da palavra, ignorando as pistas de sinonímia, antonímia ou contexto presentes no parágrafo.", dica: "Ensinar a técnica de 'substituição contextual', em que o aluno troca a palavra desconhecida pelas alternativas propostas para testar qual delas mantém o sentido original do texto." },
+                        { codigo: "6EF01_P", caed: "Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação com referente próximo.", ut: "Todos os campos de atuação", cap: "Módulo 1, Cap. 1: Explorando o texto", pag: "16-19", erro: "Confundir o referente real da informação devido à presença de termos acessórios ou pronomes no meio da frase retomada.", dica: "Treinar o rastreamento anafórico de proximidade, sublinhando o termo que retoma a ideia e conectando-o com uma seta diretamente ao seu referente imediato no texto." },
+                        { codigo: "6EF03_P", caed: "Reconhecer o assunto de textos de nível 2 nos quais tal reconhecimento requeira a leitura global do texto.", ut: "Todos os campos de atuação", cap: "Módulo 1, Cap. 1: Conversando e explorando o texto", pag: "16-19", erro: "Confundir o assunto principal e global do texto com um detalhe secundário ou um exemplo citado em apenas um dos parágrafos.", dica: "Aplicar a pergunta-chave de síntese: 'O texto inteiro foi escrito para falar sobre o quê?', incentivando o descarte de informações pontuais ou meramente exemplificativas." },
+                        { codigo: "6EF07_P", caed: "Inferir informação em textos de nível 2 a partir de uma palavra-chave.", ut: "Todos os campos de atuação", cap: "Módulo 2, Cap. 2: Explorando o texto (Relato pessoal)", pag: "77-81", erro: "Não conseguir relacionar a palavra-chave destacada no enunciado a um conceito implícito mais amplo desdobrado no texto.", dica: "Realizar esquemas visuais a partir da palavra-chave, listando os sentidos inferidos e deduzidos que se conectam diretamente a ela no trecho." },
+                        { codigo: "6EF09_P", caed: "Identificar a finalidade de textos de nível 2 que circulam no campo de atuação da vida pública ou de estudos e pesquisas.", ut: "Vida pública / Estudos e pesquisas", cap: "Módulo 4, Cap. 2: Verbete de enciclopédia", pag: "169-176", erro: "Confundir a finalidade/função social do gênero com o assunto ou tema específico tratado no texto lido.", dica: "Associar a função social ao gênero textual (ex.: o verbete de enciclopédia serve para definir e explicar um conceito científico de forma objetiva)." },
+                        { codigo: "6EF11_P", caed: "Reconhecer o gênero de textos de nível 2 que circulam no campo de atuação artístico-literário, da vida pública ou de estudos e pesquisas.", ut: "Artístico-literário / Vida pública", cap: "Módulo 1, Cap. 2: Narrativa de aventura / Módulo 3, Cap. 1: Conto popular", pag: "31-39, 102-109", erro: "Classificar o gênero baseando-se apenas no suporte onde o texto foi publicado ou em um elemento isolado da narrativa.", dica: "Trabalhar a estrutura composicional fixa e a intenção comunicativa de cada gênero (ex.: o conto popular possui marcas de oralidade e foco na transmissão cultural)." },
+                        { codigo: "6EF13_P", caed: "Reconhecer o conflito gerador do enredo em narrativas lineares de nível 2, quando o conflito se apresenta no início do texto e/ou há pistas que o sinalizam.", ut: "Artístico-literário", cap: "Módulo 1, Cap. 2: Narrativa de aventura", pag: "31-39", erro: "Confundir o conflito gerador principal com pequenas complicações secundárias que ocorrem ao longo do desenvolvimento da história.", dica: "Orientar os alunos a identificarem o evento inicial específico que quebra a normalidade da vida dos personagens e desencadeia toda a ação do enredo." },
+                        { codigo: "6EF15_P", caed: "Identificar a opinião de um personagem em texto de nível 2, sendo os enunciados opinativos marcados por frase exclamativa ou estrutura predicativa.", ut: "Artístico-literário (Revisão / Diagnóstico)", cap: "Módulo 1, Cap. 2: Questão de fala e escrita (Pontuação)", pag: "45-47", erro: "Tomar a fala emotiva ou opinativa do personagem como uma descrição de fato objetivo dentro do universo da narrativa.", dica: "Mostrar como sinais de pontuação expressivos (exclamação, reticências) e adjetivos de valoração indicam o ponto de vista subjetivo da personagem." },
+                        { codigo: "6EF17_P", caed: "Inferir efeitos de crítica em textos que articulam linguagem verbal e não verbal (multissemióticos).", ut: "Todos os campos de atuação", cap: "Módulo 1, Cap. 1: Linguagem verbal e linguagem não verbal", pag: "22-24", erro: "Ler apenas a parte verbal do texto, ignorando a ironia, a sátira ou a crítica construída pela imagem/recurso visual.", dica: "Fazer a leitura combinada: 'O que a imagem e a expressão dos personagens mostram contraria ou ironiza o que está escrito na fala?'." },
+                        { codigo: "6EF18_P", caed: "Reconhecer, em textos de nível 2, relações lógico-discursivas adição, oposição, condição marcadas por conjunções mais usuais.", ut: "Todos os campos de atuação (Revisão / Diagnóstico)", cap: "Módulo 3, Cap. 1: Determinantes do substantivo", pag: "112-118", erro: "Confundir o sentido de oposição (mas, porém) com o de adição (e, além disso) ou de condição (se, caso).", dica: "Criar quadros de substituição de conectivos mais usuais para fixar as relações de adição, oposição e condição entre as orações." },
+                        { codigo: "6EF20_P", caed: "Identificar, em textos de nível 2, o referente de uma expressão nominal com pronome adjetivo (possessivo, demonstrativo, indefinido) ou de elipses.", ut: "Todos os campos de atuação", cap: "Módulo 3, Cap. 1: Determinantes do substantivo", pag: "112-118", erro: "Identificar incorretamente o termo omitido por elipse, atribuindo a ação do verbo a outro sujeito do parágrafo.", dica: "Praticar a reescrita do trecho 'preenchendo' a elipse com as opções de resposta para checar qual substantivo mantém a coerência lógica do texto." }
+                    ], 
+                    2: [
+                        { codigo: "5EF06_P", caed: "Inferir, em textos de nível 2, o sentido de palavras ou expressões não coloquiais, com apoio de pistas co-textuais (sinonímia, antonímia, palavras do mesmo campo semântico e outras sinalizações).", ut: "Todos os campos de atuação", cap: "Módulo 2, Cap. 1: Léxico, sinônimo e antônimo", pag: "71-74", erro: "Desconsiderar o campo semântico ao redor da palavra não coloquial e tentar adivinhar o sentido sem analisar as frases vizinhas.", dica: "Identificar campos de significação e palavras da mesma família semântica presentes no entorno do termo desconhecido." },
+                        { codigo: "6EF02_P", caed: "Localizar informações explícitas, em textos de nível 2, recuperando-as por meio de paráfrase, estando a informação no início do texto.", ut: "Todos os campos de atuação", cap: "Módulo 5, Cap. 1: Notícia (Explorando o texto)", pag: "196-204", erro: "Procurar no texto exatamente as mesmas palavras do enunciado, sem reconhecer a reescrita por meio de sinônimos ou paráfrase.", dica: "Treinar o reconhecimento de paráfrases e reescritas sintáticas no lide de notícias e nos parágrafos introdutórios." },
+                        { codigo: "6EF07_P", caed: "Inferir informação em textos de nível 2 a partir de uma palavra-chave.", ut: "Todos os campos de atuação", cap: "Módulo 4, Cap. 1: Reportagem de divulgação científica", pag: "142-152", erro: "Tomar a palavra-chave em seu sentido literal isolado sem realizar o salto dedutivo exigido pelo texto.", dica: "Sublinhar a palavra-chave no texto e mapear suas conexões lógicas nos trechos vizinhos para chegar à conclusão implícita." },
+                        { codigo: "6EF08_P", caed: "Inferir informação em textos de nível 2 por dedução a partir de um enunciado ou na articulação entre dois enunciados.", ut: "Todos os campos de atuação", cap: "Módulo 6, Cap. 1: Artigo de opinião", pag: "238-245", erro: "Fazer inferências baseadas no conhecimento prévio pessoal sobre o assunto em vez de deduzir a partir dos enunciados do texto.", dica: "Reforçar a regra de validação: 'A dedução correta deve ser uma consequência lógica do que está escrito no texto, e não uma opinião própria'." },
+                        { codigo: "6EF10_P", caed: "Identificar a finalidade de gêneros publicitários e jornalísticos (cartazes, notícias, charges, cartas do leitor).", ut: "Jornalístico-midiático / Vida pública", cap: "Módulo 5, Cap. 1: Notícia / Módulo 6, Cap. 2: Peça de campanha", pag: "196-204, 258-263", erro: "Acreditar que uma peça publicitária/campanha serve apenas para 'informar', ignorando seu objetivo de persuadir ou conscientizar.", dica: "Analisar o uso do modo imperativo e dos apelos visuais para evidenciar a intenção persuasiva e de mudança de comportamento." },
+                        { codigo: "6EF11_P", caed: "Reconhecer o gênero de textos de nível 2 que circulam no campo de atuação artístico-literário, da vida pública ou de estudos e pesquisas.", ut: "Artístico-literário / Vida pública", cap: "Módulo 3, Cap. 2: Cordel", pag: "121-128", erro: "Confundir um poema tradicional com o gênero cordel apenas pela presença de rimas, ignorando marcas culturais e de suporte.", dica: "Destacar a métrica, a estrofação característica (ex.: sextilhas), a xilogravura e a temática popular como marcas distintivas do cordel." },
+                        { codigo: "6EF13_P", caed: "Reconhecer o conflito gerador do enredo em narrativas lineares de nível 2, quando o conflito se apresenta no início do texto e/ou há pistas que o sinalizam.", ut: "Artístico-literário", cap: "Módulo 2, Cap. 1: Narrativa de aventura (A Ilha do Tesouro)", pag: "54-61", erro: "Apontar o momento de maior tensão (clímax da aventura) em vez do conflito inicial que deu origem a toda a narrativa.", dica: "Mostrar que o conflito gerador se estabelece no começo da história, servindo de gatilho para os acontecimentos posteriores." },
+                        { codigo: "6EF16_P", caed: "Identificar opinião em textos de estrutura expositiva de níveis 2 e 3, sendo os enunciados opinativos marcados por verbo opinativo (acho que, penso que).", ut: "Jornalístico-midiático / Vida pública", cap: "Módulo 6, Cap. 1: Artigo de opinião", pag: "238-245", erro: "Confundir a exposição de fatos objetivos no artigo com a posição e o julgamento de valor manifestados pelo autor.", dica: "Localizar e isolar verbos e locuções opinativas claras ('penso que', 'acredito que', 'é preciso reconhecer') para mapear a tese/opinião." },
+                        { codigo: "6EF17_P", caed: "Inferir efeitos de crítica em textos que articulam linguagem verbal e não verbal (multissemióticos).", ut: "Todos os campos de atuação", cap: "Módulo 5, Cap. 2: Linguagens em conexão (Arte como denúncia)", pag: "234-235", erro: "Não perceber a ironia ou o tom de protesto presente na crítica social de cartazes e charges.", dica: "Analisar elementos visuais de exagero ou contraste (deformações, símbolos, metáforas visuais) como pistas de denúncia." },
+                        { codigo: "6EF18_P", caed: "Reconhecer, em textos de nível 2, relações lógico-discursivas adição, oposição, condição marcadas por conjunções mais usuais.", ut: "Todos os campos de atuação", cap: "Módulo 7, Cap. 2: Período composto por coordenação", pag: "303-308", erro: "Trocar a relação de oposição pela de causa ou consequência ao analisar conectivos em orações coordenadas.", dica: "Treinar a substituição do conectivo por sinônimos gramaticais sem alterar o sentido (mas = porém, contudo, todavia)." },
+                        { codigo: "6EF20_P", caed: "Identificar, em textos de nível 2, o referente de uma expressão nominal com pronome adjetivo (possessivo, demonstrativo, indefinido) ou de elipses.", ut: "Todos os campos de atuação", cap: "Módulo 4, Cap. 1: Pronomes pessoais: retos e oblíquos", pag: "157-163", erro: "Associar o pronome adjetivo ao substantivo mais próximo na frase, ignorando a concordância e a lógica do parágrafo.", dica: "Verificar rigorosamente a concordância de gênero e número entre o pronome e o elemento a que ele se refere." }
+                    ], 
+                    3: [
+                        { codigo: "6EF02_P", caed: "Localizar informações explícitas, em textos de nível 2, recuperando-as por meio de paráfrase, estando a informação no início do texto.", ut: "Todos os campos de atuação", cap: "Módulo 7, Cap. 1: Carta de solicitação", pag: "280-285", erro: "Em textos formais mais densos, o estudante perde o foco da informação principal devido à complexidade da estrutura sintática.", dica: "Fragmentar a oração principal da carta em partes menores para identificar a equivalência de sentido na opção correta." },
+                        { codigo: "6EF04_P", caed: "Reconhecer o assunto de textos de nível 3 nos quais o assunto é apontado indiretamente pelo título.", ut: "Todos os campos de atuação", cap: "Módulo 5, Cap. 1: Notícia ('Sopa de lixo' no Pacífico...)", pag: "196-204", erro: "Em títulos figurados/metafóricos (ex.: 'Sopa de lixo'), o aluno interpreta a expressão ao pé da letra.", dica: "Ensinar que títulos metafóricos exigem a leitura atenta do lide e do primeiro parágrafo para decodificar o assunto real do texto." },
+                        { codigo: "6EF06_P", caed: "Inferir, em textos de nível 2, o sentido de palavras ou expressões não coloquiais, a partir da leitura global do texto.", ut: "Todos os campos de atuação", cap: "Módulo 6, Cap. 1: Linguagem e sentidos (Neologismo)", pag: "255-257", erro: "Tentar adivinhar o sentido de expressões formais ou neologismos sem relacioná-los com a intenção geral do autor.", dica: "Avaliar o tom global do texto (formal, científico, opinativo) e a intenção do autor para validar o significado do termo." },
+                        { codigo: "6EF08_P", caed: "Inferir informação em textos de nível 2 por dedução a partir de um enunciado ou na articulação entre dois enunciados.", ut: "Todos os campos de atuação", cap: "Módulo 7, Cap. 2: Abaixo-assinado", pag: "297-302", erro: "Dificuldade em cruzar a justificativa em um trecho do texto com a reivindicação colocada em outro ponto.", dica: "Montar o esquema lógico entre as partes do texto: 'Se a situação descrita é X, logo a consequência/necessidade deduzida é Y'." },
+                        { codigo: "6EF10_P", caed: "Identificar a finalidade de gêneros publicitários e jornalísticos (cartazes, notícias, charges, cartas do leitor).", ut: "Jornalístico-midiático", cap: "Módulo 5, Cap. 2: Carta de leitor / Módulo 6, Cap. 2: Peça de campanha", pag: "218-223, 258-263", erro: "Confundir a finalidade da carta do leitor (opinar, elogiar ou criticar uma matéria) com a finalidade da própria notícia comentada.", dica: "Destacar o papel do leitor como autor que expressa sua reação ou posicionamento acerca de um conteúdo publicado anteriormente." },
+                        { codigo: "6EF12_P", caed: "Reconhecer o gênero de textos publicitários e jornalísticos (cartazes, notícias, charges, cartas do leitor).", ut: "Jornalístico-midiático / Vida pública", cap: "Módulo 5, Cap. 1: Notícia / Módulo 6, Cap. 2: Cartaz de campanha", pag: "196-204, 273-275", erro: "Confundir gêneros do campo jornalístico informativo (notícia) com gêneros do campo publicitário/persuasivo (cartaz de campanha).", dica: "Comparar os objetivos principais: a notícia visa relatar fatos de forma neutra, enquanto o cartaz busca influenciar condutas." },
+                        { codigo: "6EF14_P", caed: "Reconhecer o narrador em 1ª pessoa (personagem) ou em 3ª pessoa em narrativas lineares de nível 3.", ut: "Artístico-literário", cap: "Módulo 2, Cap. 2: Relato pessoal / Módulo 3, Cap. 1: Conto popular", pag: "75-81, 102-109", erro: "Confundir a presença de falas de personagens em 1ª pessoa nos diálogos com o tipo de foco narrativo do texto (que pode ser narrado em 3ª pessoa).", dica: "Orientar o estudante a observar os verbos e pronomes fora dos travessões/aspas de diálogo, ou seja, no discurso direto do narrador." },
+                        { codigo: "6EF16_P", caed: "Identificar opinião em textos de estrutura expositiva de níveis 2 e 3, sendo os enunciados opinativos marcados por verbo opinativo (acho que, penso que).", ut: "Jornalístico-midiático", cap: "Módulo 6, Cap. 1: Artigo de opinião", pag: "238-245", erro: "Não perceber marcas de opinião sutis inseridas em meio a passagens predominantemente informativas ou expositivas.", dica: "Rastrear adjetivos valorativos e verbos opinativos que denunciam o posicionamento subjetivo do autor." },
+                        { codigo: "6EF17_P", caed: "Inferir efeitos de crítica em textos que articulam linguagem verbal e não verbal (multissemióticos).", ut: "Todos os campos de atuação", cap: "Módulo 6, Cap. 2: Produção multimodal / Cartaz", pag: "273-275", erro: "Tratar a imagem apenas como ilustração decorativa sem analisar sua função na construção da crítica social.", dica: "Fazer a leitura analítica focando no contraste dos elementos visuais e na sua mensagem intencional de alerta." },
+                        { codigo: "6EF19_P", caed: "Reconhecer relações lógico-discursivas de adição, oposição, tempo, causa, em texto de nível 3, marcadas por conjunções mais usuais: e, mas, quando, enquanto, porque, pois.", ut: "Todos os campos de atuação", cap: "Módulo 7, Cap. 2: Período composto por coordenação e pontuação", pag: "303-311", erro: "Confundir relações de causa (porque, pois) com relações de tempo (quando, enquanto) em orações mais complexas.", dica: "Testar a substituição do conectivo por equivalentes diretos para confirmar se a ideia expressa é temporal, causal ou de oposição." },
+                        { codigo: "6EF21_P", caed: "Identificar, em texto de nível 3, o referente de pronomes pessoais do caso reto (anafórico), quando próximo ou saliente (tópico do texto) e de substituições lexicais (substantivos por sinônimos).", ut: "Todos os campos de atuação", cap: "Módulo 4, Cap. 1: Pronomes pessoais: retos e oblíquos", pag: "157-163", erro: "Perder a cadeia de coesão quando a substituição do nome ocorre por meio de um sinônimo distante ou hiperônimo.", dica: "Mapear a cadeia de coesão textual, conectando com setas todos os substantivos, sinônimos e pronomes referentes ao mesmo elemento." },
+                        { codigo: "6EF22_P", caed: "Reconhecer, em textos multissemióticos de nível 3, o efeito de sentido da articulação entre recursos gráficos e verbais.", ut: "Todos os campos de atuação", cap: "Módulo 1, Cap. 1: Linguagem verbal e não verbal / Capa de livro", pag: "14-24", erro: "Ignorar a intenção comunicativa criada pelo uso da tipografia, cores e diagramação na composição visual.", dica: "Analisar o uso da caixa alta, tamanho da fonte, contraste de cores e posição da imagem como recursos deliberados de destaque e apelo ao leitor." }
+                    ]
                 }
             },
             "7ano": {
-                "titulo": "7º Ano - Ensino Fundamental",
+                "titulo": "7º Ano - Língua Portuguesa",
                 "ciclos": { 1: [], 2: [], 3: [] }
             },
             "8ano": {
-                "titulo": "8º Ano - Ensino Fundamental",
+                "titulo": "8º Ano - Língua Portuguesa",
                 "ciclos": { 1: [], 2: [], 3: [] }
             },
             "9ano": {
-                "titulo": "9º Ano - Ensino Fundamental",
+                "titulo": "9º Ano - Língua Portuguesa",
                 "ciclos": { 1: [], 2: [], 3: [] }
             }
         };
@@ -466,6 +514,17 @@
             itens.forEach(item => {
                 const card = document.createElement("div");
                 card.className = "item-card p-3";
+                
+                let blocoPedagogico = "";
+                if (item.erro || item.dica) {
+                    blocoPedagogico = `
+                        <div class="row g-2 mt-2 pt-2 border-top">
+                            ${item.erro ? `<div class="col-12 col-md-6"><div class="p-2 box-erro small"><strong><i class="fa-solid fa-triangle-exclamation me-1"></i> Erro Frequente:</strong> ${item.erro}</div></div>` : ''}
+                            ${item.dica ? `<div class="col-12 col-md-6"><div class="p-2 box-dica small"><strong><i class="fa-solid fa-bullseye me-1"></i> Dica de Foco:</strong> ${item.dica}</div></div>` : ''}
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="badge badge-code">${item.codigo}</span>
@@ -476,6 +535,7 @@
                         <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-green-primary)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
                         <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
                     </div>
+                    ${blocoPedagogico}
                 `;
                 container.appendChild(card);
             });
