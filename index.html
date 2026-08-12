@@ -242,6 +242,86 @@
         .text-custom-muted {
             color: var(--text-muted) !important;
         }
+
+        /* Estilização do Botão e Modal Resumo A4 */
+        .btn-resumo-a4 {
+            background: linear-gradient(135deg, #10b981, #047857);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.78rem;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-resumo-a4:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(16, 185, 129, 0.4);
+        }
+
+        .modal-a4-wrapper {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 8mm;
+        }
+
+        .infographic-header-modal {
+            background: linear-gradient(135deg, #064e3b, #047857);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #ffffff;
+        }
+
+        .tag-pill-modal {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.2em 0.65em;
+            border-radius: 50rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .tag-code-m { background: #dcfce7; color: #064e3b; }
+        .tag-cycle-m { background: #fef3c7; color: #78350f; }
+        .tag-book-m { background: #f1f5f9; color: #0f172a; }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #modalResumo8EF01, #modalResumo8EF01 * {
+                visibility: visible;
+            }
+            #modalResumo8EF01 {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 210mm !important;
+                height: 297mm !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .modal-dialog {
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            .modal-content {
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -371,6 +451,130 @@
         </section>
     </main>
 
+    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF01_CN -->
+    <div class="modal fade" id="modalResumo8EF01" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white border-0 no-print">
+                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF01_CN</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body p-3">
+                    <div class="modal-a4-wrapper">
+                        
+                        <!-- CABEÇALHO HERO MODAL -->
+                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                            <div>
+                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
+                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-microscope"></i> Habilidade: 8EF01_CN</span>
+                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo II / III</span>
+                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 4, Tema 1 (Pág. 120-126)</span>
+                                </div>
+                                <h2 class="h5 fw-bold mb-0 text-white">Classificação dos Recursos Energéticos</h2>
+                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
+                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Renováveis vs. Não Renováveis
+                                </p>
+                            </div>
+
+                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
+                                <i class="fa-solid fa-print text-danger"></i>
+                                <span>Imprimir / PDF</span>
+                            </button>
+                        </div>
+
+                        <!-- ALERTA PEDAGÓGICO CAED -->
+                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
+                            <div style="font-size: 0.7rem;">
+                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA:</strong>
+                                <span class="text-dark">O aluno erra ao achar que poluição define renovabilidade! <strong>A regra cobrada analisa EXCLUSIVAMENTE a velocidade com que a natureza repõe o recurso</strong> na escala humana.</span>
+                            </div>
+                        </div>
+
+                        <!-- COLUNAS RENOVÁVEIS VS NÃO RENOVÁVEIS -->
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <div class="p-2 border border-success border-2 rounded h-100 bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <strong class="text-success small fw-bold"><i class="fa-solid fa-leaf me-1"></i> Renováveis</strong>
+                                        <span class="badge bg-success text-white" style="font-size: 0.55rem;">ESCALA HUMANA</span>
+                                    </div>
+                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
+                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Ciclo Contínuo / Reposição Rápida</span>
+                                    </div>
+                                    <div class="example-list d-flex flex-column gap-1">
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-sun text-warning"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Energia Solar (Inesgotável)</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-wind text-info"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Energia Eólica (Ventos)</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-water text-primary"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Hidrelétrica (Ciclo da Chuva)</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-seedling text-success"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Biomassa e Etanol</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="p-2 border border-warning border-2 rounded h-100 bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <strong class="text-warning text-darken-3 small fw-bold"><i class="fa-solid fa-gas-pump me-1"></i> Não Renováveis</strong>
+                                        <span class="badge bg-warning text-dark" style="font-size: 0.55rem;">ESCALA GEOLÓGICA</span>
+                                    </div>
+                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
+                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">+ Milhões de Anos / Finito</span>
+                                    </div>
+                                    <div class="example-list d-flex flex-column gap-1">
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-oil-well text-danger"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Petróleo / Gasolina</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-smog text-secondary"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Carvão Mineral</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-fire text-warning"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Gás Natural</span>
+                                        </div>
+                                        <div class="p-1 bg-light rounded border d-flex align-items-center gap-1.5">
+                                            <i class="fa-solid fa-atom text-info"></i>
+                                            <span style="font-size: 0.65rem;" class="fw-semibold">Urânio (Nuclear)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DICA DE FOCO -->
+                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
+                            <div style="font-size: 0.7rem;">
+                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
+                                <span class="text-dark">Ensine que a queimada de madeira/biomassa polui, MAS é <u>renovável</u> pois o plantio repõe a madeira em curto prazo. Os derivados do petróleo levaram eras geológicas para se formar.</span>
+                            </div>
+                        </div>
+
+                        <!-- RODAPÉ MODAL -->
+                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
+                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Estrutura do Banco de Dados e Lógica em JS Puro -->
     <script>
         var bancoDados = window.bancoDados || {
@@ -400,7 +604,7 @@
                         { codigo: "7EF19_CN", caed: "Interpretar ações voltadas para a preservação da camada de ozônio.", ut: "Terra e Universo (Revisão 7º Ano)", cap: "Camada de Ozônio e Proteção Atmosférica", pag: "Revisão", erro: "Confundir a destruição da Camada de Ozônio (O3) com a causa do Efeito Estufa/Aquecimento Global.", dica: "Focar na função específica do ozônio estratosférico: filtrar a radiação ultravioleta (UV). O vilão histórico é o gás CFC." }
                     ], 
                     2: [
-                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Fontes renováveis e não renováveis)", pag: "120-126", erro: "Considerar a biomassa ou a energia hidrelétrica como 'não renovável' devido aos impactos ambientais de instalação.", dica: "O critério absoluto de classificação é o tempo de reposição na natureza em escala humana (Sol, Vento vs. Petróleo, Carvão)." },
+                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Fontes renováveis e não renováveis)", pag: "120-126", erro: "Considerar a biomassa ou a energia hidrelétrica como 'não renovável' devido aos impactos ambientais de instalação.", dica: "O critério absoluto de classificação é o tempo de reposição na natureza em escala humana (Sol, Vento vs. Petróleo, Carvão).", temResumo: true },
                         { codigo: "8EF02_CN", caed: "Reconhecer diferentes fontes de energia.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Fontes de energia)", pag: "122-126", erro: "Confundir a fonte de energia primária (luz solar, vento, água) com a forma de energia gerada (elétrica, térmica).", dica: "Identificar a origem na natureza (sol, vento, biomassa, combustível fóssil) a partir de imagens, esquemas ou textos da matriz." },
                         { codigo: "8EF03_CN", caed: "Reconhecer diferentes tipos de energia.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia (Formas de energia)", pag: "120-121", erro: "Dificuldade em identificar manifestações de energia que não sejam elétricas, como cinética, potencial gravítica ou térmica.", dica: "Associar cada forma de energia à sua manifestação prática: Cinética = Movimento; Potencial = Armazenada; Térmica = Calor; Química = Alimentos/Combustíveis." },
                         { codigo: "8EF05_CN", caed: "Classificar os processos de transformação da energia nos aparelhos residenciais.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica (Potência e energia elétrica)", pag: "160-163", erro: "Acreditar que a energia é 'consumida e destruída' no aparelho, em vez de transformada de uma forma para outra.", dica: "Aplicar o Princípio de Conservação da Energia em eletrodomésticos: Ferro (Elétrica -> Térmica); Ventilador (Elétrica -> Mecânica/Cinética)." },
@@ -411,7 +615,7 @@
                         { codigo: "8EF16_CN", caed: "Reconhecer as posições relativas entre Sol, Terra e Lua associadas às fases da Lua e à ocorrência de eclipses.", ut: "Unidade 7: Movimentos da Terra e da Lua", cap: "Tema 2: Movimentos e fases da Lua (Movimentos, fases e eclipses)", pag: "207-211", erro: "Acreditar que as fases da Lua são causadas pela sombra da Terra projetada na Lua (confundir Fase da Lua com Eclipse).", dica: "Fases dependem do ângulo de iluminação visto da Terra. Eclipses dependem de alinhamento em linha reta: Solar (Sol-Lua-Terra) e Lunar (Sol-Terra-Lua)." }
                     ], 
                     3: [
-                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia", pag: "120-126", erro: "Julgar a renovabilidade pela quantidade de poluição gerada, e não pelo tempo de regeneração natural do recurso.", dica: "Reafirmar a classificação direta dos combustíveis fósseis (Carvão, Petróleo, Gás) como Não Renováveis, contrapondo com Vento, Sol e Água." },
+                        { codigo: "8EF01_CN", caed: "Classificar os recursos energéticos em renováveis e não renováveis.", ut: "Unidade 4: Recursos Energéticos", cap: "Tema 1: Formas e fontes de energia", pag: "120-126", erro: "Julgar a renovabilidade pela quantidade de poluição gerada, e não pelo tempo de regeneração natural do recurso.", dica: "Reafirmar a classificação direta dos combustíveis fósseis (Carvão, Petróleo, Gás) como Não Renováveis, contrapondo com Vento, Sol e Água.", temResumo: true },
                         { codigo: "8EF04_CN", caed: "Reconhecer os componentes de um circuito.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 2: Circuito elétrico (Gerador, condutores, interruptor, resistência)", pag: "149-155", erro: "Não identificar o papel do interruptor no circuito fechado/aberto (achar que circuito 'aberto' permite a passagem de corrente).", dica: "Entender os 4 pilares: Gerador (fornece energia), Condutor (fios leva corrente), Resistor (consome energia, lâmpada) e Interruptor (abre/fecha circuito)." },
                         { codigo: "8EF05_CN", caed: "Classificar os processos de transformação da energia nos aparelhos residenciais.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica", pag: "160-163", erro: "Não reconhecer a perda de energia em forma de calor (efeito Joule) como uma transformação indesejada em aparelhos sem função térmica.", dica: "Mapear a transformação principal desejada em cada eletrodoméstico e identificar a energia térmica residual dissipada." },
                         { codigo: "8EF06_CN", caed: "Verificar o consumo de energia elétrica de aparelhos eletroeletrônicos, assim como as grandezas e as ações que influenciam nesse consumo.", ut: "Unidade 5: Energia Elétrica", cap: "Tema 3: Consumo de energia elétrica (Cálculo de consumo residencial e potência)", pag: "160-163", erro: "Achar que apenas a Voltagem (110V/220V) determina o consumo, ignorando que o consumo depende da Potência (kW) x Tempo de uso (horas).", dica: "Utilizar a regra básica: Consumo = Potência (kW) x Tempo (h). Aparelhos de maior potência térmica (chuveiro, ferro) usados por muito tempo consomem mais." },
@@ -485,6 +689,11 @@
             renderizarCiclo();
         }
 
+        function abrirResumo8EF01() {
+            const modal = new bootstrap.Modal(document.getElementById('modalResumo8EF01'));
+            modal.show();
+        }
+
         function renderizarCiclo() {
             if (!turmaAtual) return;
 
@@ -526,8 +735,16 @@
 
                 card.innerHTML = `
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="badge badge-code">${item.codigo}</span>
-                        <span class="badge bg-light text-dark border">Pág. ${item.pag}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge badge-code">${item.codigo}</span>
+                            <span class="badge bg-light text-dark border">Pág. ${item.pag}</span>
+                        </div>
+                        ${item.temResumo ? `
+                            <button onclick="abrirResumo8EF01()" class="btn btn-resumo-a4 d-flex align-items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>Resumo Visual A4</span>
+                            </button>
+                        ` : ''}
                     </div>
                     <p class="fw-semibold mb-2 text-dark">${item.caed}</p>
                     <div class="row g-2 pt-2 border-top text-custom-muted small">
