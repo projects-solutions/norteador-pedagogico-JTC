@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- html2pdf.js em Alta Definição -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --bg-light: #f8fafc;
@@ -40,6 +42,7 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Header Institucional JTC */
@@ -209,6 +212,24 @@
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
+        /* Botão para Gerar PDF HD */
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.85rem;
+            padding: 0.75rem 1.2rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-download-pdf:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+        }
+
         /* Item Card Mapeado */
         .item-card {
             border: 1px solid var(--border-color);
@@ -348,20 +369,28 @@
                 <h2 class="h5 fw-bold mb-0 text-dark" id="titulo-turma-selecionada">6º Ano</h2>
             </div>
 
-            <!-- Navegador de Ciclos -->
-            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
-                    <span>Ciclo I</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
-                    <span>Ciclo II</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
-                    <span>Ciclo III</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
-                </button>
+            <!-- Navegador de Ciclos e Botão Baixar E-Book -->
+            <div class="d-flex flex-wrap gap-2 mb-4 align-items-center justify-content-between">
+                <div class="d-flex gap-2 flex-grow-1 overflow-x-auto pb-1">
+                    <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
+                        <span>Ciclo I</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
+                        <span>Ciclo II</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
+                        <span>Ciclo III</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-download-pdf d-flex align-items-center gap-2 w-100" onclick="gerarEBookCicloPortugues()">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Baixar E-Book do Ciclo (PDF HD)</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Lista de Habilidades do Ciclo -->
@@ -448,7 +477,7 @@
                         { codigo: "7EF09_P", caed: "Identificar a finalidade de gêneros publicitários e jornalísticos (crônicas, reportagens, artigos de opinião, cartas do leitor).", ut: "Jornalístico-midiático", cap: "Módulo 3, Cap. 2: Resenha crítica / Módulo 5, Cap. 1: Reportagem", pag: "124-131, 202-211", erro: "Acreditar que a resenha crítica serve apenas para resumir um livro/filme, ignorando sua função essencial de avaliar e recomendar.", dica: "Diferenciar resumo (apenas síntese) de resenha crítica (síntese + avaliação de qualidade + recomendação ao leitor)." },
                         { codigo: "7EF10_P", caed: "Identificar a finalidade de textos normativos.", ut: "Atuação na vida pública", cap: "Módulo 6, Cap. 1: Cartaz de campanha e regulamentos", pag: "244-251", erro: "Confundir um texto normativo (regras, leis, estatutos, regulamentos) com um texto informativo ou publicitário.", dica: "Identificar os verbos de dever/proibição e a estrutura em artigos/incisos, reforçando que sua função é estabelecer regras de conduta." },
                         { codigo: "7EF11_P", caed: "Reconhecer o gênero de textos publicitários e jornalísticos (crônicas, reportagens, artigos de opinião, cartas do leitor).", ut: "Jornalístico-midiático", cap: "Módulo 3, Cap. 2: Resenha crítica", pag: "124-131", erro: "Confundir resenha crítica com artigo de opinião devido à presença de trechos argumentativos em ambos.", dica: "Mostrar que a resenha crítica tem como objeto obrigatoriamente um produto cultural (livro, filme, peça), enquanto o artigo de opinião debate temas sociais." },
-                        { codigo: "7EF16_P", caed: "Identificar opinião em textos de nível 3, de estrutura narrativa ou de relato, estando a opinião marcada por uma estrutura predicativa.", ut: "Artístico-literário / Vida pessoal", cap: "Módulo 3, Cap. 1: Narrativa de memórias", pag: "106-112", erro: "Não perceber que adjetivos no predicado (ex.: aquele dia foi inesquecível, a viagem pareceu exaustiva) carregam a opinião do narrador do relato.", dica: "Sublinhar os adjetivos e estruturas predicativas que atribuem qualidades subjetivas aos fatos relatados." },
+                        { codigo: "7EF16_P", caed: "Identificar opinião em textos de nível 3, de estrutura narrative ou de relato, estando a opinião marcada por uma estrutura predicativa.", ut: "Artístico-literário / Vida pessoal", cap: "Módulo 3, Cap. 1: Narrativa de memórias", pag: "106-112", erro: "Não perceber que adjetivos no predicado (ex.: aquele dia foi inesquecível, a viagem pareceu exaustiva) carregam a opinião do narrador do relato.", dica: "Sublinhar os adjetivos e estruturas predicativas que atribuem qualidades subjetivas aos fatos relatados." },
                         { codigo: "7EF19_P", caed: "Reconhecer, em textos de nível 3, relações lógico-discursivas de comparação, finalidade, condição, conclusão marcadas por conjunções mais usuais: para que, como, mais que, se, então, portanto.", ut: "Todos os campos de atuação", cap: "Módulo 5, Cap. 2: Advérbio, locução e coesão sequencial", pag: "227-237", erro: "Confundir a conjunção de finalidade (para que) com a de causa (porque) ou de conclusão (portanto).", dica: "Memorizar e praticar os conectivos-chave de cada valor semântico: Finalidade = com o objetivo de; Conclusão = assim, logo; Condição = caso." },
                         { codigo: "7EF22_P", caed: "Identificar, em textos de nível 2 ou 3, um posicionamento explícito no título ou no primeiro parágrafo do texto argumentativo.", ut: "Jornalístico-midiático / Vida pública", cap: "Módulo 6, Cap. 1: Cartaz de campanha (Modalização)", pag: "244-258", erro: "Confundir o tema geral em discussão com o posicionamento (favorável ou contrário) assumido expressamente pelo autor na introdução.", dica: "Isolar a oração declarativa do 1º parágrafo onde o autor deixa claro seu ponto de vista em relação ao problema." }
                     ], 
@@ -676,6 +705,85 @@
                 `;
                 container.appendChild(card);
             });
+        }
+
+        /* Função para Gerar E-Book PDF HD em Língua Portuguesa */
+        function gerarEBookCicloPortugues() {
+            if (!turmaAtual) return;
+
+            const itens = bancoDados[turmaAtual].ciclos[cicloAtual] || [];
+            if (itens.length === 0) {
+                alert("Não há habilidades disponíveis neste ciclo para gerar o E-Book.");
+                return;
+            }
+
+            const opt = {
+                margin:       [0.4, 0.4, 0.4, 0.4],
+                filename:     `E-Book_Pedagogico_Portugues_${turmaAtual}_Ciclo${cicloAtual}.pdf`,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { 
+                    scale: 3, 
+                    useCORS: true, 
+                    letterRendering: true, 
+                    logging: false,
+                    dpi: 300
+                },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            const containerTemp = document.createElement("div");
+            containerTemp.style.padding = "10px";
+            containerTemp.style.backgroundColor = "#ffffff";
+            containerTemp.style.fontFamily = "'Plus Jakarta Sans', Arial, sans-serif";
+            containerTemp.style.color = "#0f172a";
+            containerTemp.style.webkitFontSmoothing = "antialiased";
+
+            let htmlContent = `
+                <div style="text-align: center; border-bottom: 2px solid #047857; padding-bottom: 12px; margin-bottom: 16px;">
+                    <h1 style="font-size: 18pt; color: #047857; font-weight: 800; margin: 0 0 4px 0; font-family: 'Plus Jakarta Sans', sans-serif;">NORTEADOR PEDAGÓGICO</h1>
+                    <h2 style="font-size: 12pt; color: #334155; font-weight: 700; margin: 0 0 6px 0; font-family: 'Plus Jakarta Sans', sans-serif;">U. E. João Tavares da Costa</h2>
+                    <p style="font-size: 9pt; color: #475569; margin: 0; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <strong>Componente:</strong> Língua Portuguesa &bull; 
+                        <strong>Turma:</strong> ${bancoDados[turmaAtual].titulo} &bull; 
+                        <strong>Ciclo:</strong> Ciclo ${cicloAtual}
+                    </p>
+                </div>
+            `;
+
+            itens.forEach((item) => {
+                htmlContent += `
+                    <div style="border: 1px solid #cbd5e1; border-left: 4px solid #047857; border-radius: 6px; padding: 10px 12px; margin-bottom: 12px; background-color: #ffffff; page-break-inside: avoid; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="background-color: #dcfce7; color: #064e3b; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 8.5pt;">Habilidade ${item.codigo}</span>
+                            <span style="font-size: 8pt; color: #64748b; font-weight: 600;">Livro Didático: Pág. ${item.pag || 'N/A'}</span>
+                        </div>
+                        <p style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 6px 0; line-height: 1.35;">${item.caed}</p>
+                        <div style="font-size: 8pt; color: #475569; border-top: 1px solid #f1f5f9; padding-top: 6px; margin-top: 4px;">
+                            <p style="margin: 1px 0;"><strong>Unidade / Capítulo:</strong> ${item.ut || 'N/A'}</p>
+                            <p style="margin: 1px 0;"><strong>Seção / Tema:</strong> ${item.cap || 'N/A'}</p>
+                        </div>
+                        ${item.erro ? `
+                            <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 5px 8px; margin-top: 6px; font-size: 8pt; color: #991b1b; line-height: 1.3;">
+                                <strong>Erro Frequente do Aluno no CAEd:</strong> ${item.erro}
+                            </div>
+                        ` : ''}
+                        ${item.dica ? `
+                            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px 8px; margin-top: 6px; font-size: 8pt; color: #166534; line-height: 1.3;">
+                                <strong>Dica de Foco em Sala de Aula:</strong> ${item.dica}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            htmlContent += `
+                <div style="text-align: center; border-top: 1px solid #cbd5e1; padding-top: 8px; margin-top: 16px; font-size: 7.5pt; color: #94a3b8; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    Norteador Pedagógico JTC &bull; Documento gerado em ${new Date().toLocaleDateString('pt-BR')}
+                </div>
+            `;
+
+            containerTemp.innerHTML = htmlContent;
+            html2pdf().set(opt).from(containerTemp).save();
         }
     </script>
 
