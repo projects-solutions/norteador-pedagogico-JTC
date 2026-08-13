@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Norteador Pedagógico</title>
+    <title>Norteador Pedagógico - Matemática</title>
     <!-- Meta tags para compartilhamento do link -->
-    <meta property="og:title" content="Norteador Pedagógico">
+    <meta property="og:title" content="Norteador Pedagógico - Matemática">
     <meta property="og:site_name" content="Norteador Pedagógico">
     <!-- Favicon Personalizado JTC (Bússola Verde Esmeralda) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23047857'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='%2310b981'/%3E%3Cpolygon points='50,20 60,50 50,50' fill='%23ffffff'/%3E%3C/svg%3E">
@@ -225,6 +225,20 @@
             font-weight: 700;
         }
 
+        .box-erro {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 0.75rem;
+            color: #991b1b;
+        }
+
+        .box-dica {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 0.75rem;
+            color: #166534;
+        }
+
         .text-custom-muted {
             color: var(--text-muted) !important;
         }
@@ -369,11 +383,434 @@
                 "titulo": "6º Ano - Ensino Fundamental",
                 "ciclos": {
                     1: [
-                        // EXEMPLO DE COMO ADICIONAR:
-                        // { codigo: "6EF01_MA", caed: "Descrição do descritor CAEd...", ut: "Unidade / Capítulo", cap: "Seção / Tema", pag: "100" }
+                        {
+                            codigo: "6EF01_M",
+                            caed: "Corresponder números racionais positivos, em representação decimal finita, a pontos da reta numérica.",
+                            ut: "Unidade 6: Números decimais",
+                            cap: "Representando números decimais na reta numérica",
+                            pag: "137",
+                            erro: "Ignorar a vírgula e marcar o ponto tratando a parte decimal como um número inteiro isolado (ex.: posicionar 2,8 logo após o 2, mas encostado na marcação do 10).",
+                            dica: "Utilizar a régua graduada em milímetros. Dividir cada unidade em 10 partes iguais (décimos), mostrando que 2,8 está entre 2 e 3, mais próximo do 3."
+                        },
+                        {
+                            codigo: "6EF02_M",
+                            caed: "Comparar números racionais positivos, em representação fracionária, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.",
+                            ut: "Unidade 5: Frações (Revisão / Diagnóstico)",
+                            cap: "Comparação de frações",
+                            pag: "115",
+                            erro: "Julgar a grandeza da fração isolando os números. O aluno acha que 1/8 é maior que 1/2 apenas porque 8 é maior que 2.",
+                            dica: "Demonstrar com tiras de frações idênticas que quanto maior o denominador, em mais partes o inteiro foi dividido e menor é cada fatia."
+                        },
+                        {
+                            codigo: "4EF07_M",
+                            caed: "Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.",
+                            ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico - 4º Ano)",
+                            cap: "Multiplicação",
+                            pag: "43",
+                            erro: "Esquecer de acrescentar o zero posicional ao multiplicar o algarismo das dezenas no algoritmo tradicional.",
+                            dica: "Usar decomposição antes do algoritmo prático: 234 x 12 = (234 x 10) + (234 x 2). Ilustrar com área em malha quadriculada."
+                        },
+                        {
+                            codigo: "4EF09_M",
+                            caed: "Utilizar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos, envolvendo o significado de repartição equitativa ou de medida, na resolução de problema.",
+                            ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico - 4º Ano)",
+                            cap: "Divisão",
+                            pag: "51",
+                            erro: "Erro na estimativa do quociente com divisores de dois algarismos e equívocos nas subtrações do cálculo longo.",
+                            dica: "Aplicar a divisão por estimativa (subtrações sucessivas) e orientar o aluno a escrever a 'tabuada de apoio' do divisor antes de efetuar a conta."
+                        },
+                        {
+                            codigo: "6EF03_M",
+                            caed: "Utilizar a operação de adição ou de subtração entre natural e racional positivo, o primeiro formado por até seis algarismos e, o segundo, em representação decimal finita, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Adição e subtração com números decimais",
+                            pag: "146",
+                            erro: "Alinhar o número inteiro à direita como se fosse decimal, somando a parte inteira com décimos (ex.: colocar 5 abaixo de 2 em 5 - 1,2).",
+                            dica: "Exigir 'vírgula debaixo de vírgula' e ensinar a acrescentar a vírgula e zeros no número inteiro (transformar 5 em 5,0)."
+                        },
+                        {
+                            codigo: "6EF06_M",
+                            caed: "Utilizar a operação de multiplicação ou de divisão de números racionais positivos, em representação decimal finita, por números naturais, formados por até dois algarismos, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Multiplicação e Divisão de decimais",
+                            pag: "155, 162, 165",
+                            erro: "Esquecer de contar e deslocar as casas decimais no resultado ou ignorar a vírgula na divisão.",
+                            dica: "Multiplicar divisor e dividendo por 10, 100 ou 1000 para eliminar a vírgula e transformar a conta em operação com inteiros equivalentes."
+                        },
+                        {
+                            codigo: "6EF09_M",
+                            caed: "Determinar a quantidade de agrupamentos possíveis entre elementos de duas coleções, combinando cada elemento de uma com os da outra, na resolução de problema.",
+                            ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico)",
+                            cap: "Multiplicação (Ideias da multiplicação)",
+                            pag: "43",
+                            erro: "Utilizar adição no lugar de multiplicação para achar as combinações entre dois conjuntos (ex.: 3 calças e 4 camisas -> 3+4=7).",
+                            dica: "Construir árvores de possibilidades e tabelas de dupla entrada para provar que cada item do primeiro grupo se combina com todos do segundo."
+                        },
+                        {
+                            codigo: "5EF02_M",
+                            caed: "Representar fração associada ao significado de parte de um todo.",
+                            ut: "Unidade 5: Frações (Revisão / Diagnóstico - 5º Ano)",
+                            cap: "Fração como parte de um inteiro",
+                            pag: "102",
+                            erro: "Montar a fração comparando partes pintadas com não pintadas (pintadas/não pintadas), e não com o total de partes.",
+                            dica: "Reforçar: o denominador é sempre o total absoluto de partes iguais e o numerador é a quantidade de partes consideradas."
+                        },
+                        {
+                            codigo: "5EF03_M",
+                            caed: "Identificar objeto ou sua localização em representação no plano, referenciada por linhas e colunas.",
+                            ut: "Unidade 12: Coordenadas, ampliação e redução (Revisão / Diagnóstico - 5º Ano)",
+                            cap: "Coordenadas",
+                            pag: "266",
+                            erro: "Inverter a ordem de leitura da grade, trocando a linha pela coluna ao registrar a coordenada.",
+                            dica: "Fixar a regra: primeiro lê-se o eixo horizontal (coluna/letra) e depois o eixo vertical (linha/número)."
+                        },
+                        {
+                            codigo: "5EF04_M",
+                            caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.",
+                            ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico - 5º Ano)",
+                            cap: "Paralelepípedo, Prisma e pirâmide",
+                            pag: "91, 95",
+                            erro: "Dificuldade de percepção 3D ao associar planificações planas a sólidos espaciais.",
+                            dica: "Analisar as faces: pirâmides têm 1 base e faces triangulares; prismas têm 2 bases e faces retangulares. Montar moldes em papel."
+                        },
+                        {
+                            codigo: "5EF05_M",
+                            caed: "Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.",
+                            ut: "Unidade 9: Polígonos (Revisão / Diagnóstico - 5º Ano)",
+                            cap: "Os polígonos",
+                            pag: "190",
+                            erro: "Incluir figuras abertas ou formas com curvas (como o círculo) na definição de polígonos.",
+                            dica: "Trabalhar a definição formal: 'figura plana, fechada, formada apenas por segmentos de reta que não se cruzam'."
+                        },
+                        {
+                            codigo: "6EF18_M",
+                            caed: "Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade e/ou diagonais de quadradinhos da malha.",
+                            ut: "Unidade 10: Grandezas e medidas",
+                            cap: "Medidas de área",
+                            pag: "225",
+                            erro: "Confundir perímetro (soma dos lados/contorno) com área (superfície) em malhas quadriculadas.",
+                            dica: "Diferenciar: Perímetro é a linha e Área é o preenchimento. Na malha, contar e pintar os quadradinhos inteiros e somar metades."
+                        },
+                        {
+                            codigo: "5EF06_M",
+                            caed: "Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.",
+                            ut: "Unidade 10: Grandezas e medidas (Revisão / Diagnóstico - 5º Ano)",
+                            cap: "Conversão de unidades (comprimento, massa, tempo)",
+                            pag: "207, 214, 217",
+                            erro: "Multiplicar no lugar de dividir ao converter unidades menores para maiores (ex.: 500 cm = 50000 m).",
+                            dica: "Usar a escala métrica (km, hm, dam, m, dm, cm, mm). Deslocar a vírgula para a direita (multiplicação) ou esquerda (divisão)."
+                        },
+                        {
+                            codigo: "6EF19_M",
+                            caed: "Utilizar conversão entre unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade, na resolução de problema.",
+                            ut: "Unidade 10: Grandezas e medidas",
+                            cap: "Medidas de comprimento, massa, tempo, capacidade",
+                            pag: "205-240",
+                            erro: "Efetuar operações com valores em unidades diferentes (ex.: somar 2 m com 50 cm resultando em 52).",
+                            dica: "Regra obrigatória: antes de qualquer cálculo, converter todas as grandezas do problema para a mesma unidade de medida."
+                        },
+                        {
+                            codigo: "6EF21_M",
+                            caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.",
+                            ut: "Unidade 11: Estatística e probabilidade",
+                            cap: "Tabelas e gráficos",
+                            pag: "244",
+                            erro: "Fazer a leitura das barras sem observar a escala do eixo vertical (ex.: numa escala de 5 em 5, ler a 3ª linha como 3 e não 15).",
+                            dica: "Treinar o hábito de analisar título, eixos, legendas e gradação da escala antes de responder aos enunciados."
+                        }
                     ],
-                    2: [],
-                    3: []
+                    2: [
+                        {
+                            codigo: "6EF01_M",
+                            caed: "Corresponder números racionais positivos, em representação decimal finita, a pontos da reta numérica.",
+                            ut: "Unidade 6: Números decimais",
+                            cap: "Representando números decimais na reta numérica",
+                            pag: "137",
+                            erro: "Ignorar a vírgula e marcar o ponto tratando a parte decimal como um número inteiro isolado.",
+                            dica: "Utilizar a régua graduada em milímetros, mostrando que 2,8 está entre 2 e 3, mais próximo do 3."
+                        },
+                        {
+                            codigo: "6EF02_M",
+                            caed: "Comparar números racionais positivos, em representação fracionária, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Comparação de frações",
+                            pag: "115",
+                            erro: "Comparar numeradores e denominadores isoladamente (ex.: achar que 1/8 > 1/2 porque 8 > 2).",
+                            dica: "Demonstrar com tiras de frações que denominadores maiores geram fatias menores do mesmo inteiro."
+                        },
+                        {
+                            codigo: "6EF03_M",
+                            caed: "Utilizar a operação de adição ou de subtração entre natural e racional positivo, o primeiro formado por até seis algarismos e, o segundo, em representação decimal finita, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Adição e subtração com números decimais",
+                            pag: "146",
+                            erro: "Alinhar o número inteiro à direita como se fosse decimal ao armar a conta vertical.",
+                            dica: "Exigir alinhamento de vírgula sob vírgula e equalizar ordens acrescentando zeros (ex.: 5,0 - 1,2)."
+                        },
+                        {
+                            codigo: "6EF04_M",
+                            caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos, em representação decimal finita, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Adição e subtração com números decimais",
+                            pag: "146",
+                            erro: "Erro no alinhamento quando as parcelas têm quantidades de casas decimais diferentes (ex.: 3,45 + 1,2 = 3,57).",
+                            dica: "Utilizar o quadro de ordens decimais e completar as casas decimais com zeros à direita antes de operar."
+                        },
+                        {
+                            codigo: "6EF06_M",
+                            caed: "Utilizar a operação de multiplicação ou de divisão de números racionais positivos, em representação decimal finita, por números naturais, formados por até dois algarismos, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Multiplicação e divisão de decimais",
+                            pag: "155, 162, 165",
+                            erro: "Esquecer o reposicionamento da vírgula no produto ou na divisão com números decimais.",
+                            dica: "Multiplicar dividendo e divisor por potências de 10 para transformar decimais em números inteiros equivalentes."
+                        },
+                        {
+                            codigo: "6EF07_M",
+                            caed: "Determinar o valor de uma expressão numérica envolvendo pelo menos duas das seguintes operações entre números naturais: adição, subtração, multiplicação, divisão e potenciação.",
+                            ut: "Unidade 2: Operações com números naturais e igualdades",
+                            cap: "Expressões numéricas e Potências",
+                            pag: "39, 50, 55, 57",
+                            erro: "Resolver a expressão linearmente da esquerda para a direita, desrespeitando a ordem das operações (ex.: 2 + 3 x 5 = 25).",
+                            dica: "Fixar a hierarquia: 1º Potenciação, 2º Multiplicação/Divisão, 3º Adição/Subtração. Destacar cálculos com cores."
+                        },
+                        {
+                            codigo: "6EF08_M",
+                            caed: "Utilizar pelo menos duas das seguintes operações entre números naturais ou racionais positivos, em representação decimal finita: adição, subtração, multiplicação, divisão e potenciação, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Potenciação e operações com decimais",
+                            pag: "145-172",
+                            erro: "Erros na interpretação de texto para montar a expressão e confusão operacional com casas decimais.",
+                            dica: "Etapas rígidas: 1) Sublinhar dados/pergunta; 2) Montar a expressão matemática; 3) Resolver na ordem prioritária."
+                        },
+                        {
+                            codigo: "6EF09_M",
+                            caed: "Determinar a quantidade de agrupamentos possíveis entre elementos de duas coleções, combinando cada elemento de uma com os da outra, na resolução de problema.",
+                            ut: "Unidade 2: Operações com números naturais e igualdades",
+                            cap: "Multiplicação",
+                            pag: "43",
+                            erro: "Somar as quantidades das duas coleções ao invés de multiplicar para achar as combinações.",
+                            dica: "Trabalhar com diagramas de árvore e tabelas de dupla entrada para visualização do princípio multiplicativo."
+                        },
+                        {
+                            codigo: "6EF10_M",
+                            caed: "Identificar frações equivalentes.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Frações equivalentes",
+                            pag: "111",
+                            erro: "Achar que frações equivalentes surgem somando um mesmo número em cima e embaixo (ex.: 1/2 = 2/3).",
+                            dica: "Reforçar: equivalência só ocorre multiplicando ou dividindo numerador e denominador pelo mesmo número natural diferente de zero."
+                        },
+                        {
+                            codigo: "6EF14_M",
+                            caed: "Utilizar proporcionalidade direta entre duas grandezas, na resolução de problema.",
+                            ut: "Unidade 5 e Unidade 10: Álgebra e Medidas",
+                            cap: "Razão, Porcentagens e Medidas",
+                            pag: "103, 119, 205",
+                            erro: "Aplicar raciocínio aditivo na proporcionalidade (ex.: se 2 itens custam 5, achar que 4 itens custam 7).",
+                            dica: "Usar tabelas de proporcionalidade multiplicativa: se a quantidade de itens dobra, o preço também dobra."
+                        },
+                        {
+                            codigo: "5EF03_M",
+                            caed: "Identificar objeto ou sua localização em representação no plano, referenciada por linhas e colunas.",
+                            ut: "Unidade 12: Coordenadas, ampliação e redução (Revisão / Diagnóstico)",
+                            cap: "Coordenadas",
+                            pag: "266",
+                            erro: "Inverter a ordem de registro das coordenadas na grade de linhas e colunas.",
+                            dica: "Convencionar a ordem padrão: primeiro a coluna (letra/eixo horizontal) e depois a linha (número/eixo vertical)."
+                        },
+                        {
+                            codigo: "6EF15_M",
+                            caed: "Corresponder pares ordenados a pontos do plano cartesiano, que representam a localização de objetos (1º quadrante).",
+                            ut: "Unidade 12: Coordenadas, ampliação e redução",
+                            cap: "Pares ordenados",
+                            pag: "268",
+                            erro: "Trocar os eixos do par ordenado (x, y), marcando o valor de x na vertical e de y na horizontal.",
+                            dica: "Ordem alfabética: x é horizontal e y é vertical. Regra lúdica: 'primeiro anda na horizontal, depois sobe na vertical'."
+                        },
+                        {
+                            codigo: "5EF04_M",
+                            caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.",
+                            ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico)",
+                            cap: "Paralelepípedo, Prisma e Pirâmide",
+                            pag: "91, 95",
+                            erro: "Dificuldade na associação entre figuras planas da planificação e as faces do sólido geométrico.",
+                            dica: "Analisar quantidade de bases e formato das faces laterais (retângulos nos prismas e triângulos nas pirâmides)."
+                        },
+                        {
+                            codigo: "6EF16_M",
+                            caed: "Classificar triângulos em relação às medidas de seus lados e/ou de seus ângulos internos.",
+                            ut: "Unidade 9: Polígonos",
+                            cap: "Os triângulos",
+                            pag: "196",
+                            erro: "Misturar os nomes da classificação quanto aos lados (equilátero, isósceles, escaleno) e aos ângulos (acutângulo, retângulo, obtusângulo).",
+                            dica: "Trabalhar os dois critérios de forma separada utilizando régua para lados e transferidor para ângulos."
+                        },
+                        {
+                            codigo: "6EF18_M",
+                            caed: "Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade e/ou diagonais de quadradinhos da malha.",
+                            ut: "Unidade 10: Grandezas e medidas",
+                            cap: "Medidas de área",
+                            pag: "225",
+                            erro: "Contar segmentos do contorno no lugar dos quadradinhos internos ao calcular a área na malha quadriculada.",
+                            dica: "Enfatizar: Área é a medição da superfície. Pintar e contar quadradinhos inteiros e somar metades."
+                        },
+                        {
+                            codigo: "6EF19_M",
+                            caed: "Utilizar conversão entre unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade, na resolução de problema.",
+                            ut: "Unidade 10: Grandezas e medidas",
+                            cap: "Medidas de comprimento, massa, tempo, capacidade",
+                            pag: "207, 214, 217, 239",
+                            erro: "Realizar cálculos sem padronizar as unidades de medida fornecidas no problema.",
+                            dica: "Identificar as unidades no enunciado e converter todas para a mesma escala antes de efetuar as operações."
+                        },
+                        {
+                            codigo: "6EF21_M",
+                            caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.",
+                            ut: "Unidade 11: Estatística e probabilidade",
+                            cap: "Tabelas e gráficos",
+                            pag: "244",
+                            erro: "Interpretar o valor das barras pela posição simples de linhas e não pelo valor da escala do eixo.",
+                            dica: "Ler obrigatoriamente os eixos e suas escalas numéricas antes de responder a perguntas sobre o gráfico."
+                        }
+                    ],
+                    3: [
+                        {
+                            codigo: "6EF04_M",
+                            caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos, em representação decimal finita, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Adição e subtração com números decimais",
+                            pag: "146",
+                            erro: "Erro no alinhamento das vírgulas quando os números têm quantidades diferentes de casas decimais.",
+                            dica: "Preencher casas decimais vazias com zeros à direita antes de efetuar a adição ou subtração."
+                        },
+                        {
+                            codigo: "6EF05_M",
+                            caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos em representação fracionária, na resolução de problema.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Adição e subtração de frações",
+                            pag: "123",
+                            erro: "Somar ou subtrair diretamente numeradores e denominadores entre si (ex.: 1/2 + 1/3 = 2/5).",
+                            dica: "Ensinar que somar partes requer denominadores iguais. Obter o M.M.C. ou frações equivalentes antes de operar."
+                        },
+                        {
+                            codigo: "6EF07_M",
+                            caed: "Determinar o valor de uma expressão numérica envolvendo pelo menos duas das seguintes operações entre números naturais: adição, subtração, multiplicação, divisão e potenciação.",
+                            ut: "Unidade 2: Operações com números naturais e igualdades",
+                            cap: "Expressões numéricas e Potências",
+                            pag: "55, 57",
+                            erro: "Resolver operações de forma linear da esquerda para a direita, calculando adições antes de potenciações.",
+                            dica: "Aplicar estritamente a ordem: 1º Potenciação, 2º Multiplicação/Divisão, 3º Adição/Subtração."
+                        },
+                        {
+                            codigo: "6EF08_M",
+                            caed: "Utilizar pelo menos duas das seguintes operações entre números naturais ou racionais positivos, em representação decimal finita: adição, subtração, multiplicação, divisão e potenciação, na resolução de problema.",
+                            ut: "Unidade 7: Operações com números decimais",
+                            cap: "Operações com números decimais",
+                            pag: "145-171",
+                            erro: "Erros de interpretação ao equacionar o problema e falhas no cálculo operacional de expressões com decimais.",
+                            dica: "Sistematizar: traduzir o texto para a expressão matemática e resolver passo a passo seguindo a hierarquia."
+                        },
+                        {
+                            codigo: "6EF10_M",
+                            caed: "Identificar frações equivalentes.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Frações equivalentes",
+                            pag: "111",
+                            erro: "Tentar obter frações equivalentes somando ou subtraindo valores no numerador e denominador.",
+                            dica: "Demonstrar que a equivalência só é obtida multiplicando ou dividindo ambos os termos pelo mesmo número."
+                        },
+                        {
+                            codigo: "6EF11_M",
+                            caed: "Corresponder representações decimal e fracionária de números racionais positivos, que possuem representação decimal finita.",
+                            ut: "Unidade 6: Números decimais",
+                            cap: "Transformação de decimais e fracionários",
+                            pag: "131, 132, 133",
+                            erro: "Converter frações decimais em números decimais sem alinhar a ordem posicional (ex.: 3/100 = 0,3).",
+                            dica: "Associar o número de zeros do denominador ao número de casas decimais após a vírgula (2 zeros = 2 casas)."
+                        },
+                        {
+                            codigo: "6EF12_M",
+                            caed: "Utilizar o cálculo da fração de uma quantidade, cujo resultado seja um número natural, na resolução de problema.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Fração de uma quantidade",
+                            pag: "104",
+                            erro: "Inverter os passos, multiplicando pelo denominador e dividindo pelo numerador.",
+                            dica: "Regra prática: divide pelo de baixo (denominador) e multiplica pelo de cima (numerador)."
+                        },
+                        {
+                            codigo: "6EF13_M",
+                            caed: "Utilizar operações entre números naturais em que se conheça o resultado dessas operações e que um desses números seja desconhecido, na resolução de problema.",
+                            ut: "Unidade 2: Operações com números naturais e igualdades",
+                            cap: "Operações inversas e Igualdades",
+                            pag: "41, 54, 65",
+                            erro: "Usar a mesma operação indicada na expressão para tentar achar o valor desconhecido (ex.: em ☐ + 15 = 40, fazer 40 + 15).",
+                            dica: "Usar a ideia de balança e aplicar a operação inversa para descobrir o valor da lacuna."
+                        },
+                        {
+                            codigo: "6EF14_M",
+                            caed: "Utilizar proporcionalidade direta entre duas grandezas, na resolução de problema.",
+                            ut: "Unidade 5: Frações",
+                            cap: "Fração como razão / Porcentagens",
+                            pag: "103, 119",
+                            erro: "Usar cálculo aditivo no lugar do raciocínio proporcional multiplicativo em problemas de razão/porcentagem.",
+                            dica: "Usar tabelas de proporcionalidade mostrando a variação multiplicativa entre as grandezas."
+                        },
+                        {
+                            codigo: "6EF15_M",
+                            caed: "Corresponder pares ordenados a pontos do plano cartesiano, que representam a localização de objetos (1º quadrante).",
+                            ut: "Unidade 12: Coordenadas, ampliação e redução",
+                            cap: "Pares ordenados",
+                            pag: "268",
+                            erro: "Inverter a posição dos eixos do par ordenado (x, y), marcando o ponto na posição trocada.",
+                            dica: "Lembrar da ordem alfabética: x no eixo horizontal e y no eixo vertical."
+                        },
+                        {
+                            codigo: "5EF04_M",
+                            caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.",
+                            ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico)",
+                            cap: "Prisma e Pirâmide",
+                            pag: "91, 95",
+                            erro: "Dificuldade em reconhecer a forma tridimensional a partir do molde bidimensional planificado.",
+                            dica: "Contar bases e verificar se as faces laterais são retângulos (prismas) ou triângulos (pirâmides)."
+                        },
+                        {
+                            codigo: "6EF16_M",
+                            caed: "Classificar triângulos em relação às medidas de seus lados e/ou de seus ângulos internos.",
+                            ut: "Unidade 9: Polígonos",
+                            cap: "Os triângulos",
+                            pag: "196",
+                            erro: "Confundir termos de classificação por lados com os de classificação por ângulos.",
+                            dica: "Medir lados com régua e ângulos com transferidor, separando os dois conceitos claramente."
+                        },
+                        {
+                            codigo: "6EF17_M",
+                            caed: "Classificar quadriláteros em relação às medidas de seus lados, de seus ângulos internos e da posição relativa de seus lados.",
+                            ut: "Unidade 9: Polígonos",
+                            cap: "Os quadriláteros",
+                            pag: "199",
+                            erro: "Não reconhecer que o quadrado possui as propriedades tanto do retângulo quanto do losango.",
+                            dica: "Analisar as definições inclusivas: quadrilátero com 4 ângulos retos (retângulo) e 4 lados iguais (losango) é um quadrado."
+                        },
+                        {
+                            codigo: "6EF20_M",
+                            caed: "Determinar a probabilidade de ocorrência de um evento, associado a um experimento aleatório, em um espaço amostral equiprovável, cujos quantitativos necessários para o cálculo da probabilidade não demandem técnicas de contagem.",
+                            ut: "Unidade 11: Estatística e probabilidade",
+                            cap: "Calculando probabilidade",
+                            pag: "261",
+                            erro: "Montar a probabilidade como a razão entre 'casos favoráveis' e 'casos desfavoráveis', e não sobre o 'total de casos'.",
+                            dica: "Fixar a fórmula: P = Casos Favoráveis / Total de Casos Possíveis. Praticar com dados e urnas."
+                        },
+                        {
+                            codigo: "6EF21_M",
+                            caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.",
+                            ut: "Unidade 11: Estatística e probabilidade",
+                            cap: "Tabelas e gráficos",
+                            pag: "244",
+                            erro: "Fazer a leitura das barras sem verificar a gradação e escala do eixo vertical.",
+                            dica: "Ler título, eixos, legendas e intervalos numéricos da escala antes de extrair informações dos dados."
+                        }
+                    ]
                 }
             },
             "7ano": {
@@ -471,6 +908,17 @@
             itens.forEach(item => {
                 const card = document.createElement("div");
                 card.className = "item-card p-3";
+                
+                let blocoPedagogico = "";
+                if (item.erro || item.dica) {
+                    blocoPedagogico = `
+                        <div class="row g-2 mt-2 pt-2 border-top">
+                            ${item.erro ? `<div class="col-12 col-md-6"><div class="p-2 box-erro small"><strong><i class="fa-solid fa-triangle-exclamation me-1"></i> Erro Frequente:</strong> ${item.erro}</div></div>` : ''}
+                            ${item.dica ? `<div class="col-12 col-md-6"><div class="p-2 box-dica small"><strong><i class="fa-solid fa-bullseye me-1"></i> Dica de Foco:</strong> ${item.dica}</div></div>` : ''}
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="badge badge-code">${item.codigo}</span>
@@ -481,6 +929,7 @@
                         <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-green-primary)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
                         <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
                     </div>
+                    ${blocoPedagogico}
                 `;
                 container.appendChild(card);
             });
