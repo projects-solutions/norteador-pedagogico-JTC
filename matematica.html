@@ -90,11 +90,12 @@
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
+            text-align: center;
             white-space: nowrap;
             font-size: 0.92rem;
         }
@@ -105,6 +106,15 @@
             border-color: #ffffff;
             font-weight: 700;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        @media (max-width: 768px) {
+            .nav-pills-custom .nav-link { font-size: 0.78rem; padding: 0.55rem 0.25rem; }
+            .nav-pills-custom .nav-link i { margin-right: 0.25rem !important; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-pills-custom .nav-link { font-size: 0.7rem; padding: 0.5rem 0.15rem; }
         }
 
         .card-turma {
@@ -119,77 +129,61 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
+        .card-turma h3 { color: #0f172a !important; font-weight: 700; }
+        .card-turma p { color: var(--text-muted) !important; }
+
+        .card-turma::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-green-light), var(--accent-cyan));
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+
         .card-turma:hover {
             transform: translateY(-4px);
             border-color: var(--accent-green-light);
             box-shadow: 0 12px 25px -5px rgba(16, 185, 129, 0.2);
         }
 
+        .card-turma:hover::before { opacity: 1; }
+
         .icon-box-turma {
-            width: 46px;
-            height: 46px;
-            border-radius: 0.85rem;
-            background: rgba(16, 185, 129, 0.12);
-            color: var(--accent-green-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 1px solid rgba(16, 185, 129, 0.25);
+            width: 46px; height: 46px; border-radius: 0.85rem;
+            background: rgba(16, 185, 129, 0.12); color: var(--accent-green-primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; border: 1px solid rgba(16, 185, 129, 0.25);
         }
 
         .badge-neon {
-            background: rgba(16, 185, 129, 0.12);
-            color: #047857;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            font-weight: 700;
+            background: rgba(16, 185, 129, 0.12); color: #047857;
+            border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 700;
         }
 
         .btn-cycle {
-            border: 1px solid #cbd5e1;
-            border-radius: 0.85rem;
-            background: var(--surface-card);
-            color: #475569;
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            border: 1px solid #cbd5e1; border-radius: 0.85rem;
+            background: var(--surface-card); color: #475569;
+            font-weight: 600; padding: 0.75rem 1rem; transition: all 0.3s ease;
         }
 
         .btn-cycle.active {
             background: linear-gradient(135deg, #059669, #10b981);
-            color: #ffffff;
-            border-color: transparent;
+            color: #ffffff; border-color: transparent;
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
         .item-card {
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            background: var(--surface-card);
-            border-left: 4px solid var(--accent-green-light);
+            border: 1px solid var(--border-color); border-radius: 1rem;
+            background: var(--surface-card); border-left: 4px solid var(--accent-green-light);
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
         .badge-code {
-            background: rgba(16, 185, 129, 0.12);
-            color: #047857;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            font-weight: 700;
+            background: rgba(16, 185, 129, 0.12); color: #047857;
+            border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 700;
         }
 
-        .box-erro {
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 0.75rem;
-            color: #991b1b;
-        }
-
-        .box-dica {
-            background-color: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 0.75rem;
-            color: #166534;
-        }
+        .box-erro { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.75rem; color: #991b1b; }
+        .box-dica { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.75rem; color: #166534; }
+        .text-custom-muted { color: var(--text-muted) !important; }
     </style>
 </head>
 <body>
@@ -233,7 +227,7 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <div>
                     <h2 class="h5 fw-bold mb-1 text-dark">Selecione a Turma</h2>
-                    <p class="text-muted small mb-0">Componente: Matemática</p>
+                    <p class="text-custom-muted small mb-0">Componente: Matemática</p>
                 </div>
             </div>
 
@@ -245,7 +239,7 @@
                             <span class="badge badge-neon rounded-pill" id="badge-total-6ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">6º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
@@ -256,7 +250,7 @@
                             <span class="badge badge-neon rounded-pill" id="badge-total-7ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">7º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
@@ -267,7 +261,7 @@
                             <span class="badge badge-neon rounded-pill" id="badge-total-8ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">8º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
 
@@ -278,7 +272,7 @@
                             <span class="badge badge-neon rounded-pill" id="badge-total-9ano">0 hab.</span>
                         </div>
                         <h3 class="h6 fw-bold mb-1">9º Ano</h3>
-                        <p class="text-muted small mb-0">Ensino Fundamental</p>
+                        <p class="text-custom-muted small mb-0">Ensino Fundamental</p>
                     </div>
                 </div>
             </div>
@@ -289,7 +283,7 @@
                 <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" onclick="voltarParaTurmas()">
                     <i class="fa-solid fa-arrow-left me-2"></i>Voltar
                 </button>
-                <h2 class="h5 fw-bold mb-0 text-dark" id="titulo-turma-selecionada">7º Ano</h2>
+                <h2 class="h5 fw-bold mb-0 text-dark" id="titulo-turma-selecionada">6º Ano</h2>
             </div>
 
             <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
@@ -317,7 +311,64 @@
 
     <script>
         var bancoDados = window.bancoDados || {
-            "6ano": { "titulo": "6º Ano - Ensino Fundamental", "ciclos": { 1: [], 2: [], 3: [] } },
+            "6ano": {
+                "titulo": "6º Ano - Ensino Fundamental",
+                "ciclos": {
+                    1: [
+                        { codigo: "6EF01_M", caed: "Corresponder números racionais positivos, em representação decimal finita, a pontos da reta numérica.", ut: "Unidade 6: Números decimais", cap: "Representando números decimais na reta numérica", pag: "137", erro: "Ignorar a vírgula e marcar o ponto tratando a parte decimal como um número inteiro isolado (ex.: posicionar 2,8 logo após o 2, mas encostado na marcação do 10).", dica: "Utilizar a régua graduada em milímetros. Dividir cada unidade em 10 partes iguais (décimos), mostrando que 2,8 está entre 2 e 3, mais próximo do 3." },
+                        { codigo: "6EF02_M", caed: "Comparar números racionais positivos, em representação fracionária, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.", ut: "Unidade 5: Frações (Revisão / Diagnóstico)", cap: "Comparação de frações", pag: "115", erro: "Julgar a grandeza da fração isolando os números. O aluno acha que 1/8 é maior que 1/2 apenas porque 8 é maior que 2.", dica: "Demonstrar com tiras de frações idênticas que quanto maior o denominador, em mais partes o inteiro foi dividido e menor é cada fatia." },
+                        { codigo: "4EF07_M", caed: "Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.", ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico - 4º Ano)", cap: "Multiplicação", pag: "43", erro: "Esquecer de acrescentar o zero posicional ao multiplicar o algarismo das dezenas no algoritmo tradicional.", dica: "Usar decomposição antes do algoritmo prático: 234 x 12 = (234 x 10) + (234 x 2). Ilustrar com área em malha quadriculada." },
+                        { codigo: "4EF09_M", caed: "Utilizar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos, envolvendo o significado de repartição equitativa ou de medida, na resolução de problema.", ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico - 4º Ano)", cap: "Divisão", pag: "51", erro: "Erro na estimativa do quociente com divisores de dois algarismos e equívocos nas subtrações do cálculo longo.", dica: "Aplicar a divisão por estimativa (subtrações sucessivas) e orientar o aluno a escrever a 'tabuada de apoio' do divisor antes de efetuar a conta." },
+                        { codigo: "6EF03_M", caed: "Utilizar a operação de adição ou de subtração entre natural e racional positivo, o primeiro formado por até seis algarismos e, o segundo, em representação decimal finita, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Adição e subtração com números decimais", pag: "146", erro: "Alinhar o número inteiro à direita como se fosse decimal, somando a parte inteira com décimos (ex.: colocar 5 abaixo de 2 em 5 - 1,2).", dica: "Exigir 'vírgula debaixo de vírgula' e ensinar a acrescentar a vírgula e zeros no número inteiro (transformar 5 em 5,0)." },
+                        { codigo: "6EF06_M", caed: "Utilizar a operação de multiplicação ou de divisão de números racionais positivos, em representação decimal finita, por números naturais, formados por até dois algarismos, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Multiplicação e Divisão de decimais", pag: "155, 162, 165", erro: "Esquecer de contar e deslocar as casas decimais no resultado ou ignorar a vírgula na divisão.", dica: "Multiplicar divisor e dividendo por 10, 100 ou 1000 para eliminar a vírgula e transformar a conta em operação com inteiros equivalentes." },
+                        { codigo: "6EF09_M", caed: "Determinar a quantidade de agrupamentos possíveis entre elementos de duas coleções, combinando cada elemento de uma com os da outra, na resolução de problema.", ut: "Unidade 2: Operações com números naturais (Revisão / Diagnóstico)", cap: "Multiplicação (Ideias da multiplicação)", pag: "43", erro: "Utilizar adição no lugar de multiplicação para achar as combinações entre dois conjuntos (ex.: 3 calças e 4 camisas -> 3+4=7).", dica: "Construir árvores de possibilidades e tabelas de dupla entrada para provar que cada item do primeiro grupo se combina com todos do segundo." },
+                        { codigo: "5EF02_M", caed: "Representar fração associada ao significado de parte de um todo.", ut: "Unidade 5: Frações (Revisão / Diagnóstico - 5º Ano)", cap: "Fração como parte de um inteiro", pag: "102", erro: "Montar a fração comparando partes pintadas com não pintadas (pintadas/não pintadas), e não com o total de partes.", dica: "Reforçar: o denominador é sempre o total absoluto de partes iguais e o numerador é a quantidade de partes consideradas." },
+                        { codigo: "5EF03_M", caed: "Identificar objeto ou sua localização em representação no plano, referenciada por linhas e colunas.", ut: "Unidade 12: Coordenadas, ampliação e redução (Revisão / Diagnóstico - 5º Ano)", cap: "Coordenadas", pag: "266", erro: "Inverter a ordem de leitura da grade, trocando a linha pela coluna ao registrar a coordenada.", dica: "Fixar a regra: primeiro lê-se o eixo horizontal (coluna/letra) e depois o eixo vertical (linha/número)." },
+                        { codigo: "5EF04_M", caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.", ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico - 5º Ano)", cap: "Paralelepípedo, Prisma e pirâmide", pag: "91, 95", erro: "Dificuldade de percepção 3D ao associar planificações planas a sólidos espaciais.", dica: "Analisar as faces: pirâmides têm 1 base e faces triangulares; prismas têm 2 bases e faces retangulares. Montar moldes em papel." },
+                        { codigo: "5EF05_M", caed: "Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.", ut: "Unidade 9: Polígonos (Revisão / Diagnóstico - 5º Ano)", cap: "Os polígonos", pag: "190", erro: "Incluir figuras abertas ou formas com curvas (como o círculo) na definição de polígonos.", dica: "Trabalhar a definição formal: 'figura plana, fechada, formada apenas por segmentos de reta que não se cruzam'." },
+                        { codigo: "6EF18_M", caed: "Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade e/ou diagonais de quadradinhos da malha.", ut: "Unidade 10: Grandezas e medidas", cap: "Medidas de área", pag: "225", erro: "Confundir perímetro (soma dos lados/contorno) com área (superfície) em malhas quadriculadas.", dica: "Diferenciar: Perímetro é a linha e Área é o preenchimento. Na malha, contar e pintar os quadradinhos inteiros e somar metades." },
+                        { codigo: "5EF06_M", caed: "Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.", ut: "Unidade 10: Grandezas e medidas (Revisão / Diagnóstico - 5º Ano)", cap: "Conversão de unidades (comprimento, massa, tempo)", pag: "207, 214, 217", erro: "Multiplicar no lugar de dividir ao converter unidades menores para maiores (ex.: 500 cm = 50000 m).", dica: "Usar a escala métrica (km, hm, dam, m, dm, cm, mm). Deslocar a vírgula para a direita (multiplicação) ou esquerda (divisão)." },
+                        { codigo: "6EF19_M", caed: "Utilizar conversão entre unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade, na resolução de problema.", ut: "Unidade 10: Grandezas e medidas", cap: "Medidas de comprimento, massa, tempo, capacidade", pag: "205-240", erro: "Efetuar operações com valores em unidades diferentes (ex.: somar 2 m com 50 cm resultando em 52).", dica: "Regra obrigatória: antes de qualquer cálculo, converter todas as grandezas do problema para a mesma unidade de medida." },
+                        { codigo: "6EF21_M", caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.", ut: "Unidade 11: Estatística e probabilidade", cap: "Tabelas e gráficos", pag: "244", erro: "Fazer a leitura das barras sem observar a escala do eixo vertical (ex.: numa escala de 5 em 5, ler a 3ª linha como 3 e não 15).", dica: "Treinar o hábito de analisar título, eixos, legendas e gradação da escala antes de responder aos enunciados." }
+                    ],
+                    2: [
+                        { codigo: "6EF01_M", caed: "Corresponder números racionais positivos, em representação decimal finita, a pontos da reta numérica.", ut: "Unidade 6: Números decimais", cap: "Representando números decimais na reta numérica", pag: "137", erro: "Ignorar a vírgula e marcar o ponto tratando a parte decimal como um número inteiro isolado.", dica: "Utilizar a régua graduada em milímetros, mostrando que 2,8 está entre 2 e 3, mais próximo do 3." },
+                        { codigo: "6EF02_M", caed: "Comparar números racionais positivos, em representação fracionária, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.", ut: "Unidade 5: Frações", cap: "Comparação de frações", pag: "115", erro: "Comparar numeradores e denominadores isoladamente (ex.: achar que 1/8 > 1/2 porque 8 > 2).", dica: "Demonstrar com tiras de frações que denominadores maiores geram fatias menores do mesmo inteiro." },
+                        { codigo: "6EF03_M", caed: "Utilizar a operação de adição ou de subtração entre natural e racional positivo, o primeiro formado por até seis algarismos e, o segundo, em representação decimal finita, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Adição e subtração com números decimais", pag: "146", erro: "Alinhar o número inteiro à direita como se fosse decimal ao armar a conta vertical.", dica: "Exigir alinhamento de vírgula sob vírgula e equalizar ordens acrescentando zeros (ex.: 5,0 - 1,2)." },
+                        { codigo: "6EF04_M", caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos, em representação decimal finita, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Adição e subtração com números decimais", pag: "146", erro: "Erro no alinhamento quando as parcelas têm quantidades de casas decimais diferentes (ex.: 3,45 + 1,2 = 3,57).", dica: "Utilizar o quadro de ordens decimais e completar as casas decimais com zeros à direita antes de operar." },
+                        { codigo: "6EF06_M", caed: "Utilizar a operação de multiplicação ou de divisão de números racionais positivos, em representação decimal finita, por números naturais, formados por até dois algarismos, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Multiplicação e divisão de decimais", pag: "155, 162, 165", erro: "Esquecer o reposicionamento da vírgula no produto ou na divisão com números decimais.", dica: "Multiplicar dividendo e divisor por potências de 10 para transformar decimais em números inteiros equivalentes." },
+                        { codigo: "6EF07_M", caed: "Determinar o valor de uma expressão numérica envolvendo pelo menos duas das seguintes operações entre números naturais: adição, subtração, multiplicação, divisão e potenciação.", ut: "Unidade 2: Operações com números naturais e igualdades", cap: "Expressões numéricas e Potências", pag: "39, 50, 55, 57", erro: "Resolver a expressão linearmente da esquerda para a direita, desrespeitando a ordem das operações (ex.: 2 + 3 x 5 = 25).", dica: "Fixar a hierarquia: 1º Potenciação, 2º Multiplicação/Divisão, 3º Adição/Subtração. Destacar cálculos com cores." },
+                        { codigo: "6EF08_M", caed: "Utilizar pelo menos duas das seguintes operações entre números naturais ou racionais positivos, em representação decimal finita: adição, subtração, multiplicação, divisão e potenciação, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Potenciação e operações com decimais", pag: "145-172", erro: "Erros na interpretação de texto para montar a expressão e confusão operacional com casas decimais.", dica: "Etapas rígidas: 1) Sublinhar dados/pergunta; 2) Montar a expressão matemática; 3) Resolver na ordem prioritária." },
+                        { codigo: "6EF09_M", caed: "Determinar a quantidade de agrupamentos possíveis entre elementos de duas coleções, combinando cada elemento de uma com os da outra, na resolução de problema.", ut: "Unidade 2: Operações com números naturais e igualdades", cap: "Multiplicação", pag: "43", erro: "Somar as quantidades das duas coleções ao invés de multiplicar para achar as combinações.", dica: "Trabalhar com diagramas de árvore e tabelas de dupla entrada para visualização do princípio multiplicativo." },
+                        { codigo: "6EF10_M", caed: "Identificar frações equivalentes.", ut: "Unidade 5: Frações", cap: "Frações equivalentes", pag: "111", erro: "Achar que frações equivalentes surgem somando um mesmo número em cima e embaixo (ex.: 1/2 = 2/3).", dica: "Reforçar: equivalência só ocorre multiplicando ou dividindo numerador e denominador pelo mesmo número natural diferente de zero." },
+                        { codigo: "6EF14_M", caed: "Utilizar proporcionalidade direta entre duas grandezas, na resolução de problema.", ut: "Unidade 5 e Unidade 10: Álgebra e Medidas", cap: "Razão, Porcentagens e Medidas", pag: "103, 119, 205", erro: "Aplicar raciocínio aditivo na proporcionalidade (ex.: se 2 itens custam 5, achar que 4 itens custam 7).", dica: "Usar tabelas de proporcionalidade multiplicativa: se a quantidade de itens dobra, o preço também dobra." },
+                        { codigo: "5EF03_M", caed: "Identificar objeto ou sua localização em representação no plano, referenciada por linhas e colunas.", ut: "Unidade 12: Coordenadas, ampliação e redução (Revisão / Diagnóstico)", cap: "Coordenadas", pag: "266", erro: "Inverter a ordem de registro das coordenadas na grade de linhas e colunas.", dica: "Convencionar a ordem padrão: primeiro a coluna (letra/eixo horizontal) e depois a linha (número/eixo vertical)." },
+                        { codigo: "6EF15_M", caed: "Corresponder pares ordenados a pontos do plano cartesiano, que representam a localização de objetos (1º quadrante).", ut: "Unidade 12: Coordenadas, ampliação e redução", cap: "Pares ordenados", pag: "268", erro: "Trocar os eixos do par ordenado (x, y), marcando o valor de x na vertical e de y na horizontal.", dica: "Ordem alfabética: x é horizontal e y é vertical. Regra lúdica: 'primeiro anda na horizontal, depois sobe na vertical'." },
+                        { codigo: "5EF04_M", caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.", ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico)", cap: "Paralelepípedo, Prisma e Pirâmide", pag: "91, 95", erro: "Dificuldade na associação entre figuras planas da planificação e as faces do sólido geométrico.", dica: "Analisar quantidade de bases e formato das faces laterais (retângulos nos prismas e triângulos nas pirâmides)." },
+                        { codigo: "6EF16_M", caed: "Classificar triângulos em relação às medidas de seus lados e/ou de seus ângulos internos.", ut: "Unidade 9: Polígonos", cap: "Os triângulos", pag: "196", erro: "Misturar os nomes da classificação quanto aos lados (equilátero, isósceles, escaleno) e aos ângulos (acutângulo, retângulo, obtusângulo).", dica: "Trabalhar os dois critérios de forma separada utilizando régua para lados e transferidor para ângulos." },
+                        { codigo: "6EF18_M", caed: "Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade e/ou diagonais de quadradinhos da malha.", ut: "Unidade 10: Grandezas e medidas", cap: "Medidas de área", pag: "225", erro: "Contar segmentos do contorno no lugar dos quadradinhos internos ao calcular a área na malha quadriculada.", dica: "Enfatizar: Área é a medição da superfície. Pintar e contar quadradinhos inteiros e somar metades." },
+                        { codigo: "6EF19_M", caed: "Utilizar conversão entre unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade, na resolução de problema.", ut: "Unidade 10: Grandezas e medidas", cap: "Medidas de comprimento, massa, tempo, capacidade", pag: "207, 214, 217, 239", erro: "Realizar cálculos sem padronizar as unidades de medida fornecidas no problema.", dica: "Identificar as unidades no enunciado e converter todas para a mesma escala antes de efetuar as operações." },
+                        { codigo: "6EF21_M", caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.", ut: "Unidade 11: Estatística e probabilidade", cap: "Tabelas e gráficos", pag: "244", erro: "Fazer a leitura das barras sem verificar a gradação e escala do eixo vertical.", dica: "Ler título, eixos, legendas e intervalos numéricos da escala antes de extrair informações dos dados." }
+                    ],
+                    3: [
+                        { codigo: "6EF04_M", caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos, em representação decimal finita, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Adição e subtração com números decimais", pag: "146", erro: "Erro no alinhamento das vírgulas quando os números têm quantidades diferentes de casas decimais.", dica: "Preencher casas decimais vazias com zeros à direita antes de efetuar a adição ou subtração." },
+                        { codigo: "6EF05_M", caed: "Utilizar a operação de adição ou de subtração entre números racionais positivos em representação fracionária, na resolução de problema.", ut: "Unidade 5: Frações", cap: "Adição e subtração de frações", pag: "123", erro: "Somar ou subtrair diretamente numeradores e denominadores entre si (ex.: 1/2 + 1/3 = 2/5).", dica: "Ensinar que somar partes requer denominadores iguais. Obter o M.M.C. ou frações equivalentes antes de operar." },
+                        { codigo: "6EF07_M", caed: "Determinar o valor de uma expressão numérica envolvendo pelo menos duas das seguintes operações entre números naturais: adição, subtração, multiplicação, divisão e potenciação.", ut: "Unidade 2: Operações com números naturais e igualdades", cap: "Expressões numéricas e Potências", pag: "55, 57", erro: "Resolver operações de forma linear da esquerda para a direita, calculando adições antes de potenciações.", dica: "Aplicar estritamente a ordem: 1º Potenciação, 2º Multiplicação/Divisão, 3º Adição/Subtração." },
+                        { codigo: "6EF08_M", caed: "Utilizar pelo menos duas das seguintes operações entre números naturais ou racionais positivos, em representação decimal finita: adição, subtração, multiplicação, divisão e potenciação, na resolução de problema.", ut: "Unidade 7: Operações com números decimais", cap: "Operações com números decimais", pag: "145-171", erro: "Erros de interpretação ao equacionar o problema e falhas no cálculo operacional de expressões com decimais.", dica: "Sistematizar: traduzir o texto para a expressão matemática e resolver passo a passo seguindo a hierarquia." },
+                        { codigo: "6EF10_M", caed: "Identificar frações equivalentes.", ut: "Unidade 5: Frações", cap: "Frações equivalentes", pag: "111", erro: "Tentar obter frações equivalentes somando ou subtraindo valores no numerador e denominador.", dica: "Demonstrar que a equivalência só é obtida multiplicando ou dividindo ambos os termos pelo mesmo número." },
+                        { codigo: "6EF11_M", caed: "Corresponder representações decimal e fracionária de números racionais positivos, que possuem representação decimal finita.", ut: "Unidade 6: Números decimais", cap: "Transformação de decimais e fracionários", pag: "131, 132, 133", erro: "Converter frações decimais em números decimais sem alinhar a ordem posicional (ex.: 3/100 = 0,3).", dica: "Associar o número de zeros do denominador ao número de casas decimais após a vírgula (2 zeros = 2 casas)." },
+                        { codigo: "6EF12_M", caed: "Utilizar o cálculo da fração de uma quantidade, cujo resultado seja um número natural, na resolução de problema.", ut: "Unidade 5: Frações", cap: "Fração de uma quantidade", pag: "104", erro: "Inverter os passos, multiplicando pelo denominador e dividindo pelo numerador.", dica: "Regra prática: divide pelo de baixo (denominador) e multiplica pelo de cima (numerador)." },
+                        { codigo: "6EF13_M", caed: "Utilizar operações entre números naturais em que se conheça o resultado dessas operações e que um desses números seja desconhecido, na resolução de problema.", ut: "Unidade 2: Operações com números naturais e igualdades", cap: "Operações inversas e Igualdades", pag: "41, 54, 65", erro: "Usar a mesma operação indicada na expressão para tentar achar o valor desconhecido (ex.: em ☐ + 15 = 40, fazer 40 + 15).", dica: "Usar a ideia de balança e aplicar a operação inversa para descobrir o valor da lacuna." },
+                        { codigo: "6EF14_M", caed: "Utilizar proporcionalidade direta entre duas grandezas, na resolução de problema.", ut: "Unidade 5: Frações", cap: "Fração como razão / Porcentagens", pag: "103, 119", erro: "Usar cálculo aditivo no lugar do raciocínio proportional multiplicativo em problemas de razão/porcentagem.", dica: "Usar tabelas de proporcionalidade mostrando a variação multiplicativa entre as grandezas." },
+                        { codigo: "6EF15_M", caed: "Corresponder pares ordenados a pontos do plano cartesiano, que representam a localização de objetos (1º quadrante).", ut: "Unidade 12: Coordenadas, ampliação e redução", cap: "Pares ordenados", pag: "268", erro: "Inverter a posição dos eixos do par ordenado (x, y), marcando o ponto na posição trocada.", dica: "Lembrar da ordem alfabética: x no eixo horizontal e y no eixo vertical." },
+                        { codigo: "5EF04_M", caed: "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.", ut: "Unidade 4: Figuras geométricas espaciais (Revisão / Diagnóstico)", cap: "Prisma e Pirâmide", pag: "91, 95", erro: "Dificuldade em reconhecer a forma tridimensional a partir do molde bidimensional planificado.", dica: "Contar bases e verificar se as faces laterais são retângulos (prismas) ou triângulos (pirâmides)." },
+                        { codigo: "6EF16_M", caed: "Classificar triângulos em relação às medidas de seus lados e/ou de seus ângulos internos.", ut: "Unidade 9: Polígonos", cap: "Os triângulos", pag: "196", erro: "Confundir termos de classificação por lados com os de classificação por ângulos.", dica: "Medir lados com régua e ângulos com transferidor, separando os dois conceitos claramente." },
+                        { codigo: "6EF17_M", caed: "Classificar quadriláteros em relação às medidas de seus lados, de seus ângulos internos e da posição relativa de seus lados.", ut: "Unidade 9: Polígonos", cap: "Os quadriláteros", pag: "199", erro: "Não reconhecer que o quadrado possui as propriedades tanto do retângulo quanto do losango.", dica: "Analisar as definições inclusivas: quadrilátero com 4 ângulos retos (retângulo) e 4 lados iguais (losango) é um quadrado." },
+                        { codigo: "6EF20_M", caed: "Determinar a probabilidade de ocorrência de um evento, associado a um experimento aleatório, em um espaço amostral equiprovável, cujos quantitativos necessários para o cálculo da probabilidade não demandem técnicas de contagem.", ut: "Unidade 11: Estatística e probabilidade", cap: "Calculando probabilidade", pag: "261", erro: "Montar a probabilidade como a razão entre 'casos favoráveis' e 'casos desfavoráveis', e não sobre o 'total de casos'.", dica: "Fixar a fórmula: P = Casos Favoráveis / Total de Casos Possíveis. Praticar com dados e urnas." },
+                        { codigo: "6EF21_M", caed: "Interpretar dados estatísticos dispostos em gráficos de colunas, de barras agrupadas, pictóricos ou de linhas.", ut: "Unidade 11: Estatística e probabilidade", cap: "Tabelas e gráficos", pag: "244", erro: "Fazer a leitura das barras sem verificar a gradação e escala do eixo vertical.", dica: "Ler título, eixos, legendas e intervalos numéricos da escala antes de extrair informações dos dados." }
+                    ]
+                }
+            },
             "7ano": {
                 "titulo": "7º Ano - Ensino Fundamental",
                 "ciclos": {
@@ -363,7 +414,7 @@
                         { codigo: "7EF03_M", caed: "Efetuar operação de multiplicação ou de divisão entre números racionais, em representação fracionária.", ut: "Unidade 5: Operações com números racionais", cap: "Multiplicação e divisão de frações", pag: "99, 102", erro: "Não simplificar o resultado final da fração ou errar o sinal com frações negativas.", dica: "Efetuar a regra de sinais dos termos primeiro e simplificar numeradores e denominadores antes de multiplicar." },
                         { codigo: "7EF04_M", caed: "Utilizar máximo divisor comum ou mínimo múltiplo comum entre números naturais na resolução de problema.", ut: "Unidade 1: Múltiplos e divisores de um número", cap: "M.D.C e M.M.C", pag: "23, 24", erro: "Confundir os conceitos operacionais de M.M.C (eventos simultâneos/periódicos) e M.D.C (divisão em partes iguais máximas).", dica: "Palavras-chave: 'encontro/coincidência no tempo' -> M.M.C; 'dividir/cortar em tamanhos máximos iguais' -> M.D.C." },
                         { codigo: "7EF05_M", caed: "Utilizar porcentagem, sem envolver aplicação de percentuais sucessivos, na resolução de problema.", ut: "Unidade 10: Porcentagem", cap: "Porcentagem", pag: "224", erro: "Erro no cálculo de acréscimos e descontos simples (ex.: calcular o desconto de 15% e esquecer de subtrair do valor original).", dica: "Trabalhar com o fator multiplicativo: Desconto de 15% -> multiplica por 0,85; Acréscimo de 15% -> multiplica por 1,15." },
-                        { codigo: "7EF06_M", caed: "Utilizar proporcionalidade inversa entre duas grandezas, na resolução de problema.", ut: "Unidade 9: Proporção", cap: "Grandezas inversamente转换proporcionais", pag: "215", erro: "Resolver regra de três de grandezas inversas multiplicando em cruz como na direta.", dica: "Em grandezas inversas, a multiplicação é feita na horizontal em linha reta (A1 x B1 = A2 x B2)." },
+                        { codigo: "7EF06_M", caed: "Utilizar proporcionalidade inversa entre duas grandezas, na resolução de problema.", ut: "Unidade 9: Proporção", cap: "Grandezas inversamente proporcionais", pag: "215", erro: "Resolver regra de três de grandezas inversas multiplicando em cruz como na direta.", dica: "Em grandezas inversas, a multiplicação é feita na horizontal em linha reta (A1 x B1 = A2 x B2)." },
                         { codigo: "7EF07_M", caed: "Determinar conjunto solução de equação polinomial de 1º grau.", ut: "Unidade 6: Cálculo algébrico", cap: "Equações", pag: "133", erro: "Erros operacionais ao dividir o resultado pelo coeficiente de x quando este é negativo (ex.: -2x = 8 -> x = 8 - 2 = 6).", dica: "Lembrar que o número que multiplica x passa dividindo mantendo seu sinal negativo (x = 8 / -2 = -4)." },
                         { codigo: "7EF08_M", caed: "Utilizar equação polinomial de 1º grau, representando uma situação por meio de modelagem matemática, na resolução de problema.", ut: "Unidade 6: Cálculo algébrico", cap: "Estudando mais equações", pag: "137", erro: "Inabilidade de traduzir termos do texto ('o dobro de um número somado a 5') para a linguagem algébrica (2x + 5).", dica: "Criar um dicionário de tradução: 'um número' = x; 'o dobro' = 2x; 'excede' = +; 'diferença' = -; 'é igual a' = =." },
                         { codigo: "7EF09_M", caed: "Corresponder pontos do plano cartesiano a pares ordenados.", ut: "Unidade 12: Transformações de figuras", cap: "Plano cartesiano", pag: "269", erro: "Trocar os sinais dos quadrantes ao plotar pontos com coordenadas negativas (ex.: marcar (-3, -4) no 1º quadrante).", dica: "Fixar os sinais dos quadrantes: 1º (+,+), 2º (-,+), 3º (-,-), 4º (+,-)." },
@@ -378,8 +429,65 @@
                     ]
                 }
             },
-            "8ano": { "titulo": "8º Ano - Ensino Fundamental", "ciclos": { 1: [], 2: [], 3: [] } },
-            "9ano": { "titulo": "9º Ano - Ensino Fundamental", "ciclos": { 1: [], 2: [], 3: [] } }
+            "8ano": {
+                "titulo": "8º Ano - Ensino Fundamental",
+                "ciclos": {
+                    1: [
+                        { codigo: "7EF01_M", caed: "Corresponder números inteiros ou racionais a pontos da reta numérica.", ut: "Unidade 2: Conjuntos", cap: "Conjuntos numéricos", pag: "34-38", erro: "Dificuldade ao posicionar números irracionais simples (como √2 ou π) ou frações negativas na reta numérica.", dica: "Converter a fração ou aproximar a raiz quadrada para forma decimal antes de efetuar a marcação na reta." },
+                        { codigo: "7EF02_M", caed: "Utilizar operações fundamentais entre números inteiros, na resolução de problema.", ut: "Unidade 2: Conjuntos", cap: "Conjunto Z e números racionais", pag: "34-36", erro: "Confundir o uso de parênteses e opostos em operações com inteiros, como -(-5) e -5.", dica: "Reforçar a metáfora do 'oposto do oposto' (o sinal de menos fora dos parênteses inverte o sinal do número interno)." },
+                        { codigo: "7EF03_M", caed: "Efetuar operação de multiplicação ou de divisão entre números racionais, em representação fracionária.", ut: "Unidade 2: Conjuntos", cap: "Conjunto Q", pag: "35-37", erro: "Tentar igualar denominadores (M.M.C.) na multiplicação de frações.", dica: "Reafirmar: multiplicação é direta (numerador x numerador e denominador x denominador)." },
+                        { codigo: "7EF04_M", caed: "Utilizar máximo divisor comum ou mínimo múltiplo comum entre números naturais na resolução de problema.", ut: "Unidade 7: Cálculo algébrico", cap: "M.M.C. de polinômios", pag: "151", erro: "Inverter o uso de M.M.C. e M.D.C. em problemas contextualizados.", dica: "M.M.C. associa-se a eventos periódicos que voltam a coincidir; M.D.C. associa-se à divisão do máximo tamanho comum." },
+                        { codigo: "7EF05_M", caed: "Utilizar porcentagem, sem envolver aplicação de percentuais sucessivos, na resolução de problema.", ut: "Unidade 4: Proporcionalidade", cap: "Razão, proporção e porcentagem no Calc", pag: "58, 59", erro: "Calcular a porcentagem e não aplicar o acréscimo ou desconto exigido pela questão.", dica: "Etapa obrigatória em dois passos: 1º Calcular o valor percentual; 2º Somar ao valor inicial (acréscimo) ou subtrair (desconto)." },
+                        { codigo: "7EF06_M", caed: "Utilizar proporcionalidade inversa entre duas grandezas, na resolução de problema.", ut: "Unidade 4: Proporcionalidade", cap: "Grandezas inversamente proporcionais", pag: "62, 68", erro: "Montar a proporção de grandezas inversas multiplicando em cruz.", dica: "Em proporcionalidade inversa, o produto entre os valores correspondentes é constante (A1 x B1 = A2 x B2)." },
+                        { codigo: "7EF07_M", caed: "Determinar conjunto solução de equação polinomial de 1º grau.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Equação do 1º grau com uma incógnita", pag: "158", erro: "Esquecer de trocar o sinal de um termo ao mudá-lo de membro.", dica: "Método da operação inversa: quem está somando passa subtraindo; quem está multiplicando passa dividindo." },
+                        { codigo: "7EF08_M", caed: "Utilizar equação polinomial de 1º grau, representando uma situação por meio de modelagem matemática, na resolução de problema.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Equações fracionárias e problemas", pag: "162-164", erro: "Dificuldade de modelar a linguagem materna em linguagem algébrica (ex.: 'o triplo de um número menos 4' -> 3x - 4).", dica: "Construir uma tabela de equivalência entre expressões verbais e símbolos algébricos." },
+                        { codigo: "7EF09_M", caed: "Corresponder pontos do plano cartesiano a pares ordenados.", ut: "Unidade 6: Transformações geométricas", cap: "Transformações no plano cartesiano", pag: "118", erro: "Inverter as posições dos eixos (x, y), marcando a ordenada no eixo horizontal.", dica: "Fixar a ordem alfabética: primeiro x (horizontal), depois y (vertical)." },
+                        { codigo: "7EF10_M", caed: "Reconhecer relações entre os ângulos que um reta transversal forma com um feixe de retas paralelas.", ut: "Unidade 3: Ângulos", cap: "Ângulos complementares, suplementares e O.P.V.", pag: "44, 45", erro: "Confundir ângulos alternos internos (que são iguais) com colaterais internos (cuja soma é 180º).", dica: "Identificar visualmente que na transversal existem apenas dois tamanhos de ângulos: todos os agudos são iguais e todos os obtusos são iguais." },
+                        { codigo: "7EF11_M", caed: "Determinar a medida de um ângulo interno de um triângulo, a partir das medidas dos outros dois.", ut: "Unidade 10: Polígonos e circunferência", cap: "Ângulos nos triângulos", pag: "204", erro: "Esquecer que a soma dos ângulos internos de qualquer triângulo é sempre 180º.", dica: "Escrever a equação Â + B̂ + Ĉ = 180º antes de substituir os valores conhecidos." },
+                        { codigo: "7EF12_M", caed: "Utilizar medidas de ângulos internos e/ou externos de polígonos regulares, na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Diagonais e ângulos em um polígono", pag: "196, 199", erro: "Confundir a soma dos ângulos internos Si = (n-2) x 180º com a medida de um único ângulo interno ai.", dica: "Lembrete visual: para achar um ângulo em polígono regular, divide-se a soma pelo número total de vértices n." },
+                        { codigo: "7EF13_M", caed: "Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Quadriláteros e Polígonos", pag: "222", erro: "Confundir perímetro (soma dos lados) com a área do polígono.", dica: "Contornar e destacar com caneta todos os lados da figura antes de efetuar a soma." },
+                        { codigo: "7EF14_M", caed: "Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.", ut: "Unidade 11: Medidas de área", cap: "Medida da área do paralelogramo, triângulo, trapézio", pag: "244-250", erro: "Esquecer de dividir por 2 na fórmula da área do triângulo ou do trapézio.", dica: "Utilizar a fórmula explícita do trapézio A = (B + b) x h / 2 e destacar a divisão por 2." },
+                        { codigo: "7EF15_M", caed: "Utilizar cálculo de medida de volume de blocos retangulares, envolvendo unidades mais usuais (metro cúbico, decímetro cúbico ou centímetro cúbico), na resolução de problema.", ut: "Unidade 12: Medidas de volume e de capacidade", cap: "Medida do volume de paralelepípedo reto retângulo", pag: "268", erro: "Somar as três dimensões do bloco retangular em vez de multiplicá-las.", dica: "Volume é o produto das 3 dimensões: V = comprimento x largura x altura." },
+                        { codigo: "7EF16_M", caed: "Interpretar dados estatísticos dispostos em gráficos de setores.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Gráfico de setores", pag: "91, 97", erro: "Relacionar diretamente a porcentagem ao ângulo em graus sem realizar a conversão baseada em 360º.", dica: "Aplicar a regra de três simples: 100% -> 360º." },
+                        { codigo: "8EF11_M", caed: "Determinar média aritmética simples, moda, mediana ou amplitude de um conjunto de dados estatísticos.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Medidas de tendência central e amplitude", pag: "84, 85", erro: "Confundir Moda (valor mais frequente) com Mediana (valor central após ordenação).", dica: "Etapa indispensável para Mediana: organizar os dados em Rol (ordem crescente ou decrescente) antes de identificar o centro." }
+                    ],
+                    2: [
+                        { codigo: "7EF01_M", caed: "Corresponder números inteiros ou racionais a pontos da reta numérica.", ut: "Unidade 2: Conjuntos", cap: "Conjuntos numéricos", pag: "34-38", erro: "Incoerência no ordenamento de números racionais negativos (ex.: achar que -2,5 > -1,2).", dica: "Lembrar que, entre dois números negativos, o maior é aquele que está mais próximo de zero na reta." },
+                        { codigo: "8EF01_M", caed: "Utilizar o princípio multiplicativo de contagem na resolução de problema.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Possibilidades", pag: "106", erro: "Somar o número de opções de cada etapa em vez de multiplicá-las no princípio fundamental da contagem.", dica: "Usar a regra do 'E': se preciso escolher o item A E o item B, multiplica-se Na x Nb." },
+                        { codigo: "7EF04_M", caed: "Utilizar máximo divisor comum ou mínimo múltiplo comum entre números naturais na resolução de problema.", ut: "Unidade 7: Cálculo algébrico", cap: "Mínimo múltiplo comum de polinômios", pag: "151", erro: "Erro no cálculo de M.M.C. por fatoração simultânea incorreta.", dica: "Decompor em fatores primos e multiplicar todos os fatores obtidos." },
+                        { codigo: "7EF05_M", caed: "Utilizar porcentagem, sem envolver aplicação de percentuais sucessivos, na resolução de problema.", ut: "Unidade 4: Proporcionalidade", cap: "Razão, proporção e porcentagem", pag: "58-60", erro: "Dificuldade em determinar a porcentagem que um valor representa do total.", dica: "Montar a razão parte/todo e multiplicar o resultado por 100." },
+                        { codigo: "8EF02_M", caed: "Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.", ut: "Unidade 7: Cálculo algébrico", cap: "Valor numérico de uma expressão algébrica", pag: "131", erro: "Inobservância de regras de sinais ao substituir variáveis por números negativos em expressões algébricas (ex.: para x = -3, calcular x² como -9).", dica: "Inserir o valor negativo obrigatoriamente entre parênteses: (-3)² = +9." },
+                        { codigo: "8EF03_M", caed: "Determinar conjunto solução de um sistema de equações polinomials de 1º grau, com duas incógnitas.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Sistemas de duas equações do 1º grau", pag: "168-175", erro: "Erro na substituição ou isolamento das variáveis ao aplicar o Método da Substituição ou Adição.", dica: "No Método da Adição, multiplicar uma das equações por um número que torne os coeficientes de uma variável opostos." },
+                        { codigo: "8EF05_M", caed: "Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² = b.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Equação do 2º grau do tipo ax² = c", pag: "182", erro: "Esquece a raiz negativa ao resolver x² = b, indicando apenas a solução positiva x = √b.", dica: "Reforçar que a solução da equação x² = b (para b ≥ 0) compreende dois valores: x = ±√b." },
+                        { codigo: "7EF13_M", caed: "Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Quadriláteros e polígonos", pag: "222", erro: "Não converter unidades de medida de comprimento antes de somar os lados do polígono.", dica: "Padronizar todos os lados para a mesma unidade (cm, m) antes de efetuar a soma do perímetro." },
+                        { codigo: "8EF07_M", caed: "Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Comprimento da circunferência", pag: "239", erro: "Confundir raio com diâmetro na aplicação da fórmula C = 2πr ou C = πd.", dica: "Lembrar: se o enunciado fornece o diâmetro, o raio é exatamente a metade (r = d / 2)." },
+                        { codigo: "7EF14_M", caed: "Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.", ut: "Unidade 11: Medidas de área", cap: "Área do paralelogramo, triângulo, trapézio, losango", pag: "244-253", erro: "Erro no cálculo de áreas decompostas por esquecimento de alguma das figuras simples componentes.", dica: "Desenhar a separação das figuras, numerar cada área (A1, A2) e somá-las no final: Atotal = A1 + A2." },
+                        { codigo: "8EF08_M", caed: "Utilizar cálculo de medida de área de círculos na resolução de problema.", ut: "Unidade 11: Medidas de área", cap: "Medida da área do círculo e setor circular", pag: "254-257", erro: "Multiplicar π x r e depois elevar ao quadrado no cálculo da área do círculo (A = πr²).", dica: "A potenciação tem prioridade: eleva-se o raio ao quadrado primeiro e depois multiplica-se por π (ou 3,14)." },
+                        { codigo: "8EF11_M", caed: "Determinar média aritmética simples, moda, mediana ou amplitude de um conjunto de dados estatísticos.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Medidas de tendência central e amplitude", pag: "84, 85", erro: "Quando o número de elementos do rol é par, escolher apenas um valor central para a Mediana.", dica: "Para conjunto com número par de elementos, a Mediana é a média aritmética dos dois valores centrais." },
+                        { codigo: "8EF12_M", caed: "Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Variáveis e medidas de tendência central", pag: "76, 84", erro: "Confundir o significado da Amplitude (diferença entre o maior e o menor valor) com as medidas de centralidade.", dica: "Amplitude mede a dispersão: Amplitude = Valor Máximo - Valor Mínimo." }
+                    ],
+                    3: [
+                        { codigo: "8EF01_M", caed: "Utilizar o princípio multiplicativo de contagem na resolução de problema.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Possibilidades", pag: "106", erro: "Não descontar repetições em problemas de arranjo/combinação simples sem repetição (ex.: formar senhas com algarismos distintos).", dica: "Construir esquemas de posições com diminuição de opções a cada escolha (n x (n-1) x (n-2))." },
+                        { codigo: "7EF05_M", caed: "Utilizar porcentagem, sem envolver aplicação de percentuais sucessivos, na resolução de problema.", ut: "Unidade 4: Proporcionalidade", cap: "Proporcionalidade e porcentagem", pag: "58, 59", erro: "Confundir desconto comercial simples com a taxa percentual pedida.", dica: "Identificar a pergunta central: o problema pede o valor final ou a porcentagem do desconto?" },
+                        { codigo: "8EF02_M", caed: "Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.", ut: "Unidade 7: Cálculo algébrico", cap: "Valor numérico de uma expressão algébrica", pag: "131", erro: "Priorizar a multiplicação antes da potenciação ao resolver o valor numérico de um monômio/polinômio.", dica: "Em 3x², calcula-se primeiro x² e em seguida multiplica-se por 3." },
+                        { codigo: "8EF03_M", caed: "Determinar conjunto solução de um sistema de equações polinomials de 1º grau, com duas incógnitas.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Resolução de sistemas (Substituição/Adição)", pag: "169-173", erro: "Encontrar o valor de apenas uma incógnita e interromper a resolução do sistema sem determinar o par ordenado (x, y).", dica: "Todo sistema de 1º grau com 2 incógnitas possui como solução um par ordenado (x, y)." },
+                        { codigo: "8EF04_M", caed: "Utilizar sistema de equações polinomials de 1º grau, com duas incógnitas, representando uma situação por meio de modelagem matemática, na resolução de problema.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Análise da solução por representação geométrica", pag: "177", erro: "Montar incorretamente as equações do sistema a partir do texto (ex.: trocar os coeficientes das variáveis).", dica: "Testar os valores obtidos nas duas equações originais do problema para validar o sistema." },
+                        { codigo: "8EF05_M", caed: "Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² = b.", ut: "Unidade 8: Equações e sistemas de equações", cap: "Equação do 2º grau do tipo ax² = c", pag: "182", erro: "Tentar extrair raiz quadrada de número negativo ao resolver ax² = b quando b < 0.", dica: "Se x² = -c (com c > 0), registrar que a equação não possui raízes reais (R)." },
+                        { codigo: "8EF06_M", caed: "Utilizar o conceito de mediatriz ou de bissetriz, como lugar geométrico, na resolução de problema.", ut: "Unidade 3 e 10: Ângulos / Polígonos", cap: "Bissetriz / Mediatriz", pag: "51, 211-214", erro: "Confundir a propriedade da Mediatriz (reta perpendicular no ponto médio) com a da Bissetriz (semi-reta que divide o ângulo ao meio).", dica: "Definir como lugar geométrico: Mediatriz equidista dos extremos de um segmento; Bissetriz equidista dos lados de um ângulo." },
+                        { codigo: "7EF13_M", caed: "Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Polígonos", pag: "222", erro: "Confusão de unidades ao calcular perímetro envolvido com comprimento de arcos.", dica: "Somar partes retas e partes curvas do contorno mantendo a mesma unidade de medida." },
+                        { codigo: "8EF07_M", caed: "Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.", ut: "Unidade 10: Polígonos e circunferência", cap: "Comprimento da circunferência", pag: "239", erro: "Utilizar a fórmula da área (πr²) quando a questão pede o comprimento (2πr).", dica: "Associação de unidades: Comprimento é unidimensional (cm, m); Área é bidimensional (cm², m²)." },
+                        { codigo: "7EF14_M", caed: "Utilizar cálculo de medida de área de figuras planas.", ut: "Unidade 11: Medidas de área", cap: "Medidas de área", pag: "243-253", erro: "Erro no cálculo da área de triângulos não retângulos por escolha incorreta da altura relativa à base.", dica: "A altura de um triângulo é sempre o segmento perpendicular (formando 90º) que une a base ao vértice oposto." },
+                        { codigo: "8EF08_M", caed: "Utilizar cálculo de medida de área de círculos na resolução de problema.", ut: "Unidade 11: Medidas de área", cap: "Medida da área do círculo", pag: "254", erro: "Usar o diâmetro no lugar do raio na fórmula da área do círculo.", dica: "Sempre calcular r = d / 2 antes de substituir na fórmula A = πr²." },
+                        { codigo: "8EF09_M", caed: "Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.", ut: "Unidade 12: Medidas de volume e de capacidade", cap: "Medidas de volume e de capacidade", pag: "265, 273", erro: "Confundir as relações equivalentes de volume e capacidade (ex.: achar que 1 m³ = 100 L).", dica: "Memorizar as duas equivalências fundamentais: 1 dm³ = 1 L e 1 m³ = 1000 L." },
+                        { codigo: "8EF10_M", caed: "Determinar a probabilidade de ocorrência de um evento, associado a um experimento aleatório, em um espaço amostral equiprovável, em que pelo menos um dos quantitativos necessários para o cálculo da probabilidade demande técnicas de contagem.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Probabilidade", pag: "109", erro: "Errar a contagem do total de possibilidades do espaço amostral em experimentos compostos (ex.: lançar dois dados).", dica: "Utilizar a regra do produto do princípio multiplicativo para calcular o tamanho do espaço amostral (6 x 6 = 36)." },
+                        { codigo: "8EF12_M", caed: "Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.", ut: "Unidade 5: Estatística, contagem e probabilidade", cap: "Medidas de tendência central e amplitude", pag: "84, 85", erro: "Interpretar erroneamente a representatividade da Média em conjuntos de dados com grande Amplitude.", dica: "Explicar que valores discrepantes (muito altos ou muito baixos) distorcem a Média, tornando a Mediana mais representativa." }
+                    ]
+                }
+            },
+            "9ano": {
+                "titulo": "9º Ano - Ensino Fundamental",
+                "ciclos": { 1: [], 2: [], 3: [] }
+            }
         };
 
         var turmaAtual = null;
@@ -422,16 +530,22 @@
 
         function selecionarCiclo(numeroCiclo) {
             cicloAtual = numeroCiclo;
+            
             [1, 2, 3].forEach(num => {
                 const btn = document.getElementById(`btn-ciclo-${num}`);
-                if (num === numeroCiclo) btn.classList.add("active");
-                else btn.classList.remove("active");
+                if (num === numeroCiclo) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
             });
+
             renderizarCiclo();
         }
 
         function renderizarCiclo() {
             if (!turmaAtual) return;
+
             const dadosTurma = bancoDados[turmaAtual];
             const ciclos = dadosTurma.ciclos;
 
@@ -447,8 +561,8 @@
             if (itens.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-5 rounded-4 border bg-white shadow-sm">
-                        <i class="fa-regular fa-folder-open fa-3x text-muted mb-3"></i>
-                        <p class="text-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
+                        <i class="fa-regular fa-folder-open fa-3x text-custom-muted mb-3"></i>
+                        <p class="text-custom-muted fw-medium mb-0">Nenhuma habilidade cadastrada para este ciclo.</p>
                     </div>
                 `;
                 return;
@@ -474,9 +588,9 @@
                         <span class="badge bg-light text-dark border">Pág. ${item.pag}</span>
                     </div>
                     <p class="fw-semibold mb-2 text-dark">${item.caed}</p>
-                    <div class="row g-2 pt-2 border-top text-muted small">
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1 text-success"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
-                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1 text-info"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
+                    <div class="row g-2 pt-2 border-top text-custom-muted small">
+                        <div class="col-12 col-md-6"><i class="fa-solid fa-book me-1" style="color: var(--accent-green-primary)"></i> <strong>Unidade/Capítulo:</strong> ${item.ut}</div>
+                        <div class="col-12 col-md-6"><i class="fa-solid fa-bookmark me-1" style="color: var(--accent-cyan)"></i> <strong>Seção/Tema:</strong> ${item.cap}</div>
                     </div>
                     ${blocoPedagogico}
                 `;
