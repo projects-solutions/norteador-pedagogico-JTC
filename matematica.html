@@ -8,9 +8,9 @@
     <meta property="og:title" content="Norteador Pedagógico - Matemática">
     <meta property="og:site_name" content="Norteador Pedagógico">
     <!-- Favicon Personalizado JTC (Bússola Verde Esmeralda) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23047857'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='%2310b981'/%3E%3Cpolygon points='50,20 60,50 50,50' fill='%23ffffff'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23047857'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='%2310b981'/%3E%3Cpolygon points='50,20 60,50 50,50' fill='%23ffffff'/%3E%3C%svg%3E">
     <!-- Suporte para Adicionar à Tela Inicial (iOS, Android e PWA) -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23047857'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='%2310b981'/%3E%3Cpolygon points='50,20 60,50 50,50' fill='%23ffffff'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23047857'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Cpolygon points='50,20 60,50 50,80 40,50' fill='%2310b981'/%3E%3Cpolygon points='50,20 60,50 50,50' fill='%23ffffff'/%3E%3C%svg%3E">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Norteador Pedagógico">
@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- html2pdf.js para geração de e-book PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --bg-light: #f8fafc;
@@ -170,6 +172,25 @@
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
+        /* Estilização padronizada igual às outras matérias */
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #ffffff;
+            border: none;
+            border-radius: 50rem;
+            font-weight: 700;
+            padding: 0.65rem 1.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .btn-download-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+            color: #ffffff;
+        }
+
         .item-card {
             border: 1px solid var(--border-color); border-radius: 1rem;
             background: var(--surface-card); border-left: 4px solid var(--accent-green-light);
@@ -286,18 +307,25 @@
                 <h2 class="h5 fw-bold mb-0 text-dark" id="titulo-turma-selecionada">6º Ano</h2>
             </div>
 
-            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
-                    <span>Ciclo I</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
-                    <span>Ciclo II</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
-                    <span>Ciclo III</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+                <div class="d-flex gap-2 overflow-x-auto pb-2 flex-grow-1">
+                    <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
+                        <span>Ciclo I</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
+                        <span>Ciclo II</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
+                        <span>Ciclo III</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
+                    </button>
+                </div>
+                <!-- Botão com o texto e ícone padronizados -->
+                <button class="btn btn-download-pdf d-flex align-items-center gap-2" onclick="gerarEBookCicloMatematica()">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Baixar E-Book do Ciclo (PDF HD)</span>
                 </button>
             </div>
 
@@ -506,7 +534,7 @@
                     2: [
                         { codigo: "8EF01_M", caed: "Utilizar o princípio multiplicativo de contagem na resolução de problema.", ut: "Unidade 7: Estatística e probabilidade", cap: "Probabilidade e Contagem", pag: "147", erro: "Incapacidade de separar o problema em decisões independentes para multiplicar as opções.", dica: "Desenhar um diagrama de árvore para visualização do produto das combinações." },
                         { codigo: "9EF01_M", caed: "Utilizar porcentagem, envolvendo ou não aplicação de percentuais sucessivos, na resolução de problema.", ut: "Unidade 12: Acréscimo, desconto e juro", cap: "Matemática financeira / Acréscimo e desconto", pag: "262, 263", erro: "Descontar o percentual direto do valor sem multiplicar proporcionalmente.", dica: "Para desconto de 15%, calcular 85% do valor inicial (V x 0,85)." },
-                        { codigo: "9EF02_M", caed: "Utilizar proporcionalidade direta e/ou inversa entre, pelo menos, três grandezas, na resolução de problema.", ut: "Unidade 3: Razão e proporção", cap: "Grandezas proporcionais e divisão proporcional", pag: "47, 48, 51, 52", erro: "Montar a Regra de Três Composta sem inverter as razões das grandezas que são inversamente proporcionais.", dica: "Fixar a grandeza da incógnita e comparar separadamente se cada uma das outras grandezas é direta ou inversa a ela." },
+                        { codigo: "9EF02_M", caed: "Utilizar proporcionalidade direta e/ou inversa entre, pelo menos, três grandezas, na resolução de problema.", ut: "Unidade 3: Razão e proporção", cap: "Grandezas proporcionais e divisão proportional", pag: "47, 48, 51, 52", erro: "Montar a Regra de Três Composta sem inverter as razões das grandezas que são inversamente proporcionais.", dica: "Fixar a grandeza da incógnita e comparar separadamente se cada uma das outras grandezas é direta ou inversa a ela." },
                         { codigo: "8EF04_M", caed: "Utilizar sistema de equações polinomiais de 1º grau, com duas incógnitas, representando uma situação...", ut: "Unidade 5: Produtos notáveis, fatoração e equações", cap: "Equações do 2º grau e sistemas", pag: "93, 108", erro: "Erros de sinal ao aplicar a substituição de uma variável na outra equação.", dica: "Usar parênteses ao substituir uma expressão algébrica em uma equação." },
                         { codigo: "9EF03_M", caed: "Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² + bx + c = 0...", ut: "Unidade 5: Produtos notáveis, fatoração e equações", cap: "Fórmula resolutiva (Bhaskara) e Estudo das raízes", pag: "101, 104, 111", erro: "Errar o sinal do coeficiente b ao aplicar na fórmula resolutiva: -b ± √Δ (ex.: se b = -5, -b vira +5).", dica: "Calcular o Delta primeiro: Δ = b² - 4ac. Se Δ < 0, a equação não possui raízes reais." },
                         { codigo: "9EF06_M", caed: "Associar figura geométrica espacial à uma de suas vistas ortogonais (superior, frontal ou lateral).", ut: "Unidade 10: Circunferência, vistas e perspectiva", cap: "Estudando vistas e perspectivas", pag: "219, 222", erro: "Confundir a vista superior (visão de cima) com a vista frontal (visão de frente) do sólido.", dica: "Imaginar-se posicionado exatamente de frente ou acima do objeto sem perspectiva 3D (projeção plana)." },
@@ -644,6 +672,90 @@
                 `;
                 container.appendChild(card);
             });
+        }
+
+        /* Função de geração do PDF padronizada idêntica à de Língua Portuguesa */
+        function gerarEBookCicloMatematica() {
+            if (!turmaAtual) return;
+
+            const dadosTurma = bancoDados[turmaAtual];
+            const itens = dadosTurma.ciclos[cicloAtual] || [];
+
+            if (itens.length === 0) {
+                alert("Não há habilidades neste ciclo para gerar o e-book.");
+                return;
+            }
+
+            const containerTemp = document.createElement('div');
+            containerTemp.style.padding = '20px';
+            containerTemp.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+            containerTemp.style.color = '#0f172a';
+            containerTemp.style.backgroundColor = '#ffffff';
+
+            /* Cabeçalho Institucional Centralizado Padronizado */
+            let htmlContent = `
+                <div style="text-align: center; border-bottom: 2px solid #047857; padding-bottom: 12px; margin-bottom: 20px;">
+                    <h2 style="color: #047857; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.5px;">NORTEADOR PEDAGÓGICO</h2>
+                    <h3 style="color: #1e293b; margin: 4px 0 6px 0; font-size: 15px; font-weight: 700;">U. E. João Tavares da Costa</h3>
+                    <p style="margin: 0; font-size: 12px; color: #475569;">
+                        <strong>Componente:</strong> Matemática • <strong>Turma:</strong> ${dadosTurma.titulo} • <strong>Ciclo:</strong> Ciclo ${cicloAtual}
+                    </p>
+                </div>
+            `;
+
+            itens.forEach((item) => {
+                htmlContent += `
+                    <div style="border: 1px solid #cbd5e1; border-left: 4px solid #10b981; border-radius: 8px; padding: 12px 15px; margin-bottom: 15px; page-break-inside: avoid; background-color: #ffffff;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="background-color: rgba(16, 185, 129, 0.12); color: #047857; font-weight: bold; padding: 3px 8px; border-radius: 4px; font-size: 12px;">
+                                ${item.codigo}
+                            </span>
+                            <span style="background-color: #f1f5f9; color: #475569; font-weight: 600; padding: 3px 8px; border-radius: 4px; font-size: 11px;">
+                                Pág. ${item.pag}
+                            </span>
+                        </div>
+                        <p style="font-weight: 600; font-size: 13px; margin: 0 0 10px 0; color: #0f172a; line-height: 1.4;">
+                            ${item.caed}
+                        </p>
+                        <div style="font-size: 11px; color: #475569; border-top: 1px solid #f1f5f9; padding-top: 8px; margin-bottom: 8px;">
+                            <strong>Unidade/Capítulo:</strong> ${item.ut}<br>
+                            <strong>Seção/Tema:</strong> ${item.cap}
+                        </div>
+                        ${(item.erro || item.dica) ? `
+                            <div style="border-top: 1px dashed #e2e8f0; padding-top: 8px; margin-top: 8px;">
+                                ${item.erro ? `
+                                    <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; font-size: 11px; color: #991b1b;">
+                                        <strong>⚠️ Erro Frequente:</strong> ${item.erro}
+                                    </div>
+                                ` : ''}
+                                ${item.dica ? `
+                                    <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 6px 10px; font-size: 11px; color: #166534;">
+                                        <strong>🎯 Dica de Foco:</strong> ${item.dica}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            htmlContent += `
+                <div style="text-align: center; font-size: 10px; color: #94a3b8; margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+                    Gerado automaticamente via Norteador Pedagógico JTC em ${new Date().toLocaleDateString('pt-BR')}
+                </div>
+            `;
+
+            containerTemp.innerHTML = htmlContent;
+
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     `EBook_Matematica_${turmaAtual}_Ciclo${cicloAtual}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 3, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(containerTemp).save();
         }
     </script>
 
