@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --bg-light: #f8fafc;
@@ -40,6 +42,8 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Header Institucional JTC */
@@ -209,6 +213,24 @@
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
+        /* Botão para Gerar PDF HD */
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.85rem;
+            padding: 0.75rem 1.2rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-download-pdf:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+        }
+
         /* Item Card Mapeado */
         .item-card {
             border: 1px solid var(--border-color);
@@ -299,7 +321,7 @@
             margin: 6px 0;
         }
 
-        .svg-container-modal svg {
+        .svg-container-modal svg, .svg-container-modal img {
             max-width: 100%;
             height: auto;
         }
@@ -333,10 +355,11 @@
             #modalResumo8EF08, #modalResumo8EF08 *,
             #modalResumo8EF09, #modalResumo8EF09 *,
             #modalResumo8EF10, #modalResumo8EF10 *,
-            #modalResumo8EF11, #modalResumo8EF11 * {
+            #modalResumo8EF11, #modalResumo8EF11 *,
+            #modalResumo8EF13, #modalResumo8EF13 * {
                 visibility: visible;
             }
-            #modalResumo8EF01, #modalResumo8EF04, #modalResumo8EF05, #modalResumo8EF06, #modalResumo8EF08, #modalResumo8EF09, #modalResumo8EF10, #modalResumo8EF11 {
+            #modalResumo8EF01, #modalResumo8EF04, #modalResumo8EF05, #modalResumo8EF06, #modalResumo8EF08, #modalResumo8EF09, #modalResumo8EF10, #modalResumo8EF11, #modalResumo8EF13 {
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -467,20 +490,28 @@
                 <h2 class="h5 fw-bold mb-0 text-dark" id="titulo-turma-selecionada">6º Ano</h2>
             </div>
 
-            <!-- Navegador de Ciclos -->
-            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2">
-                <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
-                    <span>Ciclo I</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
-                    <span>Ciclo II</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
-                </button>
-                <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
-                    <span>Ciclo III</span>
-                    <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
-                </button>
+            <!-- Navegador de Ciclos e Botão Baixar E-Book -->
+            <div class="d-flex flex-wrap gap-2 mb-4 align-items-center justify-content-between">
+                <div class="d-flex gap-2 flex-grow-1 overflow-x-auto pb-1">
+                    <button class="btn btn-cycle active flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(1)" id="btn-ciclo-1">
+                        <span>Ciclo I</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-1">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(2)" id="btn-ciclo-2">
+                        <span>Ciclo II</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-2">0</span>
+                    </button>
+                    <button class="btn btn-cycle flex-fill d-flex align-items-center justify-content-center gap-2" onclick="selecionarCiclo(3)" id="btn-ciclo-3">
+                        <span>Ciclo III</span>
+                        <span class="badge bg-light text-dark border rounded-pill" id="badge-ciclo-3">0</span>
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-download-pdf d-flex align-items-center gap-2 w-100" onclick="gerarEBookCiclo()">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Baixar E-Book do Ciclo (PDF HD)</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Lista de Habilidades do Ciclo -->
@@ -495,7 +526,7 @@
         Norteador Pedagógico JTC • U. E. João Tavares da Costa • Ciências da Natureza
     </footer>
 
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF01_CN -->
+    <!-- MODAIS DE RESUMO VISUAL A4 MANTIDOS (Exemplo Habilidade 8EF01) -->
     <div class="modal fade" id="modalResumo8EF01" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
@@ -503,11 +534,8 @@
                     <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF01_CN</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
                 <div class="modal-body p-3">
                     <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
                         <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
                             <div>
                                 <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
@@ -520,14 +548,11 @@
                                     <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Renováveis vs. Não Renováveis
                                 </p>
                             </div>
-
                             <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
                                 <i class="fa-solid fa-print text-danger"></i>
                                 <span>Imprimir / PDF</span>
                             </button>
                         </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
                         <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
                             <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
                             <div style="font-size: 0.7rem;">
@@ -535,8 +560,6 @@
                                 <span class="text-dark">O aluno erra ao achar que poluição define renovabilidade! <strong>A regra cobrada analisa EXCLUSIVAMENTE a velocidade com que a natureza repõe o recurso</strong> na escala humana.</span>
                             </div>
                         </div>
-
-                        <!-- COLUNAS RENOVÁVEIS VS NÃO RENOVÁVEIS -->
                         <div class="row g-2 mb-2">
                             <div class="col-6">
                                 <div class="p-2 border border-success border-2 rounded h-100 bg-white">
@@ -567,7 +590,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-6">
                                 <div class="p-2 border border-warning border-2 rounded h-100 bg-white">
                                     <div class="d-flex justify-content-between align-items-center mb-1">
@@ -598,8 +620,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- DICA DE FOCO -->
                         <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
                             <i class="fa-solid fa-bullseye text-success fs-5"></i>
                             <div style="font-size: 0.7rem;">
@@ -607,1011 +627,9 @@
                                 <span class="text-dark">Ensine que a queimada de madeira/biomassa polui, MAS é <u>renovável</u> pois o plantio repõe a madeira em curto prazo. Os derivados do petróleo levaram eras geológicas para se formar.</span>
                             </div>
                         </div>
-
-                        <!-- RODAPÉ MODAL -->
                         <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
                             Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
                         </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF04_CN -->
-    <div class="modal fade" id="modalResumo8EF04" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF04_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-bolt"></i> Habilidade: 8EF04_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 5, Tema 2 (Pág. 149-155)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Componentes e Funcionamento do Circuito Elétrico</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Reconhecer os componentes de um circuito elétrico
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • ERRO FREQUENTE DOS ALUNOS NO CAEd:</strong>
-                                <span class="text-dark">O aluno erra ao <strong>não identificar o papel do interruptor no circuito fechado/aberto</strong>, achando erroneamente que um circuito "aberto" permite a passagem de corrente elétrica!</span>
-                            </div>
-                        </div>
-
-                        <!-- COLUNAS CIRCUITO FECHADO VS ABERTO -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="p-2 border border-success border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-success small fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Circuito Fechado</strong>
-                                        <span class="badge bg-success text-white" style="font-size: 0.55rem;">CORRENTE ATIVA</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Caminho Contínuo &bull; Lâmpada Acesa</span>
-                                    </div>
-
-                                    <!-- SVG CIRCUITO FECHADO -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 220 110" width="100%" height="90" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M 30 55 L 30 15 L 190 15 L 190 55" stroke="#047857" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                                            <path d="M 30 55 L 30 95 L 190 95 L 190 55" stroke="#047857" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                                            <rect x="15" y="42" width="30" height="26" rx="3" fill="#064e3b" stroke="#047857" stroke-width="1.5"/>
-                                            <rect x="23" y="38" width="14" height="4" rx="1" fill="#10b981"/>
-                                            <text x="30" y="58" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">PILHA</text>
-                                            <circle cx="100" cy="15" r="4" fill="#047857"/>
-                                            <circle cx="130" cy="15" r="4" fill="#047857"/>
-                                            <line x1="100" y1="15" x2="130" y2="15" stroke="#047857" stroke-width="3.5"/>
-                                            <text x="115" y="8" font-size="8" font-weight="bold" fill="#047857" text-anchor="middle">CHAVE FECHADA</text>
-                                            <circle cx="190" cy="55" r="14" fill="#fef08a" stroke="#eab308" stroke-width="2"/>
-                                            <line x1="190" y1="35" x2="190" y2="29" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                                            <line x1="205" y1="42" x2="210" y2="38" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                                            <line x1="205" y1="68" x2="210" y2="72" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                                            <line x1="175" y1="42" x2="170" y2="38" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                                            <line x1="175" y1="68" x2="170" y2="72" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                                            <polygon points="65,12 73,15 65,18" fill="#10b981"/>
-                                            <polygon points="155,92 147,95 155,98" fill="#10b981"/>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-car-battery"></i> 1. Gerador (Pilha)</div>
-                                            <span class="text-muted">Cria a voltagem necessária para impulsionar os elétrons.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-route"></i> 2. Condutores (Fios)</div>
-                                            <span class="text-muted">Caminho de baixa resistência para circulação de corrente.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-lightbulb"></i> 3. Carga (Lâmpada)</div>
-                                            <span class="text-muted">Consome a energia elétrica transformando em luz/calor.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-toggle-on"></i> 4. Chave Fechada</div>
-                                            <span class="text-muted">Mantém circuito conectado, permitindo o fluxo ininterrupto.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="p-2 border border-warning border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-warning text-darken-3 small fw-bold"><i class="fa-solid fa-circle-xmark me-1"></i> Circuito Aberto</strong>
-                                        <span class="badge bg-warning text-dark" style="font-size: 0.55rem;">SEM CORRENTE</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Caminho Interrompido &bull; Lâmpada Apagada</span>
-                                    </div>
-
-                                    <!-- SVG CIRCUITO ABERTO -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 220 110" width="100%" height="90" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M 30 55 L 30 15 L 100 15" stroke="#94a3b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                                            <path d="M 130 15 L 190 15 L 190 55" stroke="#94a3b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                                            <path d="M 30 55 L 30 95 L 190 95 L 190 55" stroke="#94a3b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                                            <rect x="15" y="42" width="30" height="26" rx="3" fill="#475569" stroke="#334155" stroke-width="1.5"/>
-                                            <rect x="23" y="38" width="14" height="4" rx="1" fill="#94a3b8"/>
-                                            <text x="30" y="58" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">PILHA</text>
-                                            <circle cx="100" cy="15" r="4" fill="#b45309"/>
-                                            <circle cx="130" cy="15" r="4" fill="#b45309"/>
-                                            <line x1="100" y1="15" x2="124" y2="2" stroke="#b45309" stroke-width="3.5" stroke-linecap="round"/>
-                                            <text x="115" y="8" font-size="8" font-weight="bold" fill="#b45309" text-anchor="middle">CHAVE ABERTA</text>
-                                            <circle cx="190" cy="55" r="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
-                                            <text x="115" y="35" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">SEM CORRENTE ✖</text>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-toggle-off"></i> Chave Aberta</div>
-                                            <span class="text-muted">Cria um espaço de ar isolante que impede a passagem de elétrons.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-ban"></i> Falso Conceito</div>
-                                            <span class="text-muted">Alunos associam "aberto" a "porta aberta". Em circuitos, é o inverso!</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-plug-circle-xmark"></i> Condição do Gerador</div>
-                                            <span class="text-muted">Possui d.d.p., mas não há transformação de energia sem circuito.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-lightbulb"></i> Estado da Lâmpada</div>
-                                            <span class="text-muted">Permanece apagada pois zero corrente alcança o filamento.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA PARA O CAEd:</strong>
-                                <span class="text-dark">Ensine a função dos <strong>4 Pilares do Circuito</strong>: <u>Gerador</u> (pilha), <u>Condutor</u> (fios), <u>Resistor/Carga</u> (lâmpada) e <u>Interruptor</u> (chave que abre ou fecha o caminho dos elétrons).</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF05_CN -->
-    <div class="modal fade" id="modalResumo8EF05" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF05_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-plug"></i> Habilidade: 8EF05_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo II / III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 5, Tema 3 (Pág. 160-163)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Transformação de Energia em Aparelhos Residenciais</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Classificação dos Processos de Transformação
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA:</strong>
-                                <span class="text-dark">Nas avaliações do CAEd, o foco está em diferenciar a <strong>energia útil</strong> (função primária) da <strong>energia dissipada</strong> (perda em calor via Efeito Joule).</span>
-                            </div>
-                        </div>
-
-                        <!-- COLUNAS ENERGIA ÚTIL VS DISSIPADA -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="p-2 border border-info border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-primary small fw-bold"><i class="fa-solid fa-bolt me-1"></i> Energia Útil</strong>
-                                        <span class="badge bg-info text-white" style="font-size: 0.55rem;">FUNÇÃO PRINCIPAL</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Trabalho Útil Esperado</span>
-                                    </div>
-
-                                    <!-- SVG ENERGIA ÚTIL -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 200 65" width="100%" height="55">
-                                            <rect x="10" y="15" width="60" height="35" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-                                            <text x="40" y="36" font-size="8" font-weight="bold" fill="#0369a1" text-anchor="middle">E. Elétrica</text>
-                                            <path d="M 75 32 L 115 32" stroke="#0284c7" stroke-width="2.5"/>
-                                            <polygon points="120,32 112,27 112,37" fill="#0284c7"/>
-                                            <circle cx="155" cy="32" r="18" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
-                                            <text x="155" y="35" font-size="8" font-weight="bold" fill="#15803d" text-anchor="middle">Trabalho</text>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-primary"><i class="fa-solid fa-fan"></i> Cinética (Movimento)</div>
-                                            <span class="text-muted">Ventiladores, liquidificadores, batedeiras.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-primary"><i class="fa-solid fa-lightbulb"></i> Luminosa (Luz)</div>
-                                            <span class="text-muted">Lâmpadas LED e telas digitais.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-primary"><i class="fa-solid fa-temperature-arrow-up"></i> Térmica Útil</div>
-                                            <span class="text-muted">Chuveiro, ferro de passar, torradeira.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="p-2 border border-warning border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-warning text-darken-3 small fw-bold"><i class="fa-solid fa-fire-burner me-1"></i> Energia Dissipada</strong>
-                                        <span class="badge bg-warning text-dark" style="font-size: 0.55rem;">PERDA TÉRMICA</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Calor Residual (Efeito Joule)</span>
-                                    </div>
-
-                                    <!-- SVG ENERGIA DISSIPADA -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 200 65" width="100%" height="55">
-                                            <rect x="10" y="15" width="60" height="35" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-                                            <text x="40" y="36" font-size="8" font-weight="bold" fill="#0369a1" text-anchor="middle">E. Elétrica</text>
-                                            <path d="M 75 32 Q 100 10 125 32" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="3"/>
-                                            <polygon points="125,32 120,24 117,32" fill="#b45309"/>
-                                            <rect x="130" y="15" width="60" height="35" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-                                            <text x="160" y="36" font-size="8" font-weight="bold" fill="#b45309" text-anchor="middle">Calor Residual</text>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-laptop"></i> Aquecimento Inevitável</div>
-                                            <span class="text-muted">Aumento de temperatura em celulares/PCs.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-microchip"></i> Resistência Elétrica</div>
-                                            <span class="text-muted">Conversão inevitável de corrente em calor nos condutores.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-warning"><i class="fa-solid fa-percent"></i> Rendimento Real</div>
-                                            <span class="text-muted">Nenhum aparelho possui 100% de eficiência.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
-                                <span class="text-dark">Orientar a turma a mapear primeiramente a transformação principal desejada em cada eletrodoméstico e, em seguida, identificar a energia térmica residual que é inevitavelmente dissipada para o ambiente.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF06_CN -->
-    <div class="modal fade" id="modalResumo8EF06" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF06_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-calculator"></i> Habilidade: 8EF06_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 5, Tema 3 (Pág. 160-163)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Consumo de Energia Elétrica e Suas Grandezas</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Cálculo e Análise do Consumo Elétrico
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA:</strong>
-                                <span class="text-dark">As questões cobram o entendimento de que o consumo de energia depende da <strong>multiplicação entre Potência e Tempo de uso</strong>. A voltagem (110V/220V) não determina isoladamente o valor gasto.</span>
-                            </div>
-                        </div>
-
-                        <!-- COLUNAS POTÊNCIA VS TEMPO -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="p-2 border border-success border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-success small fw-bold"><i class="fa-solid fa-bolt me-1"></i> Potência Elétrica</strong>
-                                        <span class="badge bg-success text-white" style="font-size: 0.55rem;">MEDIDA EM kW</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Capacidade de Transformação</span>
-                                    </div>
-
-                                    <!-- SVG POTÊNCIA -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 200 65" width="100%" height="55">
-                                            <circle cx="50" cy="32" r="20" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
-                                            <text x="50" y="36" font-size="9" font-weight="bold" fill="#15803d" text-anchor="middle">kW</text>
-                                            <text x="100" y="36" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">×</text>
-                                            <rect x="125" y="12" width="50" height="40" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-                                            <text x="150" y="36" font-size="9" font-weight="bold" fill="#475569" text-anchor="middle">Horas</text>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-gauge-high"></i> Taxa de Consumo</div>
-                                            <span class="text-muted">Energia convertida por unidade de tempo.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-success"><i class="fa-solid fa-shower"></i> Aparelhos Potentes</div>
-                                            <span class="text-muted">Chuveiro elétrico, ferro, ar-condicionado.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="p-2 border border-info border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-primary small fw-bold"><i class="fa-solid fa-clock me-1"></i> Tempo de Uso</strong>
-                                        <span class="badge bg-info text-white" style="font-size: 0.55rem;">MEDIDO EM HORAS</span>
-                                    </div>
-                                    <div class="bg-light p-1 text-center rounded mb-1.5 border">
-                                        <span class="d-block text-muted fw-bold" style="font-size: 0.6rem;">Duração de Funcionamento</span>
-                                    </div>
-
-                                    <!-- SVG TEMPO -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 200 65" width="100%" height="55">
-                                            <rect x="25" y="12" width="50" height="40" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-                                            <text x="50" y="36" font-size="9" font-weight="bold" fill="#475569" text-anchor="middle">kW</text>
-                                            <text x="100" y="36" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">×</text>
-                                            <circle cx="150" cy="32" r="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-                                            <text x="150" y="36" font-size="9" font-weight="bold" fill="#0369a1" text-anchor="middle">Horas</text>
-                                        </svg>
-                                    </div>
-
-                                    <div class="d-flex flex-column gap-1 mt-2">
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-primary"><i class="fa-solid fa-hourglass-half"></i> Acúmulo de Horas</div>
-                                            <span class="text-muted">Uso contínuo eleva o gasto drasticamente.</span>
-                                        </div>
-                                        <div class="pillar-item-modal">
-                                            <div class="pillar-title-modal text-primary"><i class="fa-solid fa-piggy-bank"></i> Fator de Economia</div>
-                                            <span class="text-muted">Reduzir o tempo é a forma mais eficaz de poupar.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
-                                <span class="text-dark">Utilizar a relação fundamental de consumo: <strong>Consumo (kWh) = Potência (kW) × Tempo (h)</strong>. Aparelhos de maior potência térmica (chuveiro, ferro) usados por muito tempo são os maiores vilões da conta.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF08_CN -->
-    <div class="modal fade" id="modalResumo8EF08" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF08_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-gears"></i> Habilidade: 8EF08_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 6, Tema 1 (Pág. 172-183)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Mecanismo Universal de Geração de Energia Elétrica</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Indução Eletromagnética e Geradores
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA:</strong>
-                                <span class="text-dark">O aluno erra ao achar que a eletricidade surge "do nada" na água ou no carvão. <strong>Praticamente TODAS as usinas (exceto Solar Fotovoltaica) usam o mesmo princípio: mover uma turbina para girar um eletroímã no gerador.</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- FLUXO UNIVERSAL DO GERADOR -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-12">
-                                <div class="p-2 border border-success border-2 rounded bg-white">
-                                    <strong class="text-success small fw-bold d-block mb-1"><i class="fa-solid fa-diagram-project me-1"></i> A Cadeia de Transformação Energética</strong>
-                                    
-                                    <!-- SVG GERADOR -->
-                                    <div class="svg-container-modal">
-                                        <svg viewBox="0 0 300 70" width="100%" height="65">
-                                            <rect x="5" y="15" width="60" height="40" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
-                                            <text x="35" y="32" font-size="7" font-weight="bold" fill="#0f172a" text-anchor="middle">FONTE PRIMÁRIA</text>
-                                            <text x="35" y="44" font-size="6" fill="#475569" text-anchor="middle">Água / Vapor / Vento</text>
-
-                                            <path d="M 68 35 L 87 35" stroke="#059669" stroke-width="2"/>
-                                            <polygon points="90,35 83,31 83,39" fill="#059669"/>
-
-                                            <rect x="92" y="15" width="55" height="40" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-                                            <text x="119" y="32" font-size="7" font-weight="bold" fill="#0369a1" text-anchor="middle">TURBINA</text>
-                                            <text x="119" y="44" font-size="6" fill="#0284c7" text-anchor="middle">Energia Cinética</text>
-
-                                            <path d="M 150 35 L 169 35" stroke="#059669" stroke-width="2"/>
-                                            <polygon points="172,35 165,31 165,39" fill="#059669"/>
-
-                                            <rect x="174" y="15" width="55" height="40" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-                                            <text x="201" y="32" font-size="7" font-weight="bold" fill="#78350f" text-anchor="middle">GERADOR</text>
-                                            <text x="201" y="44" font-size="6" fill="#b45309" text-anchor="middle">Eletroímã em Rotação</text>
-
-                                            <path d="M 232 35 L 251 35" stroke="#059669" stroke-width="2"/>
-                                            <polygon points="254,35 247,31 247,39" fill="#059669"/>
-
-                                            <rect x="255" y="15" width="40" height="40" rx="4" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
-                                            <text x="275" y="32" font-size="7" font-weight="bold" fill="#166534" text-anchor="middle">ENERGIA</text>
-                                            <text x="275" y="44" font-size="7" font-weight="bold" fill="#166534" text-anchor="middle">ELÉTRICA</text>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- PILARES PEDAGÓGICOS -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="pillar-item-modal h-100">
-                                    <div class="pillar-title-modal text-success"><i class="fa-solid fa-rotate me-1"></i> Rotação do Eixo</div>
-                                    <span class="text-muted">Seja por força hidráulica, expansão de vapor de água ou ventos eólicos, o objetivo é SEMPRE girar a turbina.</span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="pillar-item-modal h-100">
-                                    <div class="pillar-title-modal text-warning"><i class="fa-solid fa-sun me-1"></i> Exceção Fotovoltaica</div>
-                                    <span class="text-muted">A usina solar fotovoltaica NÃO possui partes móveis nem turbina. Converte fótons de luz em corrente direta nas placas de silício.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
-                                <span class="text-dark">Gravar a sequência lógica de transformações: <strong>Energia Primária (Movimento/Vapor) &rarr; Energia Mecânica (Giro da Turbina) &rarr; Energia Elétrica (Gerador)</strong>.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF09_CN -->
-    <div class="modal fade" id="modalResumo8EF09" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF09_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-tree"></i> Habilidade: 8EF09_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 6, Tema 1 (Pág. 174-183)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Impactos Ambientais das Usinas de Energia</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Análise Socioambiental das Matrizes Elétricas
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA:</strong>
-                                <span class="text-dark">Nenhuma fonte de energia é 100% limpa! <strong>O CAEd exige diferenciar os impactos locais (ex: alagamentos de hidrelétricas) dos impactos globais (ex: emissão de CO₂ em termelétricas)</strong>.</span>
-                            </div>
-                        </div>
-
-                        <!-- MATRIZ DE IMPACTOS -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-4">
-                                <div class="p-2 border border-primary border-2 rounded h-100 bg-white">
-                                    <strong class="text-primary small fw-bold d-block mb-1"><i class="fa-solid fa-water me-1"></i> Hidrelétricas</strong>
-                                    <ul class="list-unstyled mb-0" style="font-size: 0.62rem;">
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-danger me-1"></i>Alagamento de grandes áreas vegetadas.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-danger me-1"></i>Decomposição orgânica gera Metano (CH₄).</li>
-                                        <li><i class="fa-solid fa-circle-minus text-danger me-1"></i>Deslocamento de populações ribeirinhas.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-4">
-                                <div class="p-2 border border-danger border-2 rounded h-100 bg-white">
-                                    <strong class="text-danger small fw-bold d-block mb-1"><i class="fa-solid fa-smog me-1"></i> Termelétricas</strong>
-                                    <ul class="list-unstyled mb-0" style="font-size: 0.62rem;">
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-danger me-1"></i>Queima de carvão/gás emite CO₂ e fuligem.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-danger me-1"></i>Intensificação do efeito estufa e chuva ácida.</li>
-                                        <li><i class="fa-solid fa-circle-minus text-danger me-1"></i>Alto consumo de recursos fósseis.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-4">
-                                <div class="p-2 border border-info border-2 rounded h-100 bg-white">
-                                    <strong class="text-info text-darken-3 small fw-bold d-block mb-1"><i class="fa-solid fa-wind me-1"></i> Eólicas / Solares</strong>
-                                    <ul class="list-unstyled mb-0" style="font-size: 0.62rem;">
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-warning me-1"></i>Eólica: ruído e impacto na rota de aves.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-circle-minus text-warning me-1"></i>Solar: uso de grandes áreas de solo e descarte de placas.</li>
-                                        <li><i class="fa-solid fa-circle-plus text-success me-1"></i>Não emitem gases do efeito estufa no uso.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
-                                <span class="text-dark">Comparar as vantagens e desvantagens de cada matriz. O aluno deve reconhecer que fontes renováveis reduzem emissões gasosas, porém ainda possuem impactos de infraestrutura local.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL COM INFOGRÁFICO VISUAL (SVG) PARA A HABILIDADE 8EF10_CN -->
-    <div class="modal fade" id="modalResumo8EF10" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF10_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-industry"></i> Habilidade: 8EF10_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo II / III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 6, Tema 1 (Pág. 172-183)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Matriz de Usinas Geradoras de Energia Elétrica</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Matéria e Energia | <strong>Descritor:</strong> Reconhecer e Classificar os Tipos de Usinas Elétricas
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • COMO O CAEd COBRA ESTA HABILIDADE:</strong>
-                                <span class="text-dark">A cobrança foca em identificar o <strong>agente primário que impulsiona a turbina</strong> (água, vapor ou vento) ou a <strong>fonte que gera a corrente direta</strong> (luz solar nas placas fotovoltaicas).</span>
-                            </div>
-                        </div>
-
-                        <!-- DESENHO INFOGRÁFICO SVG INTEGRADO -->
-                        <div class="svg-container-modal my-2">
-                            <svg viewBox="0 0 500 180" width="100%" height="170" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="5" y="5" width="490" height="170" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-
-                                <!-- 1. HIDRELÉTRICA -->
-                                <g transform="translate(15, 15)">
-                                    <rect x="0" y="0" width="85" height="145" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
-                                    <text x="42" y="15" font-size="8" font-weight="bold" fill="#0369a1" text-anchor="middle">1. HIDRELÉTRICA</text>
-                                    <path d="M 15 35 Q 25 25 35 35 T 55 35 T 75 35" stroke="#0284c7" stroke-width="2" fill="none"/>
-                                    <path d="M 15 42 Q 25 32 35 42 T 55 42 T 75 42" stroke="#38bdf8" stroke-width="2" fill="none"/>
-                                    <polygon points="42,50 32,65 52,65" fill="#64748b"/>
-                                    <circle cx="42" cy="85" r="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-                                    <path d="M 42 75 L 42 95 M 32 85 L 52 85" stroke="#0284c7" stroke-width="1.5"/>
-                                    <text x="42" y="112" font-size="6" font-weight="bold" fill="#0369a1" text-anchor="middle">Água (A) &rarr; Turbina</text>
-                                    <text x="42" y="122" font-size="5.5" fill="#475569" text-anchor="middle">&rarr; Gerador (G)</text>
-                                    <text x="42" y="136" font-size="6" font-weight="bold" fill="#166534" text-anchor="middle">RENOVÁVEL</text>
-                                </g>
-
-                                <!-- 2. TERMELÉTRICA -->
-                                <g transform="translate(110, 15)">
-                                    <rect x="0" y="0" width="85" height="145" rx="6" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
-                                    <text x="42" y="15" font-size="8" font-weight="bold" fill="#991b1b" text-anchor="middle">2. TERMELÉTRICA</text>
-                                    <path d="M 25 55 Q 30 30 40 30 Q 50 30 55 55 Z" fill="#fecaca" stroke="#dc2626" stroke-width="1"/>
-                                    <path d="M 35 30 Q 32 20 28 15 M 45 30 Q 48 20 52 15" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2"/>
-                                    <path d="M 30 60 L 55 60 L 42 48 Z" fill="#ef4444"/>
-                                    <circle cx="42" cy="85" r="12" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
-                                    <path d="M 42 75 L 42 95 M 32 85 L 52 85" stroke="#dc2626" stroke-width="1.5"/>
-                                    <text x="42" y="112" font-size="6" font-weight="bold" fill="#991b1b" text-anchor="middle">Combustão &rarr; Vapor</text>
-                                    <text x="42" y="122" font-size="5.5" fill="#475569" text-anchor="middle">&rarr; Turbina &rarr; G</text>
-                                    <text x="42" y="136" font-size="6" font-weight="bold" fill="#991b1b" text-anchor="middle">NÃO RENOVÁVEL</text>
-                                </g>
-
-                                <!-- 3. EÓLICA -->
-                                <g transform="translate(205, 15)">
-                                    <rect x="0" y="0" width="85" height="145" rx="6" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
-                                    <text x="42" y="15" font-size="8" font-weight="bold" fill="#155e75" text-anchor="middle">3. EÓLICA</text>
-                                    <line x1="42" y1="90" x2="42" y2="45" stroke="#64748b" stroke-width="2.5"/>
-                                    <circle cx="42" cy="45" r="3" fill="#0891b2"/>
-                                    <path d="M 42 45 L 25 30 M 42 45 L 60 40 M 42 45 L 40 65" stroke="#0891b2" stroke-width="2" stroke-linecap="round"/>
-                                    <text x="42" y="112" font-size="6" font-weight="bold" fill="#155e75" text-anchor="middle">Vento &rarr; Pá Eólica</text>
-                                    <text x="42" y="122" font-size="5.5" fill="#475569" text-anchor="middle">&rarr; Eixo &rarr; Gerador</text>
-                                    <text x="42" y="136" font-size="6" font-weight="bold" fill="#166534" text-anchor="middle">RENOVÁVEL</text>
-                                </g>
-
-                                <!-- 4. SOLAR FOTOVOLTAICA -->
-                                <g transform="translate(300, 15)">
-                                    <rect x="0" y="0" width="85" height="145" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
-                                    <text x="42" y="15" font-size="8" font-weight="bold" fill="#92400e" text-anchor="middle">4. SOLAR</text>
-                                    <circle cx="42" cy="32" r="8" fill="#fef08a" stroke="#d97706" stroke-width="1"/>
-                                    <polygon points="22,80 62,80 68,52 16,52" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-                                    <line x1="32" y1="52" x2="32" y2="80" stroke="#d97706" stroke-width="1"/>
-                                    <line x1="52" y1="52" x2="52" y2="80" stroke="#d97706" stroke-width="1"/>
-                                    <line x1="19" y1="66" x2="65" y2="66" stroke="#d97706" stroke-width="1"/>
-                                    <text x="42" y="102" font-size="6" font-weight="bold" fill="#b45309" text-anchor="middle">SEM TURBINA ✖</text>
-                                    <text x="42" y="114" font-size="5.5" fill="#475569" text-anchor="middle">Luz &rarr; Silício &rarr; C.C.</text>
-                                    <text x="42" y="136" font-size="6" font-weight="bold" fill="#166534" text-anchor="middle">RENOVÁVEL</text>
-                                </g>
-
-                                <!-- 5. TERMONUCLEAR -->
-                                <g transform="translate(395, 15)">
-                                    <rect x="0" y="0" width="85" height="145" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
-                                    <text x="42" y="15" font-size="8" font-weight="bold" fill="#1e293b" text-anchor="middle">5. NUCLEAR</text>
-                                    <path d="M 25 65 Q 30 35 42 35 Q 54 35 59 65 Z" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
-                                    <circle cx="42" cy="50" r="5" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
-                                    <circle cx="42" cy="85" r="12" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
-                                    <path d="M 42 75 L 42 95 M 32 85 L 52 85" stroke="#475569" stroke-width="1.5"/>
-                                    <text x="42" y="112" font-size="6" font-weight="bold" fill="#1e293b" text-anchor="middle">Fissão (Urânio)</text>
-                                    <text x="42" y="122" font-size="5.5" fill="#475569" text-anchor="middle">&rarr; Vapor &rarr; Turbina</text>
-                                    <text x="42" y="136" font-size="6" font-weight="bold" fill="#991b1b" text-anchor="middle">NÃO RENOVÁVEL</text>
-                                </g>
-                            </svg>
-                        </div>
-
-                        <!-- RESUMO DETALHADO DOS AGENTES -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="p-2 border border-success border-1 rounded bg-white">
-                                    <strong class="text-success small fw-bold d-block"><i class="fa-solid fa-rotate me-1"></i> Usinas com Turbina (Indução Eletromagnética)</strong>
-                                    <span style="font-size: 0.63rem;" class="text-muted d-block">
-                                        • <strong>Hidrelétrica:</strong> Força da água em queda.<br>
-                                        • <strong>Termelétrica / Nuclear:</strong> Pressão do vapor de água reaquecido.<br>
-                                        • <strong>Eólica:</strong> Energia cinética dos ventos.
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="p-2 border border-warning border-1 rounded bg-white">
-                                    <strong class="text-warning text-darken-3 small fw-bold d-block"><i class="fa-solid fa-bolt me-1"></i> Usinas sem Turbina (Efeito Fotovoltaico)</strong>
-                                    <span style="font-size: 0.63rem;" class="text-muted d-block">
-                                        • <strong>Solar Fotovoltaica:</strong> A radiação luminosa expulsa elétrons das placas semicondutoras de silício, gerando corrente contínua de forma direta.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA:</strong>
-                                <span class="text-dark">Treinar a identificação das usinas através do tipo de fonte energética primária e destacar que apenas a <strong>Solar Fotovoltaica</strong> não utiliza turbina e gerador eletromagnético.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DO RESUMO VISUAL A4 PARA A HABILIDADE 8EF11_CN (NOVO) -->
-    <div class="modal fade" id="modalResumo8EF11" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-dark text-white border-0 no-print">
-                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-file-pdf text-success me-2"></i>Resumo Visual A4 - Habilidade 8EF11_CN</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body p-3">
-                    <div class="modal-a4-wrapper">
-                        
-                        <!-- CABEÇALHO HERO MODAL -->
-                        <div class="infographic-header-modal d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                            <div>
-                                <div class="d-flex flex-wrap align-items-center gap-1 mb-1">
-                                    <span class="tag-pill-modal tag-code-m"><i class="fa-solid fa-dna"></i> Habilidade: 8EF11_CN</span>
-                                    <span class="tag-pill-modal tag-cycle-m"><i class="fa-solid fa-arrows-rotate"></i> Ciclo II / III</span>
-                                    <span class="tag-pill-modal tag-book-m"><i class="fa-solid fa-book-open"></i> Unidade 1, Temas 1 ao 4 (Pág. 14-48)</span>
-                                </div>
-                                <h2 class="h5 fw-bold mb-0 text-white">Processos Reprodutivos dos Seres Vivos</h2>
-                                <p class="small mb-0 text-white" style="opacity: 0.9; font-size: 0.7rem;">
-                                    <strong>Unidade Temática:</strong> Vida e Evolução | <strong>Descritor:</strong> Reconhecer e Diferenciar Processos Reprodutivos
-                                </p>
-                            </div>
-
-                            <button onclick="window.print()" class="btn btn-light btn-sm fw-bold no-print d-flex align-items-center gap-1.5">
-                                <i class="fa-solid fa-print text-danger"></i>
-                                <span>Imprimir / PDF</span>
-                            </button>
-                        </div>
-
-                        <!-- ALERTA PEDAGÓGICO CAED -->
-                        <div class="p-2 mb-2 rounded bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-danger d-block text-uppercase">ALERTA PEDAGÓGICO • ERRO FREQUENTE DOS ALUNOS NO CAEd:</strong>
-                                <span class="text-dark">Os alunos erram ao <strong>achar que a reprodução assexuada gera variabilidade genética</strong> ou ao confundir os mecanismos mecânicos da <strong>bipartição, brotamento e fragmentação</strong>.</span>
-                            </div>
-                        </div>
-
-                        <!-- INFOGRÁFICO SVG AMPLIADO DOS MECANISMOS ASSEXUADOS -->
-                        <div class="svg-container-modal my-2">
-                            <svg viewBox="0 0 500 175" width="100%" height="165" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="5" y="5" width="490" height="165" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-
-                                <!-- 1. BIPARTIÇÃO -->
-                                <g transform="translate(15, 12)">
-                                    <rect x="0" y="0" width="110" height="145" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
-                                    <text x="55" y="15" font-size="8" font-weight="bold" fill="#064e3b" text-anchor="middle">BIPARTIÇÃO (CISSIPARIDADE)</text>
-                                    
-                                    <!-- Célula única -> Estrangulamento -> Duas células -->
-                                    <ellipse cx="55" cy="35" rx="18" ry="10" fill="#dcfce7" stroke="#10b981" stroke-width="1.5"/>
-                                    <circle cx="55" cy="35" r="3" fill="#047857"/>
-
-                                    <path d="M 55 48 L 55 58" stroke="#059669" stroke-width="1.5"/>
-                                    <polygon points="55,62 51,56 59,56" fill="#059669"/>
-
-                                    <path d="M 38 75 C 48 70, 48 80, 55 75 C 62 80, 62 70, 72 75 C 62 80, 62 70, 55 75 C 48 70, 48 80, 38 75 Z" fill="#dcfce7" stroke="#10b981" stroke-width="1.5"/>
-                                    <circle cx="45" cy="75" r="2.5" fill="#047857"/>
-                                    <circle cx="65" cy="75" r="2.5" fill="#047857"/>
-
-                                    <path d="M 55 85 L 55 95" stroke="#059669" stroke-width="1.5"/>
-                                    <polygon points="55,99 51,93 59,93" fill="#059669"/>
-
-                                    <circle cx="42" cy="112" r="9" fill="#dcfce7" stroke="#10b981" stroke-width="1.5"/>
-                                    <circle cx="42" cy="112" r="2.5" fill="#047857"/>
-                                    <circle cx="68" cy="112" r="9" fill="#dcfce7" stroke="#10b981" stroke-width="1.5"/>
-                                    <circle cx="68" cy="112" r="2.5" fill="#047857"/>
-
-                                    <text x="55" y="134" font-size="6" font-weight="bold" fill="#047857" text-anchor="middle">Bactérias e Protozoários</text>
-                                </g>
-
-                                <!-- 2. BROTAMENTO -->
-                                <g transform="translate(135, 12)">
-                                    <rect x="0" y="0" width="110" height="145" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
-                                    <text x="55" y="15" font-size="8" font-weight="bold" fill="#0369a1" text-anchor="middle">BROTAMENTO</text>
-
-                                    <!-- Hidra Genitora e Broto -->
-                                    <path d="M 45 115 L 45 70 Q 30 50 35 40 M 45 70 Q 40 45 45 35 M 45 70 Q 55 45 55 35 M 45 70 Q 65 50 60 40" stroke="#0284c7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                                    <path d="M 45 85 Q 60 80 65 72 M 65 72 Q 62 60 65 58 M 65 72 Q 70 60 72 58" stroke="#38bdf8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-
-                                    <text x="55" y="125" font-size="6.5" font-weight="bold" fill="#0284c7" text-anchor="middle">Broto surge e se solta</text>
-                                    <text x="55" y="135" font-size="6" fill="#475569" text-anchor="middle">Ex: Leveduras e Hidras</text>
-                                </g>
-
-                                <!-- 3. FRAGMENTAÇÃO -->
-                                <g transform="translate(255, 12)">
-                                    <rect x="0" y="0" width="110" height="145" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
-                                    <text x="55" y="15" font-size="8" font-weight="bold" fill="#78350f" text-anchor="middle">FRAGMENTAÇÃO</text>
-
-                                    <!-- Planária cortada regenerando -->
-                                    <path d="M 25 35 Q 55 30 85 35 Q 85 45 55 42 Q 25 45 25 35 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-                                    <line x1="55" y1="28" x2="55" y2="48" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2"/>
-
-                                    <path d="M 55 52 L 55 60" stroke="#d97706" stroke-width="1.5"/>
-                                    <polygon points="55,64 51,58 59,58" fill="#d97706"/>
-
-                                    <!-- Parte Anterior Regenerando -->
-                                    <path d="M 20 80 Q 38 77 50 80 Q 50 88 38 86 Q 20 88 20 80 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
-                                    <path d="M 50 80 Q 58 78 62 80 Q 62 88 58 86 Q 50 88 50 80 Z" fill="#dcfce7" stroke="#10b981" stroke-width="1.2"/>
-
-                                    <!-- Parte Posterior Regenerando -->
-                                    <path d="M 20 105 Q 24 103 28 105 Q 28 113 24 111 Q 20 113 20 105 Z" fill="#dcfce7" stroke="#10b981" stroke-width="1.2"/>
-                                    <path d="M 28 105 Q 46 102 60 105 Q 60 113 46 111 Q 28 113 28 105 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
-
-                                    <text x="55" y="128" font-size="6" font-weight="bold" fill="#b45309" text-anchor="middle">Regeneração de Partes</text>
-                                    <text x="55" y="137" font-size="5.5" fill="#475569" text-anchor="middle">Ex: Planárias e Estrelas-do-mar</text>
-                                </g>
-
-                                <!-- 4. REPRODUÇÃO SEXUADA -->
-                                <g transform="translate(375, 12)">
-                                    <rect x="0" y="0" width="110" height="145" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
-                                    <text x="55" y="15" font-size="8" font-weight="bold" fill="#5b21b6" text-anchor="middle">REPRODUÇÃO SEXUADA</text>
-
-                                    <!-- Gametas e Fecundação -->
-                                    <circle cx="35" cy="40" r="10" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5"/>
-                                    <text x="35" y="42" font-size="6" font-weight="bold" fill="#6d28d9" text-anchor="middle">Óvulo</text>
-
-                                    <path d="M 80 40 Q 70 35 62 40" stroke="#7c3aed" stroke-width="1.5" fill="none"/>
-                                    <circle cx="80" cy="40" r="3" fill="#6d28d9"/>
-
-                                    <path d="M 55 58 L 55 66" stroke="#7c3aed" stroke-width="1.5"/>
-                                    <polygon points="55,70 51,64 59,64" fill="#7c3aed"/>
-
-                                    <circle cx="55" cy="85" r="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
-                                    <text x="55" y="87" font-size="6.5" font-weight="bold" fill="#166534" text-anchor="middle">ZIGOTO</text>
-
-                                    <text x="55" y="112" font-size="6.5" font-weight="bold" fill="#7c3aed" text-anchor="middle">FUSÃO DE GAMETAS</text>
-                                    <text x="55" y="124" font-size="6" font-weight="bold" fill="#15803d" text-anchor="middle">VARIABILIDADE GENÉTICA</text>
-                                    <text x="55" y="136" font-size="5.5" fill="#475569" text-anchor="middle">Adaptação ao Ambiente</text>
-                                </g>
-                            </svg>
-                        </div>
-
-                        <!-- TABELA COMPARATIVA AVALIADA NO CAEd -->
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <div class="p-2 border border-success border-2 rounded h-100 bg-white">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong class="text-success small fw-bold"><i class="fa-solid fa-clone me-1"></i> Reprodução Assexuada</strong>
-                                        <span class="badge bg-success text-white" style="font-size: 0.55rem;">CLONES IDENTÍCOS</span>
-                                    </div>
-                                    <ul class="list-unstyled mb-0" style="font-size: 0.63rem;">
-                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-1"></i><strong>1 Único Genitor:</strong> Não exige parceiros sexuais.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-xmark text-danger me-1"></i><strong>Sem Gametas:</strong> Não há fecundação nem troca de DNA.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-bolt text-warning me-1"></i><strong>Rápida e Eficiente:</strong> Alta taxa de multiplicação.</li>
-                                        <li><i class="fa-solid fa-triangle-exclamation text-danger me-1"></i><strong>Risco:</strong> População idêntica é vulnerável a doenças/mudanças.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="p-2 border border-purple border-2 rounded h-100 bg-white" style="border-color: #7c3aed !important;">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <strong style="color: #6d28d9;" class="small fw-bold"><i class="fa-solid fa-dna me-1"></i> Reprodução Sexuada</strong>
-                                        <span class="badge text-white" style="background-color: #7c3aed; font-size: 0.55rem;">DIVERSIDADE GENÉTICA</span>
-                                    </div>
-                                    <ul class="list-unstyled mb-0" style="font-size: 0.63rem;">
-                                        <li class="mb-1"><i class="fa-solid fa-check text-success me-1"></i><strong>Fusão de Gametas:</strong> União de espermatozoide + óvulo.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-shield-halved text-primary me-1"></i><strong>Variabilidade Genética:</strong> Descendentes únicos.</li>
-                                        <li class="mb-1"><i class="fa-solid fa-leaf text-success me-1"></i><strong>Sobrevivência do Bioma:</strong> Permite evolução e adaptação.</li>
-                                        <li><i class="fa-solid fa-clock text-secondary me-1"></i><strong>Processo Lento:</strong> Requer tempo e gasto de energia.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DICA DE FOCO -->
-                        <div class="p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-success fs-5"></i>
-                            <div style="font-size: 0.7rem;">
-                                <strong class="text-success d-block text-uppercase">DICA DE FOCO EM SALA DE AULA PARA O CAEd:</strong>
-                                <span class="text-dark">Enfatize a diferença essencial: <strong>Assexuada = 1 genitor, sem gametas e gera CLONES idênticos</strong>. <strong>Sexuada = união de gametas, gera VARIABILIDADE GENÉTICA</strong>, essencial para a sobrevivência das espécies perante mudanças ambientais.</span>
-                            </div>
-                        </div>
-
-                        <!-- RODAPÉ MODAL -->
-                        <footer class="text-center text-muted pt-2" style="font-size: 0.62rem;">
-                            Norteador Pedagógico JTC &bull; U. E. João Tavares da Costa &bull; Ciências da Natureza
-                        </footer>
-
                     </div>
                 </div>
             </div>
@@ -1666,10 +684,10 @@
                         { codigo: "8EF09_CN", caed: "Reconhecer os impactos ambientais resultantes da construção e do uso de diferentes usinas de geração de energia elétrica.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica (Impactos de hidrelétricas, termelétricas e nucleares)", pag: "174-183", erro: "Considerar que usinas renováveis (como a Hidrelétrica) são totalmente isentas de impactos ambientais.", dica: "Analisar prós e contras específicos: Hidrelétrica (alagamento e metano); Termelétrica (gases do efeito estufa); Eólica (impacto sonoro e fauna).", temResumo: "8EF09" },
                         { codigo: "8EF10_CN", caed: "Reconhecer os tipos de usinas de geração de energia elétrica.", ut: "Unidade 6: Geração e Consumo de Energia Elétrica", cap: "Tema 1: Usinas de geração de energia elétrica", pag: "172-183", erro: "Confundir o combustível da usina Termelétrica (carvão/gás/óleo) com o da usina Termonuclear (Urânio/fissão nuclear) ou esquecer da energia Solar Fotovoltaica.", dica: "Associar a fonte primária e o processo motor que aciona o gerador elétrico (ou a conversão direta de luz na solar).", temResumo: "8EF10" },
                         { codigo: "8EF11_CN", caed: "Reconhecer os diferentes processos reprodutivos dos seres vivos.", ut: "Vida e Evolução", cap: "Unidade 1, Temas 1 ao 4 (Pág. 14-48)", pag: "14-48", erro: "Achar que a reprodução assexuada gera variabilidade genética ou confundir brotamento, fragmentação e bipartição.", dica: "Diferenciar: Assexuada (1 único genitor, sem gametas, gera clones idênticos, rápida) vs. Sexuada (fusão de gametas/fecundação, gera variabilidade genética essencial para a sobrevivência a mudanças ambientais).", temResumo: "8EF11" },
-                        { codigo: "8EF13_CN", caed: "Explicar a ação do sistema endócrino sobre as características sexuais secundárias.", ut: "Unidade 2: Hormônios, Sistema Genital e Puberdade", cap: "Tema 2: Sistema genital e puberdade (Adolescência, puberdade e mudanças corporais)", pag: "64, 73-74", erro: "Confundir a ação dos hormônios sexuais com as características primárias (presença dos órgãos genitais ao nascer).", dica: "Relacionar os hormônios da puberdade (Testosterona, Estrogênio, Progesterona) ao aparecimento das características secundárias (voz, pelos, mamas, ciclo)." },
+                        { codigo: "8EF13_CN", caed: "Explicar a ação do sistema endócrino sobre as características sexuais secundárias.", ut: "Unidade 2: Hormônios, Sistema Genital e Puberdade", cap: "Tema 2: Sistema genital e puberdade (Adolescência, puberdade e mudanças corporais)", pag: "64, 73-74", erro: "Confundir a ação dos hormônios sexuais com as características primárias (presença dos órgãos genitais ao nascer).", dica: "Relacionar os hormônios da puberdade (Testosterona, Estrogênio, Progesterona) ao aparecimento das características secundárias (voz, pelos, mamas, ciclo).", temResumo: "8EF13" },
                         { codigo: "8EF14_CN", caed: "Reconhecer o princípio de ação dos métodos contraceptivos.", ut: "Unidade 3: Reprodução Humana e Sexualidade", cap: "Tema 2: Contracepção e prevenção (Métodos contraceptivos de barreira, hormonais e cirúrgicos)", pag: "94-98", erro: "Acreditar que pílulas anticoncepcionais protegem contra ISTs, ou não diferenciar métodos de barreira de métodos hormonais/cirúrgicos.", dica: "Classificar os métodos: Barreira (Camisinha - o único que previne ISTs); Hormonal (Pílulas - impedem ovulação); Cirúrgico (Laqueadura/Vasectomia)." },
                         { codigo: "8EF15_CN", caed: "Reconhecer as características das infecções sexualmente transmissíveis (IST).", ut: "Unidade 3: Reprodução Humana e Sexualidade", cap: "Tema 2: Contracepção e prevenção (Infecções sexualmente transmissíveis - ISTs)", pag: "99-101", erro: "Confundir infecções causadas por vírus (HIV, HPV, Herpes) com as causadas por bactérias (Sífilis, Gonorreia).", dica: "Identificar os agentes causadores das principais ISTs, formas de contágio/prevenção (preservativo) e que antibióticos tratam apenas ISTs bacterianas." },
-                        { codigo: "8EF17_CN", caed: "Explicar os movimentos do planeta Terra relacionando-os à ocorrência do dia e da noite e às estações do ano.", ut: "Unidade 7: Movimentos da Terra e da Lua", cap: "Tema 1: Movimentos da Terra e as estações do ano (Rotação, translação e inclinação do eixo)", pag: "200-205", erro: "Acreditar que as estações do ano ocorrem porque a Terra fica 'mais perto do Sol no verão e mais longe no inverno'.", dica: "O fator determinante é a inclinação do eixo de rotação combinada com a Translação. O movimento de Rotação determina a alternância de Dias e Noites." }
+                        { codigo: "8EF17_CN", caed: "Explicar os movimentos do planeta Terra relacionando-os à ocorrência do dia e da noite e às estações do ano.", ut: "Unidade 7: Movimentos da Terra e as Estações do Ano", cap: "Tema 1: Movimentos da Terra e as estações do ano (Rotação, translação e inclinação do eixo)", pag: "200-205", erro: "Acreditar que as estações do ano ocorrem porque a Terra fica 'mais perto do Sol no verão e mais longe no inverno'.", dica: "O fator determinante é a inclinação do eixo de rotação combinada com a Translação. O movimento de Rotação determina a alternância de Dias e Noites." }
                     ]
                 }
             },
@@ -1802,6 +820,89 @@
                 `;
                 container.appendChild(card);
             });
+        }
+
+        /* Função para Gerar E-Book PDF em ALTA RESOLUÇÃO VETORIAL */
+        function gerarEBookCiclo() {
+            if (!turmaAtual) return;
+
+            const itens = bancoDados[turmaAtual].ciclos[cicloAtual] || [];
+            if (itens.length === 0) {
+                alert("Não há habilidades disponíveis neste ciclo para gerar o E-Book.");
+                return;
+            }
+
+            // Configuração Otimizada para Alta Definição (Sem aspecto de imagem compactada)
+            const opt = {
+                margin:       [0.4, 0.4, 0.4, 0.4],
+                filename:     `E-Book_Pedagogico_${turmaAtual}_Ciclo${cicloAtual}.pdf`,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { 
+                    scale: 3, 
+                    useCORS: true, 
+                    letterRendering: true, 
+                    logging: false,
+                    dpi: 300
+                },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Container Temporário Otimizado
+            const containerTemp = document.createElement("div");
+            containerTemp.style.padding = "10px";
+            containerTemp.style.backgroundColor = "#ffffff";
+            containerTemp.style.fontFamily = "'Plus Jakarta Sans', Arial, sans-serif";
+            containerTemp.style.color = "#0f172a";
+            containerTemp.style.webkitFontSmoothing = "antialiased";
+
+            let htmlContent = `
+                <div style="text-align: center; border-bottom: 2px solid #047857; padding-bottom: 12px; margin-bottom: 16px;">
+                    <h1 style="font-size: 18pt; color: #047857; font-weight: 800; margin: 0 0 4px 0; font-family: 'Plus Jakarta Sans', sans-serif;">NORTEADOR PEDAGÓGICO</h1>
+                    <h2 style="font-size: 12pt; color: #334155; font-weight: 700; margin: 0 0 6px 0; font-family: 'Plus Jakarta Sans', sans-serif;">U. E. João Tavares da Costa</h2>
+                    <p style="font-size: 9pt; color: #475569; margin: 0; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <strong>Componente:</strong> Ciências da Natureza &bull; 
+                        <strong>Turma:</strong> ${bancoDados[turmaAtual].titulo} &bull; 
+                        <strong>Ciclo:</strong> Ciclo ${cicloAtual}
+                    </p>
+                </div>
+            `;
+
+            itens.forEach((item) => {
+                htmlContent += `
+                    <div style="border: 1px solid #cbd5e1; border-left: 4px solid #047857; border-radius: 6px; padding: 10px 12px; margin-bottom: 12px; background-color: #ffffff; page-break-inside: avoid; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="background-color: #dcfce7; color: #064e3b; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 8.5pt;">Habilidade ${item.codigo}</span>
+                            <span style="font-size: 8pt; color: #64748b; font-weight: 600;">Livro Didático: Pág. ${item.pag}</span>
+                        </div>
+                        <p style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 6px 0; line-height: 1.35;">${item.caed}</p>
+                        <div style="font-size: 8pt; color: #475569; border-top: 1px solid #f1f5f9; padding-top: 6px; margin-top: 4px;">
+                            <p style="margin: 1px 0;"><strong>Unidade Temática:</strong> ${item.ut}</p>
+                            <p style="margin: 1px 0;"><strong>Capítulo / Tema:</strong> ${item.cap}</p>
+                        </div>
+                        ${item.erro ? `
+                            <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 5px 8px; margin-top: 6px; font-size: 8pt; color: #991b1b; line-height: 1.3;">
+                                <strong>Erro Frequente do Aluno no CAEd:</strong> ${item.erro}
+                            </div>
+                        ` : ''}
+                        ${item.dica ? `
+                            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px 8px; margin-top: 6px; font-size: 8pt; color: #166534; line-height: 1.3;">
+                                <strong>Dica de Foco em Sala de Aula:</strong> ${item.dica}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            htmlContent += `
+                <div style="text-align: center; border-top: 1px solid #cbd5e1; padding-top: 8px; margin-top: 16px; font-size: 7.5pt; color: #94a3b8; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    Norteador Pedagógico JTC &bull; Documento gerado em ${new Date().toLocaleDateString('pt-BR')}
+                </div>
+            `;
+
+            containerTemp.innerHTML = htmlContent;
+
+            // Execução da renderização
+            html2pdf().set(opt).from(containerTemp).save();
         }
     </script>
 
